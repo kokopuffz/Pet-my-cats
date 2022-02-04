@@ -43,7 +43,7 @@ player pressed
 
 
 
-if correct... and giant hand glides diagnally across screen (pet)
+if correct... and giant hand glides diagonally across screen (pet)
 ![if correct](https://cdn.discordapp.com/attachments/829614700815319060/939021614274707486/7.png)
 
 
@@ -71,6 +71,8 @@ game over, click to try again
 
 ***
 ## Potential  roadblocks
+
+* domino effect of one breaking them all T.T
 
 <!-- Requirements
 1. Display a game in the browser
