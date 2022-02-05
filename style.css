@@ -1,0 +1,112 @@
+/* main, img goes center bottom, top changes color depending on answer, hover screen start, result-end div */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 50%;
+}
+
+body {
+  /* padding-top: 1em; */
+  text-align: center;
+  background-color: black;
+  /* background-image: url('../img/dungeonhell.png'); */
+  background-size: cover;
+  background-repeat: space;
+}
+.container {
+  max-width: 50em;
+  max-height: auto;
+  margin: 0 auto;
+  padding: .5em;
+  text-align: center;
+  background-color: rgb(118 185 240);
+  display: flex;
+  position: relative;
+  /* width: 832px;
+  height: 468px;
+  aspect-ratio: 832/468; */
+  /* width: 100vh;
+  height: 100vh; */
+  justify-content: center;
+  align-items: center;
+}
+
+.cat {
+  /* position: absolute; */
+  max-width: auto;
+  /* aspect-ratio: 624/468; */
+  max-height: auto;
+}
+
+.top-center {
+  position: absolute;
+  left: 0%;
+  top: 1%;
+  right: 0%;
+  bottom: auto;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  /* width: 700px;
+  height: 100px; */
+  max-width: 30em;
+  /* padding: .5em; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: hotpink;
+}
+/* 
+.column {
+  
+} */
+.keys-wrapper {
+  position: absolute;
+  left: 0%;
+  top: auto;
+  right: auto;
+  bottom: 0%;
+  display: flex;
+  max-width: 5em;
+  /* width: 400px;
+  height: 100px; */
+  padding-left: .5em;
+  justify-content: center;
+  align-items: center;
+  background-color: chartreuse;
+
+}
+
+.pressed-keys {
+  line-height: 1em;
+}
+
+.keys-display {
+  line-height: 1em;
+}
+
+#output {
+  font-family: Arial, Helvetica, sans-serif;
+  /* border: 1px solid black; */
+}
+
+.fade-away {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.fade-away.fade {
+  opacity: 0;
+}
+
+
+/* 
+.cat img {
+  max-width: 75%;
+  max-height: 150px;
+}
+ */
