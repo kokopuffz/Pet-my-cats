@@ -1,14 +1,14 @@
 console.log('im ded')
 
 let outPut = document.getElementById("output")
-let fadeAway = document.getElementById("fade-away")
+let fadeAway = document.querySelector(".fade-away")
 let topDisplay = document.getElementById("top-display")
 let asked = []
 let choices = [0,1,2,3]
 let recordPress = []
 let gameOver=false
 
-const pressedKeys = { }
+let pressedKeys = { }
 document.addEventListener('keydown', e => pressedKeys[e.key] = true)
 document.addEventListener('keyup', e => pressedKeys[e.key] = false) 
 console.log(pressedKeys)
@@ -51,22 +51,29 @@ const questions = [
 //after button is pressed to start
 
 
-//goal #1 show pressed keys on screen
+// goal #1 show pressed keys on screen
+//make pressedDisplay that also listens to keyup
 let pressedDisplay = () => document.addEventListener("keydown", function(event) {
   const p = document.createElement("p");
   p.textContent = `${event.key}`;
   outPut.appendChild(p);
 
   if (!gameOver) {
+    let pressedKeys = () => {
+      if 
+    }
     recordPress.push(event.key)
     console.log(recordPress)
+  } else {
+    return
   }
 
-  // fadeAway.classList.toggle(fade)
+//   // fadeAway.classList.toggle(fade)
 }, true);
 
+function
 
-// how do i get my solution to the question reflected in the questions
+
 
 let usedQuestions = (num) => {
   const index = choices.indexOf(num)
@@ -80,27 +87,43 @@ let randomQuestionIndex = () => {
     return (choices[index])
 }
 
-// let checkInput = () {
-//checks if the inputs are correct === boolean
-// }
-//question is displayed and page displays every keyboard press
-// let questionDisplay = (questions, topDisplay) => {
-//   for (let i = 0; i < questions.length; i++) {
-//     answers = [];
-//   }
+let correctCheck = (press, currentAnswer) => {
+    for(let i = 0; i < currentAnswer.length, i++){
+    let correctPress = currentAnswer[i]
 
-//   topDisplay.innerText = questions[idx].question
-// }
+    if (press.includes(currentAnswer[i])){
+      return false
+    }
+  }
+}
+// let checkInput = () {
+// checks if the inputs are correct === boolean
+}
+// question is displayed and page displays every keyboard press
+let questionDisplay = (questions, topDisplay) => {
+  for (let i = 0; i < questions.length; i++) {
+    answers = [];
+  }
+
+  topDisplay.innerText = questions[idx].question
+}
 
 
 function gameLoop() {
   pressedDisplay()
   //get random index from choices
-  let getQuestion = randomQuestionIndex()
+  let currentQuestion = randomQuestionIndex()
   //display question
-  topDisplay.innerText = questions[getQuestion].question
-  usedQuestions(getQuestion)
+  topDisplay.innerText = questions[currentQuestion].question
+  //take current question out of choices
+  usedQuestions(currentQuestion)
+  //get the answers
+  let currentAnswer = questions[currentQuestion].answer
+  //loop through answer in case order doesn't matter
 
+
+  //compare pressed keys 
+  console.log(currentAnswer)
   
   if (gameOver) {
     return
