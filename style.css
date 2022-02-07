@@ -115,17 +115,27 @@ body {
 .gianthand {
   z-index: 2;
   position: absolute;
+  text-align: left;
+  /* animation-name: shine;
+  animation-duration: 5s;
+  animation-iteration-count: 1; */
 }
 
 .gianthand img {
   max-width: 75%;
+  margin-left: -20% !important;
+  margin-top: -20% !important;
+  overflow: hidden;
+  animation-name: shine;
+  animation-duration: 6s;
+  animation-iteration-count: 1;
 }
 @keyframes shine {
   0% {
-    transform: tramslatex(0px)translatey(0px)
+    transform: translatex(-100px)translatey(-200px)
   }
-  100 {
-    transform: translatex
+  100% {
+    transform: translatex(1000px) translatey(700px);
   }
 }
 /* 

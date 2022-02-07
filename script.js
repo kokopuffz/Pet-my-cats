@@ -88,7 +88,11 @@ let usedQuestions = (num) => {
 let correct = () => {
   const pet = document.createElement('img')
   pet.src='/img/gianthand.png'
-  document.querySelector('.gianthand').appendChild(pet)  
+  const parent = document.querySelector('.gianthand')
+  parent.appendChild(pet)  
+
+  setTimeout(() => parent.removeChild(pet),5800)
+
 }
 
 //next question
@@ -261,6 +265,7 @@ addEventListener("keydown", (event) => {
     }
     if (eventCode.AltLeft && eventCode.ArrowUp){
           //giant hand goes across screeen
+      correct()
       console.log("GOODJOBSPORTMOVELINEUP")
       usedQuestions(currentQuestion)
     }
