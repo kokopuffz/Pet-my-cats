@@ -30,7 +30,7 @@ body {
   margin: 0 auto;
   padding: .5em;
   text-align: center;
-  background-color: rgb(118 185 240);
+  background-color: rgb(205 194 254);
   display: flex;
   position: relative;
   /* width: 832px;
@@ -66,7 +66,8 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: hotpink;
+  background-color: rgb(27, 15, 4);
+  color: white;
 }
 /* 
 .column {
@@ -127,7 +128,7 @@ body {
   margin-top: -20% !important;
   overflow: hidden;
   animation-name: shine;
-  animation-duration: 6s;
+  animation-duration: 4s;
   animation-iteration-count: 1;
 }
 @keyframes shine {
@@ -135,7 +136,7 @@ body {
     transform: translatex(-100px)translatey(-200px)
   }
   100% {
-    transform: translatex(1000px) translatey(700px);
+    transform: translatex(1200px) translatey(600px);
   }
 }
 /* 

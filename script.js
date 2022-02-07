@@ -4,7 +4,7 @@ let outPut = document.getElementById("output")
 let fadeAway = document.querySelector(".fade-away")
 let topDisplay = document.getElementById("top-display")
 let asked = []
-let choices = [0,1]
+let choices = [0]
 let recordPress = []
 let gameOver=false
 
@@ -71,51 +71,7 @@ const questions = [
   }
 ]
 
-let randomQuestionIndex = () => {
-  const index = Math.floor(Math.random() * choices.length) 
-    return (choices[index])
-}
-
-//take out question that was just used
-let usedQuestions = (num) => {
-  const index = choices.indexOf(num)
-  if (index > -1) {
-    choices.splice(index,1)
-  }
-}
-
-
-let correct = () => {
-  const pet = document.createElement('img')
-  pet.src='/img/gianthand.png'
-  const parent = document.querySelector('.gianthand')
-  parent.appendChild(pet)  
-
-  setTimeout(() => parent.removeChild(pet),5800)
-
-}
-
-//next question
-
-
-// goal #1 show pressed keys on screen
-//make pressedDisplay that also listens to keyup** later
-
-//button that starts this madnesss*******************
-//get randomQuestio
-
-let currentQuestion = randomQuestionIndex()
-console.log(currentQuestion)
-
-//display questions
-topDisplay.innerText = questions[currentQuestion].question
-if (choices.length === 0) {
-  (gameOver)
-  console.log("goodjobChamp")
-}
-
-//QUESTION0
-if (currentQuestion === 0) {
+const question0 = () => {
   let eventCode = {
     MetaLeft: false,
     ShiftLeft: false,
@@ -140,9 +96,9 @@ addEventListener("keydown", (event) => {
     //giant hand goes across screeen
     console.log("GOODJOBSPORT")
     usedQuestions(currentQuestion)
-    correct()
-    randomQuestionIndex()
+    correctImg()
     console.log(choices)
+    return
   } else {
     console.log("WTF DID U DO")
     //try again
@@ -162,6 +118,67 @@ addEventListener("keyup", (event) => {
 })
 
 }
+//  (currentQuestion === 0) {
+  
+// }
+
+let randomQuestionIndex = () => {
+  const index = Math.floor(Math.random() * choices.length) 
+    return (choices[index])
+}
+
+//take out question that was just used
+let usedQuestions = (num) => {
+  const index = choices.indexOf(num)
+  if (index > -1) {
+    choices.splice(index,1)
+  }
+}
+
+
+let correctImg = () => {
+  const pet = document.createElement('img')
+  pet.src='/img/gianthand.png'
+  const parent = document.querySelector('.gianthand')
+  parent.appendChild(pet)  
+  setTimeout(() => parent.removeChild(pet),3800)
+}
+
+
+// goal #1 show pressed keys on screen
+//make pressedDisplay that also listens to keyup** later
+
+//button that starts this madnesss*******************
+
+
+
+//check if there are any choices
+//LOOP FROM HERE//
+
+
+if (choices.length === 0) {
+  (gameOver)
+  console.log("goodjob no moar quest")
+}
+
+
+//make it the current question
+let currentQuestion = randomQuestionIndex()
+console.log(currentQuestion)
+
+//display questions
+topDisplay.innerText = questions[currentQuestion].question
+//index taken out only if question is right
+
+
+//get question - if statements start here
+
+//QUESTION0
+if (currentQuestion === 0) {
+  question0()
+}
+
+
 // //IFQUESTION1
 if (currentQuestion === 1) {
   let eventCode = {
@@ -187,8 +204,9 @@ addEventListener("keydown", (event) => {
     //giant hand goes across screeen
     console.log("GOODJOBSPORT1COPYLINE")
     usedQuestions(currentQuestion)
-    
+    correctImg()
     console.log(choices)
+    return
   } else {
     (gameOver)
   }
