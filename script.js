@@ -3,10 +3,12 @@ console.log('im ded O_O')
 let outPut = document.getElementById("output")
 let fadeAway = document.querySelector(".fade-away")
 let topDisplay = document.getElementById("top-display")
+let topCenter = document.querySelector(".top-center")
 let asked = []
-let choices = [0]
+let choices = [0,1]
 let recordPress = []
 let gameOver=false
+let guesses = []
 
 
 // let pressedKeys = { }
@@ -77,8 +79,8 @@ const question0 = () => {
     ShiftLeft: false,
     Space: false
   }
- 
-addEventListener("keydown", (event) => {
+
+  addEventListener("keydown", (event) => {
   if (event.code === 'MetaLeft') {
     eventCode.MetaLeft = true
     console.log("rar")
@@ -97,11 +99,18 @@ addEventListener("keydown", (event) => {
     console.log("GOODJOBSPORT")
     usedQuestions(currentQuestion)
     correctImg()
+    correctDisplay()
     console.log(choices)
     return
   } else {
+    //find a way to give a number of guesses
     console.log("WTF DID U DO")
-    //try again
+    guesses.push(event.code)
+    if (guesses.length > 7) {
+      console.log("doneski")
+      gameOver = true
+      return
+    }
   }
 })
 
@@ -118,6 +127,148 @@ addEventListener("keyup", (event) => {
 })
 
 }
+
+const question1= () => {
+  let eventCode = {
+    AltLeft: false,
+    ShiftLeft: false,
+    ArrowDown: false
+  }
+
+  addEventListener("keydown", (event) => {
+    if (event.code === 'AltLeft') {
+      eventCode.AltLeft = true
+      console.log("rar")
+    }
+    if (event.code === 'ShiftLeft') {
+      eventCode.ShiftLeft = true
+      console.log("rarar")
+    }
+    if (event.code === 'ArrowDown') {
+      eventCode.ArrowDown = true
+      console.log("mrar")
+    }
+    if (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown) {
+      //giant hand goes across screeen
+      console.log("GOODJOBSPORT1COPYLINE")
+      usedQuestions(currentQuestion)
+      correctImg()
+      correctDisplay()
+      console.log(choices)
+      return
+    } else {
+      console.log('nope')
+      if (event.length > 7){
+        gameover = true
+      }
+    }
+  })
+
+    addEventListener("keyup", (event) => {
+      if (event.code === "AltLeft") {
+        eventCode.MetaLeft = false;
+      }
+      if (event.code === "ShiftLeft") {
+        eventCode.ShiftLeft = false
+      }
+      if (event.code === "ArrowDown") {
+        eventCode.Space = false
+      }
+    })
+  }
+
+const question2 = () => {
+    let eventCode = {
+    MetaLeft: false,
+    ShiftLeft: false,
+    KeyC: false
+  }
+
+addEventListener("keydown", (event) => {
+  if (event.code === 'MetaLeft') {
+    eventCode.MetaLeft = true
+    console.log("rarar")
+  }
+  if (event.code === 'ShiftLeft') {
+    eventCode.ShiftLeft = true
+    console.log("mrar")
+  }
+  if (event.code === 'KeyC') {
+    eventCode.KeyC = true
+    console.log("rar")
+  }
+  if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.KeyC) {
+          //giant hand goes across screeen
+    console.log("GOODJOBSPORT2ELEMENTS")
+    usedQuestions(currentQuestion)
+    correctImg()
+    correctDisplay()
+    console.log(choices)
+  } else {
+    guesses.push(event.code)
+    if (guesses.length > 7) {
+      console.log("redroveritsover")
+      gameOver = true
+      return
+    }
+  }
+})
+
+addEventListener("keyup", (event) => {
+  if (event.code === "MetaLeft") {
+    eventCode.MetaLeft = false;
+  }
+  if (event.code === "ShiftLeft") {
+    eventCode.ShiftLeft = false
+  }
+  if (event.code === "KeyC") {
+    eventCode.Space = false
+  }
+})
+}
+
+let question3 = () => {
+  let eventCode = {
+    AltLeft: false,
+    ArrowUp: false
+  }
+
+addEventListener("keydown", (event) => {
+    if (event.code === 'AltLeft') {
+      eventCode.AltLeft = true
+      console.log("rar")
+    }
+    if (event.code === 'ArrowUp') {
+      eventCode.ArrowUp = true
+      console.log("mrar")
+    }
+    if (eventCode.AltLeft && eventCode.ArrowUp){
+          //giant hand goes across screeen
+      correctImg()
+      correctDisplay()
+      usedQuestions(currentQuestion)
+      console.log(choices)
+      console.log("GOODJOBSPORTMOVELINEUP")
+    } else {
+      guesses.push(event.code)
+      if (guesses.length > 7) {
+        console.log("dundundun")
+        gameOver = true
+        return
+      }
+    }
+  })
+
+  addEventListener("keyup", (event) => {
+    if (event.code === "MetaLeft") {
+      eventCode.MetaLeft = false;
+    }
+    if (event.code === "Space") {
+      eventCode.Space = false
+    }
+  })
+}
+
 //  (currentQuestion === 0) {
   
 // }
@@ -140,8 +291,14 @@ let correctImg = () => {
   const pet = document.createElement('img')
   pet.src='/img/gianthand.png'
   const parent = document.querySelector('.gianthand')
-  parent.appendChild(pet)  
+  parent.appendChild(pet)
+  console.log
   setTimeout(() => parent.removeChild(pet),3800)
+}
+
+let correctDisplay = () => {
+  topDisplay.innerText = "correct!"
+  topCenter.style.backgroundColor = "rgb(186 220 172)"
 }
 
 
@@ -153,7 +310,7 @@ let correctImg = () => {
 
 
 //check if there are any choices
-//LOOP FROM HERE//
+//LOOP FROM HERE/
 
 
 if (choices.length === 0) {
@@ -178,125 +335,19 @@ if (currentQuestion === 0) {
   question0()
 }
 
+if (currentQuestion === 1) {
+  question1()
+}
 
 // //IFQUESTION1
-if (currentQuestion === 1) {
-  let eventCode = {
-    AltLeft: false,
-    ShiftLeft: false,
-    ArrowDown: false
-  }
 
-addEventListener("keydown", (event) => {
-  if (event.code === 'AltLeft') {
-    eventCode.AltLeft = true
-    console.log("rar")
-  }
-  if (event.code === 'ShiftLeft') {
-    eventCode.ShiftLeft = true
-    console.log("rarar")
-  }
-  if (event.code === 'ArrowDown') {
-    eventCode.ArrowDown = true
-    console.log("mrar")
-  }
-  if (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown){
-    //giant hand goes across screeen
-    console.log("GOODJOBSPORT1COPYLINE")
-    usedQuestions(currentQuestion)
-    correctImg()
-    console.log(choices)
-    return
-  } else {
-    (gameOver)
-  }
-})
-
-  addEventListener("keyup", (event) => {
-    if (event.code === "AltLeft") {
-      eventCode.MetaLeft = false;
-    }
-    if (event.code === "ShiftLeft") {
-      eventCode.ShiftLeft = false
-    }
-    if (event.code === "ArrowDown") {
-      eventCode.Space = false
-    }
-  })
-}
 // //IFQUESTION2
 if (currentQuestion === 2) {
-  let eventCode = {
-    MetaLeft: false,
-    ShiftLeft: false,
-    KeyC: false
-  }
-
-addEventListener("keydown", (event) => {
-  if (event.code === 'MetaLeft') {
-    eventCode.MetaLeft = true
-    console.log("rarar")
-  }
-  if (event.code === 'ShiftLeft') {
-    eventCode.ShiftLeft = true
-    console.log("mrar")
-  }
-  if (event.code === 'KeyC') {
-    eventCode.KeyC = true
-    console.log("rar")
-  }
-  if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.KeyC) {
-          //giant hand goes across screeen
-    console.log("GOODJOBSPORT2ELEMENTS")
-    usedQuestions(currentQuestion)
-    console.log(choices)
-  }
-})
-
-addEventListener("keyup", (event) => {
-  if (event.code === "MetaLeft") {
-    eventCode.MetaLeft = false;
-  }
-  if (event.code === "ShiftLeft") {
-    eventCode.ShiftLeft = false
-  }
-  if (event.code === "KeyC") {
-    eventCode.Space = false
-  }
-})
+  question2()
 }
 //   //IFQUESTION3*************************
 if (currentQuestion === 3) {
-  let eventCode = {
-    AltLeft: false,
-    ArrowUp: false
-  }
-
-addEventListener("keydown", (event) => {
-    if (event.code === 'AltLeft') {
-      eventCode.AltLeft = true
-      console.log("rar")
-    }
-    if (event.code === 'ArrowUp') {
-      eventCode.ArrowUp = true
-      console.log("mrar")
-    }
-    if (eventCode.AltLeft && eventCode.ArrowUp){
-          //giant hand goes across screeen
-      correct()
-      console.log("GOODJOBSPORTMOVELINEUP")
-      usedQuestions(currentQuestion)
-    }
-  })
-
-  addEventListener("keyup", (event) => {
-    if (event.code === "MetaLeft") {
-      eventCode.MetaLeft = false;
-    }
-    if (event.code === "Space") {
-      eventCode.Space = false
-    }
-  })
+  question3()
 }
 
 

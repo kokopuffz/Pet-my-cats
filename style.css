@@ -1,8 +1,11 @@
 /* main, img goes center bottom, top changes color depending on answer, hover screen start, result-end div */
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
 
 html, body {
   margin: 0;
   padding: 0;
+  font-family: 'Pangolin', cursive;
+  letter-spacing: 0.3em;
 }
 
 img {
@@ -136,7 +139,7 @@ body {
     transform: translatex(-100px)translatey(-200px)
   }
   100% {
-    transform: translatex(1200px) translatey(600px);
+    transform: translatex(1200px) translatey(500px);
   }
 }
 /* 
