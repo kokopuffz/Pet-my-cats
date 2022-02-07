@@ -32,7 +32,7 @@ const questions = [
     answer: ['Meta', 'Shift', ' '],
     answertext: "command-shift-space"
   },
-
+  
   { 
     question: "Mac: copy current line",
     answerOp: {
@@ -45,61 +45,33 @@ const questions = [
   },
   
   {
-    question: "Mac\Chrome Devtools: elements mouseover panel",
+    question: "Mac-Chrome Devtools: elements mouseover panel",
     answer: ['Command', 'Shift', "c"],
     // answer: (pressedKeys.command && pressedKeys.shift && pressedKeys.spaceBar) ,
     // first conditionals to check if its pressed//actually chck
     answerOp: {
-        Command: false,
-        Shift: false,
-        c: false
-      },
+      Command: false,
+      Shift: false,
+      c: false
+    },
     answertext: "command-shift-c"
   },
-
+  
   {
-    question: "Mac\VS: move current line up",
+    question: "Mac-VS: move current line up",
     answerOp: {
-        Alt: false,
-        ArrowUp: false
-      },
+      Alt: false,
+      ArrowUp: false
+    },
     answer: ['Alt', 'ArrowUp'],
     answertext: "alt-up"
   }
 ]
 
-//go to answer, get array, plug each into pressed keys execute pressed keys
-
-// function movementHandler() {
-//   // console.log(e)
-//   const speed = 5
-//   console.log(pressedKeys)
-// //   // movementDisplay.innerText = 'X:' + hero.x + ' ' + 'Y:' + hero.y 
-//   if (ogre.alive) movementDisplay.innerText = `X:${hero.x} Y:${hero.y}` 
-// //   // conditional logic based on what key was pressed
-//   if (pressedKeys.a || pressedKeys.ArrowLeft) hero.x -= speed
-//   if (pressedKeys.d || pressedKeys.ArrowRight) hero.x += speed
-//   if (pressedKeys.s || pressedKeys.ArrowDown) hero.y += speed
-//   if (pressedKeys.w || pressedKeys.ArrowUp) hero.y -= speed
-// }
-
-
-// goal #1 show pressed keys on screen
-//make pressedDisplay that also listens to keyup** later
-let compareKeys = () => document.addEventListener("keydown", function(event) {
-  const p = document.createElement("p")
-  p.textContent = `${event.key}`
-  // outPut.appendChild(p)
-  if (event.key === ' '){
-    p.textContent = 'Spacebar'
-  }
-  outPut.appendChild(p)
-  recordPress.push(event.key)
-  console.log(recordPress)
-  }
-    // fadeAway.classList.toggle(fade)
-, true)
-
+let randomQuestionIndex = () => {
+  const index = Math.floor(Math.random() * choices.length) 
+    return (choices[index])
+}
 
 //take out question that was just used
 let usedQuestions = (num) => {
@@ -109,11 +81,194 @@ let usedQuestions = (num) => {
   }
 }
 
+// goal #1 show pressed keys on screen
+//make pressedDisplay that also listens to keyup** later
 
-let randomQuestionIndex = () => {
-  const index = Math.floor(Math.random() * choices.length) 
-    return (choices[index])
+//button that starts this madnesss*******************
+//get randomQuestio
+let currentQuestion = randomQuestionIndex()
+//display questions
+topDisplay.innerText = questions[currentQuestion].question
+
+//QUESTION0
+if (currentQuestion === 0) {
+  let eventCode = {
+    MetaLeft: false,
+    ShiftLeft: false,
+    Space: false
+  }
+ 
+addEventListener("keydown", (event) => {
+  if (event.code === 'MetaLeft') {
+    eventCode.MetaLeft = true
+    console.log("rar")
+  }
+  if (event.code === 'ShiftLeft') {
+    eventCode.ShiftLeft = true
+    console.log("rarar")
+  }
+  if (event.code === 'Space') {
+    eventCode.Space = true
+    console.log("mrar")
+  }
+  if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
+          //giant hand goes across screeen
+    console.log("GOODJOBSPORT")
+    console.log(eventCode)
+    usedQuestions(currentQuestion)
+    console.log(choices)
+  }
+})
+
+addEventListener("keyup", (event) => {
+  if (event.code === "MetaLeft") {
+    eventCode.MetaLeft = false;
+  }
+  if (event.code === "ShiftLeft") {
+    eventCode.ShiftLeft = false
+  }
+  if (event.code === "Space") {
+    eventCode.Space = false
+  }
+})
 }
+// //IFQUESTION1
+if (currentQuestion === 1) {
+  let eventCode = {
+    AltLeft: false,
+    ShiftLeft: false,
+    ArrowDown: false
+  }
+
+addEventListener("keydown", (event) => {
+  if (event.code === 'AltLeft') {
+    eventCode.AltLeft = true
+    console.log("rar")
+  }
+  if (event.code === 'ShiftLeft') {
+    eventCode.ShiftLeft = true
+    console.log("rarar")
+  }
+  if (event.code === 'ArrowDown') {
+    eventCode.ArrowDown = true
+    console.log("mrar")
+  }
+  if (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown){
+          //giant hand goes across screeen
+    console.log("GOODJOBSPORT1COPYLINE")
+    usedQuestions(currentQuestion)
+    console.log(choices)
+  }
+})
+
+  addEventListener("keyup", (event) => {
+    if (event.code === "AltLeft") {
+      eventCode.MetaLeft = false;
+    }
+    if (event.code === "ShiftLeft") {
+      eventCode.ShiftLeft = false
+    }
+    if (event.code === "ArrowDown") {
+      eventCode.Space = false
+    }
+  })
+}
+// //IFQUESTION2
+if (currentQuestion === 2) {
+  let eventCode = {
+    MetaLeft: false,
+    ShiftLeft: false,
+    KeyC: false
+  }
+
+addEventListener("keydown", (event) => {
+  if (event.code === 'MetaLeft') {
+    eventCode.MetaLeft = true
+    console.log("rarar")
+  }
+  if (event.code === 'ShiftLeft') {
+    eventCode.ShiftLeft = true
+    console.log("mrar")
+  }
+  if (event.code === 'KeyC') {
+    eventCode.KeyC = true
+    console.log("rar")
+  }
+  if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.KeyC) {
+          //giant hand goes across screeen
+    console.log("GOODJOBSPORT2ELEMENTS")
+    usedQuestions(currentQuestion)
+    console.log(choices)
+  }
+})
+
+addEventListener("keyup", (event) => {
+  if (event.code === "MetaLeft") {
+    eventCode.MetaLeft = false;
+  }
+  if (event.code === "ShiftLeft") {
+    eventCode.ShiftLeft = false
+  }
+  if (event.code === "KeyC") {
+    eventCode.Space = false
+  }
+})
+}
+//   //IFQUESTION3*************************
+if (currentQuestion === 3) {
+  let eventCode = {
+    AltLeft: false,
+    ArrowUp: false
+  }
+
+addEventListener("keydown", (event) => {
+    if (event.code === 'AltLeft') {
+      eventCode.AltLeft = true
+      console.log("rar")
+    }
+    if (event.code === 'ArrowUp') {
+      eventCode.ArrowUp = true
+      console.log("mrar")
+    }
+    if (eventCode.AltLeft && eventCode.ArrowUp){
+          //giant hand goes across screeen
+      console.log("GOODJOBSPORTMOVELINEUP")
+      usedQuestions(currentQuestion)
+    }
+  })
+
+  addEventListener("keyup", (event) => {
+    if (event.code === "MetaLeft") {
+      eventCode.MetaLeft = false;
+    }
+    if (event.code === "Space") {
+      eventCode.Space = false
+    }
+  })
+}
+
+
+
+//fack u i tried :(
+// document.addEventListener("keydown", function(event) {
+//   const p = document.createElement("p")
+//   p.textContent = `${event.key}`
+//   // outPut.appendChild(p)
+//   if (event.key === ' '){
+//     p.textContent = 'Spacebar'
+//   }
+//   outPut.appendChild(p)
+  
+  
+//   recordPress.push(event.key)
+//   console.log(recordPress)
+//   }
+//     // fadeAway.classList.toggle(fade)
+// , true)
+
+
+
+
 
 // let check = (move, currentAnswer) => {
 //   for (let i = 0; i < currentAnswer.length; i++ ) {
@@ -138,24 +293,23 @@ let randomQuestionIndex = () => {
 // }
 
 
-function gameLoop() {
-  //get random index from choices
-  let currentQuestion = randomQuestionIndex()
-  //display question
-  topDisplay.innerText = questions[currentQuestion].question
-  //start saving keystroke/
-  compareKeys()
+// function gameLoop() {
+//   //get random index from choices
+//   let currentQuestion = randomQuestionIndex()
+
+//   //start saving keystroke/
+//   compareKeys()
   
   
 
   //check keystroke against answers
   //if user is right take current question out of choices
-  usedQuestions(currentQuestion)
-  console.log(choices)
+  // usedQuestions(currentQuestion)
+  // console.log(choices)
   //get the answers
-  let currentAnswer = questions[currentQuestion].answer
+  // let currentAnswer = questions[currentQuestion].answer
   //check is press is included inside current answers
-}
+// }
 
   //compare pressed keys 
   
@@ -194,6 +348,6 @@ function gameLoop() {
 
 
 
-document.addEventListener('DOMContentLoaded', ()=> {
-  gameLoop()
-})
+// document.addEventListener('DOMContentLoaded', ()=> {
+//   gameLoop()
+// })
