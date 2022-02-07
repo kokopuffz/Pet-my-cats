@@ -17,6 +17,13 @@ body {
   background-size: cover;
   background-repeat: space;
 }
+
+.main {
+  max-width: 65;
+  max-height: auto;
+  margin: 0 auto;
+}
+
 .container {
   max-width: 60em;
   max-height: auto;
@@ -33,6 +40,7 @@ body {
   height: 100vh; */
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
 .cat {
@@ -104,7 +112,22 @@ body {
   opacity: 0;
 }
 
+.gianthand {
+  z-index: 2;
+  position: absolute;
+}
 
+.gianthand img {
+  max-width: 75%;
+}
+@keyframes shine {
+  0% {
+    transform: tramslatex(0px)translatey(0px)
+  }
+  100 {
+    transform: translatex
+  }
+}
 /* 
 .cat img {
   max-width: 75%;

@@ -1,12 +1,13 @@
-console.log('im ded')
+console.log('im ded O_O')
 
 let outPut = document.getElementById("output")
 let fadeAway = document.querySelector(".fade-away")
 let topDisplay = document.getElementById("top-display")
 let asked = []
-let choices = [0,1,2,3]
+let choices = [0,1]
 let recordPress = []
 let gameOver=false
+
 
 // let pressedKeys = { }
 // document.addEventListener('keydown', e => pressedKeys[e.key] = true)
@@ -18,7 +19,9 @@ let gameOver=false
 // }
 // console.log(pressedKeys)
 
-
+//new game
+//try again hover screen with button
+//
 
 const questions = [
   // let spaceBar = " "
@@ -81,14 +84,31 @@ let usedQuestions = (num) => {
   }
 }
 
+
+let correct = () => {
+  const pet = document.createElement('img')
+  pet.src='/img/gianthand.png'
+  document.querySelector('.gianthand').appendChild(pet)  
+}
+
+//next question
+
+
 // goal #1 show pressed keys on screen
 //make pressedDisplay that also listens to keyup** later
 
 //button that starts this madnesss*******************
 //get randomQuestio
+
 let currentQuestion = randomQuestionIndex()
+console.log(currentQuestion)
+
 //display questions
 topDisplay.innerText = questions[currentQuestion].question
+if (choices.length === 0) {
+  (gameOver)
+  console.log("goodjobChamp")
+}
 
 //QUESTION0
 if (currentQuestion === 0) {
@@ -102,6 +122,7 @@ addEventListener("keydown", (event) => {
   if (event.code === 'MetaLeft') {
     eventCode.MetaLeft = true
     console.log("rar")
+    console.log(event)
   }
   if (event.code === 'ShiftLeft') {
     eventCode.ShiftLeft = true
@@ -112,11 +133,15 @@ addEventListener("keydown", (event) => {
     console.log("mrar")
   }
   if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
-          //giant hand goes across screeen
+    //giant hand goes across screeen
     console.log("GOODJOBSPORT")
-    console.log(eventCode)
     usedQuestions(currentQuestion)
+    correct()
+    randomQuestionIndex()
     console.log(choices)
+  } else {
+    console.log("WTF DID U DO")
+    //try again
   }
 })
 
@@ -131,6 +156,7 @@ addEventListener("keyup", (event) => {
     eventCode.Space = false
   }
 })
+
 }
 // //IFQUESTION1
 if (currentQuestion === 1) {
@@ -154,10 +180,13 @@ addEventListener("keydown", (event) => {
     console.log("mrar")
   }
   if (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown){
-          //giant hand goes across screeen
+    //giant hand goes across screeen
     console.log("GOODJOBSPORT1COPYLINE")
     usedQuestions(currentQuestion)
+    
     console.log(choices)
+  } else {
+    (gameOver)
   }
 })
 
