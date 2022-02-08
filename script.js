@@ -6,10 +6,9 @@ let topDisplay = document.getElementById("top-display");
 let topCenter = document.querySelector(".top-center");
 let cat = document.querySelector(".cat");
 let asked = [];
-let choices = [0, 1,];
+let choices = [0, 1];
 let recordPress = [];
 let gameOver = false;
-let question = false;
 let guesses = [];
 let catpics = [];
 
@@ -39,7 +38,6 @@ let catpics = [];
 // imgReplace()
 
 const questions = [
-  // let spaceBar = " "
   {
     question: "1Mac: emojis",
     answerOp: {
@@ -96,14 +94,19 @@ const question0 = () => {
   addEventListener("keydown", (event) => {
     if (event.code === "MetaLeft") {
       eventCode.MetaLeft = true;
+      console.log('r')
     }
     if (event.code === "ShiftLeft") {
       eventCode.ShiftLeft = true;
+      console.log("a");
     }
     if (event.code === "Space") {
       eventCode.Space = true;
+      console.log("r");
     }
+
     if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
+      console.log("success0");
 
       let cancelKeys1 = (event) => {
         console.log(event);
@@ -118,26 +121,24 @@ const question0 = () => {
         }
       };
       addEventListener("keyup", cancelKeys1);
-
-      question = true
       //giant hand goes across screeen
 
-      // correctImg();
-      // correctDisplay();
-      // setTimeout(displayQ, 6000);
-      // usedQuestions(currentQuestion);
-      // console.log(choices);
-      // question = true;
-      // guesses = [];
+      correctImg();
+      correctDisplay();
+      setTimeout(displayQ, 6000);
+      usedQuestions(currentQuestion);
+      console.log(choices);
+      guesses = [];
+      displayQ();
 
     } else {
       //find a way to give a number of guesses
       console.log("WTF DID U DO");
       guesses.push(event.code);
-      if (guesses.length > 7) {
+      if (guesses.length > 10) {
         console.log("doneski");
         incorrectDisplay();
-        question = false;
+        (gameOver)
       }
     }
   });
@@ -153,17 +154,18 @@ const question1 = () => {
   addEventListener("keydown", (event) => {
     if (event.code === "AltLeft") {
       eventCode.AltLeft = true;
-      console.log("rar");
+
     }
     if (event.code === "ShiftLeft") {
       eventCode.ShiftLeft = true;
-      console.log("rarar");
+
     }
     if (event.code === "ArrowDown") {
       eventCode.ArrowDown = true;
-      console.log("mrar");
+
     }
     if (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown) {
+      console.log("success1")
       let cancelKeys2 = (event) => {
         console.log(event);
         if (event.code === "AltLeft") {
@@ -178,27 +180,28 @@ const question1 = () => {
       };
       addEventListener("keyup", cancelKeys2);
 
+      question = true
       correctImg();
       correctDisplay();
       setTimeout(displayQ, 6000);
       usedQuestions(currentQuestion);
-      question = true;
-      guesses = [];
-      console.log(question);
       console.log(choices);
+      guesses = [];
+      displayQ();
     } else {
       console.log("WTF DID U DO");
       guesses.push(event.code);
-      if (guesses.length > 7) {
+      if (guesses.length > 10) {
         console.log("negatory");
         incorrectDisplay();
-        question = false;
+        (gameover)
       }
     }
   });
 };
 
 const question2 = () => {
+
   let eventCode = {
     AltLeft: false,
     ShiftLeft: false,
@@ -215,7 +218,8 @@ const question2 = () => {
     if (event.code === "KeyF") {
       eventCode.KeyF = true;
     }
-    if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.KeyC) {
+    if (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF) {
+      console.log("success2");
       let cancelKeys3 = (event) => {
         console.log(event);
         if (event.code === "AltLeft") {
@@ -234,20 +238,21 @@ const question2 = () => {
       correctDisplay();
       setTimeout(displayQ, 6000);
       usedQuestions(currentQuestion);
-      question = true;
       console.log(choices);
       guesses = [];
+      displayQ();
     } else {
       guesses.push(event.code);
-      if (guesses.length > 7) {
+      if (guesses.length > 10) {
         incorrectDisplay();
-        question = false;
+        gameOver = true
       }
     }
   });
 };
 
 let question3 = () => {
+
   let eventCode = {
     AltLeft: false,
     ArrowUp: false,
@@ -261,6 +266,7 @@ let question3 = () => {
       eventCode.ArrowUp = true;
     }
     if (eventCode.AltLeft && eventCode.ArrowUp) {
+      console.log("success3");
       let cancelKeys4 = (event) => {
         console.log(event);
         if (event.code === "AltLeft") {
@@ -272,20 +278,20 @@ let question3 = () => {
       };
       addEventListener("keyup", cancelKeys4);
 
-      //giant hand goes across screeen
-      question = true;
       correctImg();
       correctDisplay();
       setTimeout(displayQ, 6000);
       usedQuestions(currentQuestion);
-      guesses = [];
       console.log(choices);
+      guesses = [];
+      displayQ();
     } else {
       guesses.push(event.code);
-      if (guesses.length > 7) {
+      if (guesses.length > 10) {
         console.log("dundundun");
         incorrectDisplay();
-        question = false;
+        (gameover)
+
       }
     }
   });
@@ -341,65 +347,30 @@ const displayQ = () => {
 
 //STARTS HEREEEEE
 
-console.log(gameOver);
-console.log(question);
-
 displayQ();
+
+if (choices.length === 0) {
+    gameOver = true;
+    console.log("goodjob all cats are happy");
+}
+if (currentQuestion === 0) {
+    question0();
+}
+if (currentQuestion === 1) {
+    question1()
+}
+if (currentQuestion === 2) {
+    question2()
+}
+if (currentQuestion === 3) {
+    question3()
+}
+
 
   //index taken out only if question is right --done in questionfunction
   //get question - if statements start here
-if (currentQuestion === 0) {
-  question0();
-  if (question) {
-    correctImg();
-    correctDisplay();
-    setTimeout(displayQ, 6000);
-    usedQuestions(currentQuestion);
-    console.log(choices);
-    question = true;
-    guesses = [];
-  }
-}
-if ((question = false)) {
-  gameOver = true;
-  console.log("gameOVERRRR");
-
-  } else {
-    
-    correctImg();
-    correctDisplay();
-    setTimeout(displayQ, 6000);
-    usedQuestions(currentQuestion);
-    console.log(choices);
-    question = true;
-    guesses = [];
-    question = false;
-    displayQ()
-  } 
-
-  //QUESTION0
 
 
-  if (currentQuestion === 1) {
-    question1();
-  }
-
-  if (currentQuestion === 2) {
-    question2();
-    if (question) {
-    }
-  }
-
-  if (currentQuestion === 3) {
-    question3();
-    if (question) {
-    }
-  }
-
-  if (choices.length === 0) {
-    gameOver = true;
-    console.log("goodjob all cats are happy");
-  }
 
   // if ((question = true && choices.length < 4)) {
   //   usedQuestions(currentQuestion);
