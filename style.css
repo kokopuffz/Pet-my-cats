@@ -52,6 +52,7 @@ button:hover .meow:after {
   content: 'meow';
 }
 
+
 .front-screen {
   padding: 1px;
   position: fixed;
@@ -71,17 +72,22 @@ button:hover .meow:after {
 .end-screen {
   padding: 1px;
   position: fixed;
-  top: 50%;
+  top: 10%;
   left: 50%;
 
 }
-.end-screen button {
+/* .end-screen button {
   
-}
+} */
 .overlay {
   position: fixed;
   display: flex;
-  background: rgba(118, 185, 240, 0.625);
+  background: rgba(118, 185, 240, 0.892);
+  width: 40em;
+  height: 25em;
+  z-index: 4;
+  transform: translateX(-50%);
+  /* transform: translateY(50%) */
 
 }
 
@@ -97,6 +103,7 @@ button:hover .meow:after {
   border-radius: 8px;
   position: absolute;
   overflow:hidden;
+  transform: translateX(-50%);
   z-index: 5;
 }
 .results-endtext {
@@ -177,15 +184,16 @@ button:hover .meow:after {
 .pressed-keys {
   line-height: 0.8em;
   font-size: smaller;
+  display: inline-block;
 }
 
 .keys-display {
-  line-height: .5em;
+  /* line-height: 14px; */
+  font-size: 30px;
 }
 
 #output {
   font-family: Arial, Helvetica, sans-serif;
-  font-size:.6em;
   /* border: 1px solid black; */
 }
 
@@ -230,3 +238,8 @@ button:hover .meow:after {
   max-height: 150px;
 }
  */
+
+.results-endtext {
+  font-size: 1.5em;
+  color: blue;
+}

@@ -6,9 +6,9 @@ let topDisplay = document.getElementById("top-display");
 let topCenter = document.querySelector(".top-center");
 let cat = document.querySelector(".cat");
 let asked = [];
-let choices = [0];
+let choices = [0,1,2,3];
 let recordPress = [];
-let gameOver = false;
+// let gameOver = false;
 let guesses = [];
 let catpics = [];
 let eventCode = {
@@ -21,52 +21,73 @@ let eventCode = {
   ArrowUp: false,
 };
 
+catPix = [
+  "./cats/dafat.jpg",
+  "./cats/dafat2.jpg",
+  "./cats/dafat3.jpeg",
+  "./cats/dafat4.jpg",
+  "./cats/dafat6.jpg",
+  "./cats/dafat6.jpg",
+  "./cats/einstein.jpeg",
+  "./cats/ham.jpg",
+  "./cats/hamm.jpg",
+  "./cats/hammy1.jpg",
+  "./cats/pudgie.jpg",
+];
+
+let changeCat = () => {
+  console.log("meow")
+  i = Math.floor(Math.random() * catPix.length)
+  let catImg = catPix[i]
+  let newCat = document.getElementById('cat-pix');
+  newCat.src=catImg
+}
+
 
 
 
 const questions = [
   {
     question: "1Mac: emojis",
-    answerOp: {
-      Meta: false,
-      Shift: false,
-      spaceBar: false,
-    },
-    answer: ["Meta", "Shift", " "],
+    // answerOp: {
+    //   Meta: false,
+    //   Shift: false,
+    //   spaceBar: false,
+    // },
+    answer: "eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space",
     answertext: "command-shift-space",
   },
 
   {
     question: "2Mac: copy current line",
-    answerOp: {
-      Alt: false,
-      Shift: false,
-      ArrowDown: false,
-    },
-    answer: ["Alt", "Shift", "ArrowDown"],
+    // answerOp: {
+    //   Alt: false,
+    //   Shift: false,
+    //   ArrowDown: false,
+    // },
+    answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown",
     answertext: "option-shift-down",
   },
 
   {
     question: "3Mac-VS: format page",
-    answer: ["Alt", "Shift", "f"],
-    // answer: (pressedKeys.command && pressedKeys.shift && pressedKeys.spaceBar) ,
+    answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF",
     // first conditionals to check if its pressed//actually chck
-    answerOp: {
-      Alt: false,
-      Shift: false,
-      f: false,
-    },
-    answertext: "alt-shift-c",
+    // answerOp: {
+    //   Alt: false,
+    //   Shift: false,
+    //   f: false,
+    // },
+    answertext: "alt-shift-f",
   },
 
   {
     question: "Mac-VS: move current line up",
-    answerOp: {
-      Alt: false,
-      ArrowUp: false,
-    },
-    answer: ["Alt", "ArrowUp"],
+    // answerOp: {
+    //   Alt: false,
+    //   ArrowUp: false,
+    // },
+    answer: "eventCode.AltLeft && eventCode.ArrowUp",
     answertext: "alt-up",
   },
 ];
@@ -74,6 +95,7 @@ const questions = [
 let randomQuestionIndex = () => {
   const index = Math.floor(Math.random() * choices.length);
   return choices[index];
+
 };
 
 //take out question that was just used
@@ -83,7 +105,7 @@ let usedQuestions = (num) => {
     choices.splice(index, 1);
   }
 };
-
+//gj pet hand
 let correctImg = () => {
   const pet = document.createElement("img");
   pet.src = "/img/gianthand.png";
@@ -96,6 +118,7 @@ let correctImg = () => {
 let correctDisplay = () => {
   topDisplay.innerText = "correct! YAY PETS!! :3";
   topCenter.style.backgroundColor = "rgb(186 220 172)";
+  // topCenter.style.backgroundColor = "hotpink";
 };
 
 let incorrectDisplay = () => {
@@ -104,6 +127,9 @@ let incorrectDisplay = () => {
   topCenter.style.backgroundColor = "red";
 };
 
+// const catPicker = () => {
+//   idx = Math.floor(Math.random() * 11);
+// }
 
 
 //displays question
@@ -112,6 +138,8 @@ const displayQ = () => {
   //display questions
   topCenter.style.backgroundColor = "rgb(27, 15, 4)";
   topDisplay.innerText = questions[currentQuestion].question;
+  changeCat()
+
 };
 
 //toggle beginning screen
@@ -119,6 +147,17 @@ let toggleGame = (id, toggle) => {
   let screen = document.getElementById(id)
   let display = (toggle) ? 'block' : 'none'
   screen.style.display = display;
+}
+
+//if no more questions
+let displayWin = () => {
+  let displayOver = document.getElementById('display-over')
+  displayOver.innerText = "Good Job Champ."
+}
+
+let displayLost = () => {
+  let displayOver = document.getElementById("display-over");
+  displayOver.innerText = `The correct shortcut keys are ${questions[currentQuestion].answertext}`;
 }
 
 //toggles end overlay
@@ -135,18 +174,30 @@ let start = () => {
   console.log("lets go!");
   toggleGame("front-screen", false);
   toggleGame("game-screen", true);
+  endDisplayOff();
+  reset();
+  displayQ();
+  document.addEventListener("keydown", listenerDown);
+  document.addEventListener("keyup", listenerUp);
 };
-
 
 
 // console.log(pressedKeys)
 
 //starts here
-displayQ();
-console.log(currentQuestion)
+
+// document.addEventListener("keydown", function(event) {
 
 
-function listener (event) {
+function listenerDown (event) {
+  let p = document.getElementById("output")
+  p.innerText = `${event.key}`
+  
+
+  if (event.key === ' '){
+    p.textContent = 'Spacebar'
+  }
+
   if (event.code === "MetaLeft") {
     eventCode.MetaLeft = true;
     console.log("r");
@@ -170,79 +221,166 @@ function listener (event) {
   if (event.code === "ArrowUp") {
     eventCode.ArrowUp = true;
   }
-    if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
-      console.log("yay");
-      correctImg();
-      correctDisplay();
-      setTimeout(displayQ, 6000);
-      usedQuestions(currentQuestion);
-      console.log(choices);
-      guesses = [];
-      displayQ();
-    }
+  if (currentQuestion ===0 && (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space)) {
+    console.log("yay");
+    rightAnswer()
+  }
+  if (currentQuestion === 1 && (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown)) {
+    console.log("yay1");
+    rightAnswer();
+  }
+  if (currentQuestion ===2 && (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF)) {
+    console.log("yay2");
+    rightAnswer();
+  }
+  if (currentQuestion ===3 && (eventCode.AltLeft && eventCode.ArrowUp)) {
+    console.log("yay2");
+    rightAnswer();
+  }else if (guesses.length > 10){
+    console.log("too many guesses/wrong answer")
+    console.log(guesses.length)
+    gameLoss()
+  }else{
+    guesses.push(event);
+  }
 }
 
-document.addEventListener('keydown',listener)
 
-
-
-if (currentQuestion === 0) {
-
-  if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
-  console.log('yay')
-      correctImg();
-      correctDisplay();
-      setTimeout(displayQ, 6000);
-      usedQuestions(currentQuestion);
-      console.log(choices);
-      guesses = [];
-      displayQ();
-    }
+function listenerUp(event) {
+  if (event.code === "MetaLeft") {
+    eventCode.MetaLeft = false;
+    console.log("up");
+  }
+  if (event.code === "ShiftLeft") {
+    eventCode.ShiftLeft = false;
+    console.log("up");
+  }
+  if (event.code === "Space") {
+    eventCode.Space = false;
+    console.log("up");
+  }
+  if (event.code === "AltLeft") {
+    eventCode.AltLeft = false;
+    console.log("up");
+  }
+  if (event.code === "ArrowDown") {
+    eventCode.ArrowDown = false;
+    console.log("up");
+  }
+  if (event.code === "KeyF") {
+    eventCode.KeyF = false;
+    console.log("up");
+  }
+  if (event.code === "ArrowUp") {
+    eventCode.ArrowUp = false;
+    console.log("up");
+  }  
 }
-if (currentQuestion === 1) {
-
-    let eventCode = {
-      AltLeft: false,
-      ShiftLeft: false,
-      ArrowDown: false,
-      MetaLeft: false,
-      Space: false,
-      KeyF: false,
-      ArrowUp: false,
-    }
-
- 
-      addEventListener("keyup", cancelKeys1);
-      correctImg();
-      correctDisplay();
-      setTimeout(displayQ, 6000);
-      usedQuestions(currentQuestion);
-      console.log(choices);
-      guesses = [];
-      displayQ();
-    }
-if (currentQuestion === 2) {
 
 
-      correctImg();
-      correctDisplay();
-      setTimeout(displayQ, 6000);
-      usedQuestions(currentQuestion);
-      console.log(choices);
-      guesses = [];
-      displayQ();
-    }
-if (currentQuestion === 3) {
 
 
-      correctImg();
-      correctDisplay();
-      setTimeout(displayQ, 6000);
-      usedQuestions(currentQuestion);
-      console.log(choices);
-      guesses = [];
-      displayQ();
-    }
+console.log(currentQuestion);
+console.log(guesses)
+
+const rightAnswer = () => {
+  console.log('areuderegod')
+  correctImg();
+  correctDisplay();
+  usedQuestions(currentQuestion);
+  if (choices.length === 0){
+    gameOver()
+  }else{
+    console.log(choices);
+    console.log(guesses.length)
+    guesses = [];
+    console.log("guesses reset");
+    setTimeout(displayQ, 6000);
+  }
+    
+}
+
+const reset = () => {
+  choices = [0, 1, 2, 3];
+  guesses = [];
+}
+// const checkChoicesNum = () => {
+      
+//     }else{
+// }
+const gameOver = () => {
+  document.removeEventListener("keyup", listenerUp);
+  document.removeEventListener("keydown", listenerDown);
+  endDisplayOn();
+  displayWin()
+  reset()
+  
+
+}
+
+const gameLoss = () => {
+  document.removeEventListener("keyup", listenerUp);
+  document.removeEventListener("keydown", listenerDown);
+  endDisplayOn();
+  displayLost()
+  reset()
+  
+}
+
+
+// function checkThis(currentQuestion, listener)
+
+//if question0... get answer key(questions[questionindex].answer)
+// console.log(questions[0].answer)
+// if (currentQuestion === 0) {
+
+  // if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
+  // console.log('yay')
+  // correctImg();
+  //     correctDisplay();
+  //     setTimeout(displayQ, 6000);
+  //     usedQuestions(currentQuestion);
+  //     console.log(choices);
+  //     guesses = [];
+  //     displayQ();
+  //   }
+// }
+// if (currentQuestion === 1) {
+
+//       addEventListener("keyup", cancelKeys1);
+//       correctImg();
+//       correctDisplay();
+//       // setTimeout(displayQ, 6000);
+//       usedQuestions(currentQuestion);
+//       console.log(choices);
+//       guesses = [];
+//       // displayQ();
+//     }
+    
+// if (currentQuestion === 2) {
+
+
+//       correctImg();
+//       correctDisplay();
+//       setTimeout(displayQ, 6000);
+//       usedQuestions(currentQuestion);
+//       console.log(choices);
+//       guesses = [];
+//       displayQ();
+//     }
+// if (currentQuestion === 3) {
+
+
+//       correctImg();
+//       correctDisplay();
+//       setTimeout(displayQ, 6000);
+//       usedQuestions(currentQuestion);
+//       console.log(choices);
+//       guesses = [];
+//       displayQ();
+//     }
+
+//=========================================================================
 // if (currentQuestion === 0) {
 
 //     let eventCode = {
