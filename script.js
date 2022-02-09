@@ -24,25 +24,71 @@ let eventCode = {
 };
 
 catPix = [
-  "./cats/dafat.jpg",
-  "./cats/dafat2.jpg",
-  "./cats/dafat3.jpeg",
-  "./cats/dafat4.jpg",
-  "./cats/dafat6.jpg",
-  "./cats/dafat6.jpg",
-  "./cats/einstein.jpeg",
-  "./cats/ham.jpg",
-  "./cats/hamm.jpg",
-  "./cats/hammy1.jpg",
-  "./cats/pudgie.jpg",
+  {
+  cat: "dafat1",
+  img:"./cats/dafat.jpg",
+  alt:"fluffy white cat in a circular bun"
+  },
+  {
+  cat: "dafat2",
+  img:"./cats/dafat2.jpg",
+  alt:"fluffy white cat belly exposed relaxed"
+  },
+  {
+  cat: "dafat3",
+  img:"./cats/dafat3.jpeg",
+  alt:"fluffy white cat belly exposed couch"
+  },
+  {
+  cat: "dafat4",
+  img:"./cats/dafat4.jpg",
+  alt:"fluffy white cat outside under tree looking at leaf"
+  },
+  {
+  cat: "dafat5",
+  img:"./cats/dafat5.jpg",
+  alt:"fluffy white cat crossed arms staring at camera"
+  },
+  {
+  cat: "dafat6",
+  img:"./cats/dafat6.jpg",
+  alt:"angry fluffy white cat with princess leia buns"
+  },
+  {
+  cat: "Einstein",
+  img:"./cats/einstein.jpeg",
+  alt:"tuxedo cat and grey white cat"
+  },
+  {
+  cat: "Ham1",
+  img:  "./cats/ham.jpg",
+  alt:"white-grey cat destroying a papertowel roll"
+  },
+  {
+  cat: "Ham2",
+  img:"./cats/hamm.jpg",
+  alt:"white-grey cat sleeping on table"
+  },
+  {
+  cat: "Ham3",
+  img:"./cats/hammy1.JPEG",
+  alt:"grey-white cat in car"
+  },
+  {
+  cat: "Pudgie",
+  img: "./cats/pudgie.jpg",
+  alt:"stocky grey-white cat eyes big"
+  },
+
 ];
 
 let changeCat = () => {
   console.log("meow");
   i = Math.floor(Math.random() * catPix.length);
-  let catImg = catPix[i];
+  let catImg = catPix[i].img ;
   let newCat = document.getElementById("cat-pix");
   newCat.src = catImg;
+  newCat.alt = catPix[i].alt
 };
 
 const questions = [
