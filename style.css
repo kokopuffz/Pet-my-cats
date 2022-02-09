@@ -10,7 +10,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-  
 }
 
 img {
@@ -35,8 +34,8 @@ button {
   padding: 5px 100px;
   border-radius: 8px;
 }
-button { 
-  transition-duration:1s;
+button {
+  transition-duration: 1s;
 }
 
 button:hover {
@@ -45,20 +44,18 @@ button:hover {
 }
 
 button:hover .meow {
-  display:none;
+  display: none;
 }
 
 button:hover .meow:after {
-  content: 'meow';
+  content: "meow";
 }
-
 
 .front-screen {
   padding: 1px;
   position: fixed;
   top: 50%;
   left: 50%;
-
 }
 
 .top-starttext {
@@ -74,7 +71,6 @@ button:hover .meow:after {
   position: fixed;
   top: 10%;
   left: 50%;
-
 }
 /* .end-screen button {
   
@@ -88,11 +84,9 @@ button:hover .meow:after {
   z-index: 4;
   transform: translateX(-50%);
   /* transform: translateY(50%) */
-
 }
 
-
-.overlay .close{
+.overlay .close {
   border: none;
   appearance: none;
   display: inline;
@@ -102,7 +96,7 @@ button:hover .meow:after {
   padding: 5px 100px;
   border-radius: 8px;
   position: absolute;
-  overflow:hidden;
+  overflow: hidden;
   transform: translateX(-50%);
   z-index: 5;
 }

@@ -6,7 +6,7 @@ let topDisplay = document.getElementById("top-display");
 let topCenter = document.querySelector(".top-center");
 let cat = document.querySelector(".cat");
 let asked = [];
-let choices = [0,1,2,3];
+let choices = [0, 1, 2, 3, 4];
 let recordPress = [];
 // let gameOver = false;
 let guesses = [];
@@ -19,6 +19,8 @@ let eventCode = {
   Space: false,
   KeyF: false,
   ArrowUp: false,
+  Digit4: false,
+  KeyX: false
 };
 
 catPix = [
@@ -36,15 +38,12 @@ catPix = [
 ];
 
 let changeCat = () => {
-  console.log("meow")
-  i = Math.floor(Math.random() * catPix.length)
-  let catImg = catPix[i]
-  let newCat = document.getElementById('cat-pix');
-  newCat.src=catImg
-}
-
-
-
+  console.log("meow");
+  i = Math.floor(Math.random() * catPix.length);
+  let catImg = catPix[i];
+  let newCat = document.getElementById("cat-pix");
+  newCat.src = catImg;
+};
 
 const questions = [
   {
@@ -82,7 +81,7 @@ const questions = [
   },
 
   {
-    question: "Mac-VS: move current line up",
+    question: "Mac-VSC: move current line up",
     // answerOp: {
     //   Alt: false,
     //   ArrowUp: false,
@@ -90,12 +89,20 @@ const questions = [
     answer: "eventCode.AltLeft && eventCode.ArrowUp",
     answertext: "alt-up",
   },
+  {
+    question: "Mac-VSC: delete line",
+    // answerOp: {
+    //   Alt: false,
+    //   ArrowUp: false,
+    // },
+    answer: "eventCode.MetaLeft && eventCode.KeyX",
+    answertext: "command-x",
+  },
 ];
 
 let randomQuestionIndex = () => {
   const index = Math.floor(Math.random() * choices.length);
   return choices[index];
-
 };
 
 //take out question that was just used
@@ -131,44 +138,42 @@ let incorrectDisplay = () => {
 //   idx = Math.floor(Math.random() * 11);
 // }
 
-
 //displays question
 const displayQ = () => {
   currentQuestion = randomQuestionIndex();
   //display questions
   topCenter.style.backgroundColor = "rgb(27, 15, 4)";
   topDisplay.innerText = questions[currentQuestion].question;
-  changeCat()
-
+  changeCat();
 };
 
 //toggle beginning screen
 let toggleGame = (id, toggle) => {
-  let screen = document.getElementById(id)
-  let display = (toggle) ? 'block' : 'none'
+  let screen = document.getElementById(id);
+  let display = toggle ? "block" : "none";
   screen.style.display = display;
-}
+};
 
 //if no more questions
 let displayWin = () => {
-  let displayOver = document.getElementById('display-over')
-  displayOver.innerText = "Good Job Champ."
-}
+  let displayOver = document.getElementById("display-over");
+  displayOver.innerText = "Good Job Champ.";
+};
 
 let displayLost = () => {
   let displayOver = document.getElementById("display-over");
   displayOver.innerText = `The correct shortcut keys are ${questions[currentQuestion].answertext}`;
-}
+};
 
 //toggles end overlay
 let endDisplayOn = () => {
-  overlay = document.querySelector('div.overlay')
-  overlay.style.display='block'
-}
+  overlay = document.querySelector("div.overlay");
+  overlay.style.display = "block";
+};
 let endDisplayOff = () => {
-  overlay = document.querySelector('div.overlay')
-  overlay.style.display='none'
-}
+  overlay = document.querySelector("div.overlay");
+  overlay.style.display = "none";
+};
 //buttonstart
 let start = () => {
   console.log("lets go!");
@@ -181,21 +186,18 @@ let start = () => {
   document.addEventListener("keyup", listenerUp);
 };
 
-
 // console.log(pressedKeys)
 
 //starts here
 
 // document.addEventListener("keydown", function(event) {
 
+function listenerDown(event) {
+  let p = document.getElementById("output");
+  p.innerText = `${event.key}`;
 
-function listenerDown (event) {
-  let p = document.getElementById("output")
-  p.innerText = `${event.key}`
-  
-
-  if (event.key === ' '){
-    p.textContent = 'Spacebar'
+  if (event.key === " ") {
+    p.textContent = "Spacebar";
   }
 
   if (event.code === "MetaLeft") {
@@ -221,30 +223,56 @@ function listenerDown (event) {
   if (event.code === "ArrowUp") {
     eventCode.ArrowUp = true;
   }
-  if (currentQuestion ===0 && (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space)) {
-    console.log("yay");
-    rightAnswer()
+  if (event.code === "Digit4") {
+    eventCode.Digit4 = true;
   }
-  if (currentQuestion === 1 && (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown)) {
+  if (event.code === "KeyX") {
+    eventCode.KeyX = true;
+  }
+  if (
+    currentQuestion === 0 &&
+    eventCode.MetaLeft &&
+    eventCode.ShiftLeft &&
+    eventCode.Space
+  ) {
+    console.log("yay");
+    rightAnswer();
+  }
+  if (
+    currentQuestion === 1 &&
+    eventCode.AltLeft &&
+    eventCode.ShiftLeft &&
+    eventCode.ArrowDown
+  ) {
     console.log("yay1");
     rightAnswer();
   }
-  if (currentQuestion ===2 && (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF)) {
+  if (
+    currentQuestion === 2 &&
+    eventCode.AltLeft &&
+    eventCode.ShiftLeft &&
+    eventCode.KeyF
+  ) {
     console.log("yay2");
     rightAnswer();
   }
-  if (currentQuestion ===3 && (eventCode.AltLeft && eventCode.ArrowUp)) {
+  if (currentQuestion === 3 && eventCode.AltLeft && eventCode.ArrowUp) {
     console.log("yay2");
     rightAnswer();
-  }else if (guesses.length > 10){
-    console.log("too many guesses/wrong answer")
-    console.log(guesses.length)
-    gameLoss()
-  }else{
+  }
+  if (currentQuestion === 4 &&
+    eventCode.MetaLeft &&
+    eventCode.KeyX) {
+    console.log("yay2");
+    rightAnswer();
+  } else if (guesses.length > 10) {
+    console.log("too many guesses/wrong answer");
+    console.log(guesses.length);
+    gameLoss();
+  } else {
     guesses.push(event);
   }
 }
-
 
 function listenerUp(event) {
   if (event.code === "MetaLeft") {
@@ -274,59 +302,60 @@ function listenerUp(event) {
   if (event.code === "ArrowUp") {
     eventCode.ArrowUp = false;
     console.log("up");
-  }  
+  }
+  if (event.code === "Digit4") {
+    eventCode.Digit4 = false;
+    console.log("up");
+  }
+  if (event.code === "KeyX") {
+    eventCode.KeyX = false;
+    console.log("up");
+  }
 }
 
-
-
-
 console.log(currentQuestion);
-console.log(guesses)
+console.log(guesses);
 
 const rightAnswer = () => {
-  console.log('areuderegod')
+  console.log("areuderegod");
   correctImg();
   correctDisplay();
   usedQuestions(currentQuestion);
-  if (choices.length === 0){
-    gameOver()
-  }else{
+  if (choices.length === 0) {
+    gameOver();
+  } else {
     console.log(choices);
-    console.log(guesses.length)
+    console.log(guesses.length);
     guesses = [];
     console.log("guesses reset");
     setTimeout(displayQ, 6000);
   }
-    
-}
+};
 
 const reset = () => {
-  choices = [0, 1, 2, 3];
+  choices = [0, 1, 2, 3,4];
   guesses = [];
-}
+};
 // const checkChoicesNum = () => {
-      
+
 //     }else{
 // }
 const gameOver = () => {
   document.removeEventListener("keyup", listenerUp);
   document.removeEventListener("keydown", listenerDown);
   endDisplayOn();
-  displayWin()
-  reset()
-  
-
-}
+  displayWin();
+  reset();
+};
 
 const gameLoss = () => {
   document.removeEventListener("keyup", listenerUp);
   document.removeEventListener("keydown", listenerDown);
+  incorrectDisplay();
   endDisplayOn();
-  displayLost()
-  reset()
-  
-}
-
+  displayLost();
+  reset();
+};
 
 // function checkThis(currentQuestion, listener)
 
@@ -334,16 +363,16 @@ const gameLoss = () => {
 // console.log(questions[0].answer)
 // if (currentQuestion === 0) {
 
-  // if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
-  // console.log('yay')
-  // correctImg();
-  //     correctDisplay();
-  //     setTimeout(displayQ, 6000);
-  //     usedQuestions(currentQuestion);
-  //     console.log(choices);
-  //     guesses = [];
-  //     displayQ();
-  //   }
+// if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
+// console.log('yay')
+// correctImg();
+//     correctDisplay();
+//     setTimeout(displayQ, 6000);
+//     usedQuestions(currentQuestion);
+//     console.log(choices);
+//     guesses = [];
+//     displayQ();
+//   }
 // }
 // if (currentQuestion === 1) {
 
@@ -356,9 +385,8 @@ const gameLoss = () => {
 //       guesses = [];
 //       // displayQ();
 //     }
-    
-// if (currentQuestion === 2) {
 
+// if (currentQuestion === 2) {
 
 //       correctImg();
 //       correctDisplay();
@@ -369,7 +397,6 @@ const gameLoss = () => {
 //       displayQ();
 //     }
 // if (currentQuestion === 3) {
-
 
 //       correctImg();
 //       correctDisplay();
