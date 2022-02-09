@@ -1,12 +1,16 @@
 /* main, img goes center bottom, top changes color depending on answer, hover screen start, result-end div */
 @import url("https://fonts.googleapis.com/css2?family=Pangolin&display=swap");
 
+* {
+  font-family: "Pangolin", cursive;
+  letter-spacing: 0.3em;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
-  font-family: "Pangolin", cursive;
-  letter-spacing: 0.3em;
+  
 }
 
 img {
@@ -16,12 +20,88 @@ img {
 body {
   /* padding-top: 1em; */
   text-align: center;
-  background-color: black;
-  /* background-image: url('../img/dungeonhell.png'); */
-  background-size: cover;
-  background-repeat: space;
+  background-color: rgb(118 185 240);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+button {
+  border: none;
+  appearance: none;
+  display: inline;
+  background-color: rgb(247 178 189);
+  color: white;
+  font-size: 1.5em;
+  padding: 5px 100px;
+  border-radius: 8px;
+}
+button { 
+  transition-duration:1s;
 }
 
+button:hover {
+  font-size: 1.5em;
+  background-color: pink;
+}
+
+button:hover .meow {
+  display:none;
+}
+
+button:hover .meow:after {
+  content: 'meow';
+}
+
+.front-screen {
+  padding: 1px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+}
+
+.top-starttext {
+  color: white;
+}
+
+.mid-starttext {
+  color: white;
+}
+
+.end-screen {
+  padding: 1px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+}
+.end-screen button {
+  
+}
+.overlay {
+  position: fixed;
+  display: flex;
+  background: rgba(118, 185, 240, 0.625);
+
+}
+
+
+.overlay .close{
+  border: none;
+  appearance: none;
+  display: inline;
+  background-color: rgb(247 178 189);
+  color: white;
+  font-size: 1.5em;
+  padding: 5px 100px;
+  border-radius: 8px;
+  position: absolute;
+  overflow:hidden;
+  z-index: 5;
+}
+.results-endtext {
+  color: white;
+}
 .main {
   max-width: 65;
   max-height: auto;
@@ -100,11 +180,12 @@ body {
 }
 
 .keys-display {
-  line-height: 1em;
+  line-height: .5em;
 }
 
 #output {
   font-family: Arial, Helvetica, sans-serif;
+  font-size:.6em;
   /* border: 1px solid black; */
 }
 

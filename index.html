@@ -9,8 +9,21 @@
   </head>
   <body>
     <main class="main">
+      <div class="frontscreen" id="front-screen" style="display:block">
+        <div>
+          <p class="top-starttext">Let's Play</p>
+          <p class="mid-starttext">PET MY CATS</p>
+        </div>
+        <button onClick='start()' class='meow'>PLAY</button>
+      </div>
+      <div class="end-screen overlay overlay-effect" id="end-screen" style="display:none">
+        <div>
+          <p class="results-endtext">something something something</p>
+        </div>
+        <button onClick='start()' class='meow close'>AGAIN! uwu</button>
+      </div>
       <div class="gianthand"></div>
-      <div class="container">
+      <div class="container" id="game-screen" style="display:none">
         <div class="top-center">
           <h1 id="top-display">questions</h1>
         </div>
@@ -30,8 +43,6 @@
       </div> -->
         <div class="left container"></div>
       </div>
-      <div class="frontscreen"></div>
-      <div class="endscreen"></div>
     </main>
     <script src="./script.js"></script>
   </body>

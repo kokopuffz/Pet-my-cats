@@ -6,36 +6,23 @@ let topDisplay = document.getElementById("top-display");
 let topCenter = document.querySelector(".top-center");
 let cat = document.querySelector(".cat");
 let asked = [];
-let choices = [0, 1];
+let choices = [0];
 let recordPress = [];
 let gameOver = false;
 let guesses = [];
 let catpics = [];
+let eventCode = {
+  AltLeft: false,
+  ShiftLeft: false,
+  ArrowDown: false,
+  MetaLeft: false,
+  Space: false,
+  KeyF: false,
+  ArrowUp: false,
+};
 
-// let changeCat = () => {
-//   urls = [
-//     'url(./cats/dafat.jpg)',
-//     'url(./cats/dafat2.jpg)',
-//     'url(./cats/dafat3.jpeg)',
-//     'url(./cats/dafat4.jpg)',
-//     'url(./cats/dafat6.jpg)',
-//     'url(./cats/dafat6.jpg)',
-//     'url(./cats/einstein.jpeg)',
-//     'url(./cats/ham.jpg)',
-//     'url(./cats/hamm.jpg)',
-//     'url(./cats/hammy1.jpg)',
-//     'url(./cats/pudgie.jpg)'
-//   ]
-//   i = Math.floor(Math.random() * urls.length)
-//   return urls[i]
-// }
-// changeCat()
 
-// let imgReplace = () => {
-//   let newCat = document.querySelector(".cat")[0];
-//   newCat.src= changeCat()
-// }
-// imgReplace()
+
 
 const questions = [
   {
@@ -84,219 +71,6 @@ const questions = [
   },
 ];
 
-const question0 = () => {
-  let eventCode = {
-    MetaLeft: false,
-    ShiftLeft: false,
-    Space: false,
-  };
-
-  addEventListener("keydown", (event) => {
-    if (event.code === "MetaLeft") {
-      eventCode.MetaLeft = true;
-      console.log('r')
-    }
-    if (event.code === "ShiftLeft") {
-      eventCode.ShiftLeft = true;
-      console.log("a");
-    }
-    if (event.code === "Space") {
-      eventCode.Space = true;
-      console.log("r");
-    }
-
-    if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
-      console.log("success0");
-
-      let cancelKeys1 = (event) => {
-        console.log(event);
-        if (event.code === "MetaLeft") {
-          eventCode.MetaLeft = false;
-        }
-        if (event.code === "ShiftLeft") {
-          eventCode.ShiftLeft = false;
-        }
-        if (event.code === "Space") {
-          eventCode.Space = false;
-        }
-      };
-      addEventListener("keyup", cancelKeys1);
-      //giant hand goes across screeen
-
-      correctImg();
-      correctDisplay();
-      setTimeout(displayQ, 6000);
-      usedQuestions(currentQuestion);
-      console.log(choices);
-      guesses = [];
-      displayQ();
-
-    } else {
-      //find a way to give a number of guesses
-      console.log("WTF DID U DO");
-      guesses.push(event.code);
-      if (guesses.length > 10) {
-        console.log("doneski");
-        incorrectDisplay();
-        (gameOver)
-      }
-    }
-  });
-};
-
-const question1 = () => {
-  let eventCode = {
-    AltLeft: false,
-    ShiftLeft: false,
-    ArrowDown: false,
-  };
-
-  addEventListener("keydown", (event) => {
-    if (event.code === "AltLeft") {
-      eventCode.AltLeft = true;
-
-    }
-    if (event.code === "ShiftLeft") {
-      eventCode.ShiftLeft = true;
-
-    }
-    if (event.code === "ArrowDown") {
-      eventCode.ArrowDown = true;
-
-    }
-    if (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown) {
-      console.log("success1")
-      let cancelKeys2 = (event) => {
-        console.log(event);
-        if (event.code === "AltLeft") {
-          eventCode.AltLeft = false;
-        }
-        if (event.code === "ShiftLeft") {
-          eventCode.ShiftLeft = false;
-        }
-        if (event.code === "ArrowDown") {
-          eventCode.ArrowDown = false;
-        }
-      };
-      addEventListener("keyup", cancelKeys2);
-
-      question = true
-      correctImg();
-      correctDisplay();
-      setTimeout(displayQ, 6000);
-      usedQuestions(currentQuestion);
-      console.log(choices);
-      guesses = [];
-      displayQ();
-    } else {
-      console.log("WTF DID U DO");
-      guesses.push(event.code);
-      if (guesses.length > 10) {
-        console.log("negatory");
-        incorrectDisplay();
-        (gameover)
-      }
-    }
-  });
-};
-
-const question2 = () => {
-
-  let eventCode = {
-    AltLeft: false,
-    ShiftLeft: false,
-    KeyF: false,
-  };
-
-  addEventListener("keydown", (event) => {
-    if (event.code === "AltLeft") {
-      eventCode.AltLeft = true;
-    }
-    if (event.code === "ShiftLeft") {
-      eventCode.ShiftLeft = true;
-    }
-    if (event.code === "KeyF") {
-      eventCode.KeyF = true;
-    }
-    if (eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF) {
-      console.log("success2");
-      let cancelKeys3 = (event) => {
-        console.log(event);
-        if (event.code === "AltLeft") {
-          eventCode.AltLeft = false;
-        }
-        if (event.code === "ShiftLeft") {
-          eventCode.ShiftLeft = false;
-        }
-        if (event.code === "KeyF") {
-          eventCode.KeyF = false;
-        }
-      };
-      addEventListener("keyup", cancelKeys3);
-
-      correctImg();
-      correctDisplay();
-      setTimeout(displayQ, 6000);
-      usedQuestions(currentQuestion);
-      console.log(choices);
-      guesses = [];
-      displayQ();
-    } else {
-      guesses.push(event.code);
-      if (guesses.length > 10) {
-        incorrectDisplay();
-        gameOver = true
-      }
-    }
-  });
-};
-
-let question3 = () => {
-
-  let eventCode = {
-    AltLeft: false,
-    ArrowUp: false,
-  };
-
-  addEventListener("keydown", (event) => {
-    if (event.code === "AltLeft") {
-      eventCode.AltLeft = true;
-    }
-    if (event.code === "ArrowUp") {
-      eventCode.ArrowUp = true;
-    }
-    if (eventCode.AltLeft && eventCode.ArrowUp) {
-      console.log("success3");
-      let cancelKeys4 = (event) => {
-        console.log(event);
-        if (event.code === "AltLeft") {
-          eventCode.AltLeft = false;
-        }
-        if (event.code === "ArrowUp") {
-          eventCode.ArrowUp = false;
-        }
-      };
-      addEventListener("keyup", cancelKeys4);
-
-      correctImg();
-      correctDisplay();
-      setTimeout(displayQ, 6000);
-      usedQuestions(currentQuestion);
-      console.log(choices);
-      guesses = [];
-      displayQ();
-    } else {
-      guesses.push(event.code);
-      if (guesses.length > 10) {
-        console.log("dundundun");
-        incorrectDisplay();
-        (gameover)
-
-      }
-    }
-  });
-};
-
 let randomQuestionIndex = () => {
   const index = Math.floor(Math.random() * choices.length);
   return choices[index];
@@ -330,59 +104,200 @@ let incorrectDisplay = () => {
   topCenter.style.backgroundColor = "red";
 };
 
-// goal #1 show pressed keys on screen
-//make pressedDisplay that also listens to keyup** later
 
-//button that starts this madnesss*******************
 
+//displays question
 const displayQ = () => {
-  //make it the current question
   currentQuestion = randomQuestionIndex();
-  console.log(currentQuestion);
-  console.log(choices);
   //display questions
   topCenter.style.backgroundColor = "rgb(27, 15, 4)";
   topDisplay.innerText = questions[currentQuestion].question;
 };
 
-//STARTS HEREEEEE
-
-displayQ();
-
-if (choices.length === 0) {
-    gameOver = true;
-    console.log("goodjob all cats are happy");
+//toggle beginning screen
+let toggleGame = (id, toggle) => {
+  let screen = document.getElementById(id)
+  let display = (toggle) ? 'block' : 'none'
+  screen.style.display = display;
 }
+
+//toggles end overlay
+let endDisplayOn = () => {
+  overlay = document.querySelector('div.overlay')
+  overlay.style.display='block'
+}
+let endDisplayOff = () => {
+  overlay = document.querySelector('div.overlay')
+  overlay.style.display='none'
+}
+//buttonstart
+let start = () => {
+  console.log("lets go!");
+  toggleGame("front-screen", false);
+  toggleGame("game-screen", true);
+};
+
+
+
+// console.log(pressedKeys)
+
+//starts here
+displayQ();
+console.log(currentQuestion)
+
+
+function listener (event) {
+  if (event.code === "MetaLeft") {
+    eventCode.MetaLeft = true;
+    console.log("r");
+  }
+  if (event.code === "ShiftLeft") {
+    eventCode.ShiftLeft = true;
+    console.log("a");
+  }
+  if (event.code === "Space") {
+    eventCode.Space = true;
+  }
+  if (event.code === "AltLeft") {
+    eventCode.AltLeft = true;
+  }
+  if (event.code === "ArrowDown") {
+    eventCode.ArrowDown = true;
+  }
+  if (event.code === "KeyF") {
+    eventCode.KeyF = true;
+  }
+  if (event.code === "ArrowUp") {
+    eventCode.ArrowUp = true;
+  }
+    if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
+      console.log("yay");
+      correctImg();
+      correctDisplay();
+      setTimeout(displayQ, 6000);
+      usedQuestions(currentQuestion);
+      console.log(choices);
+      guesses = [];
+      displayQ();
+    }
+}
+
+document.addEventListener('keydown',listener)
+
+
+
 if (currentQuestion === 0) {
-    question0();
+
+  if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
+  console.log('yay')
+      correctImg();
+      correctDisplay();
+      setTimeout(displayQ, 6000);
+      usedQuestions(currentQuestion);
+      console.log(choices);
+      guesses = [];
+      displayQ();
+    }
 }
 if (currentQuestion === 1) {
-    question1()
-}
+
+    let eventCode = {
+      AltLeft: false,
+      ShiftLeft: false,
+      ArrowDown: false,
+      MetaLeft: false,
+      Space: false,
+      KeyF: false,
+      ArrowUp: false,
+    }
+
+ 
+      addEventListener("keyup", cancelKeys1);
+      correctImg();
+      correctDisplay();
+      setTimeout(displayQ, 6000);
+      usedQuestions(currentQuestion);
+      console.log(choices);
+      guesses = [];
+      displayQ();
+    }
 if (currentQuestion === 2) {
-    question2()
-}
+
+
+      correctImg();
+      correctDisplay();
+      setTimeout(displayQ, 6000);
+      usedQuestions(currentQuestion);
+      console.log(choices);
+      guesses = [];
+      displayQ();
+    }
 if (currentQuestion === 3) {
-    question3()
-}
 
 
-  //index taken out only if question is right --done in questionfunction
-  //get question - if statements start here
+      correctImg();
+      correctDisplay();
+      setTimeout(displayQ, 6000);
+      usedQuestions(currentQuestion);
+      console.log(choices);
+      guesses = [];
+      displayQ();
+    }
+// if (currentQuestion === 0) {
 
-
-
-  // if ((question = true && choices.length < 4)) {
-  //   usedQuestions(currentQuestion);
-  // }
-
-
-// let currentQuestion = randomQuestionIndex()
-// console.log(currentQuestion)
-// //display questions
-// topCenter.style.backgroundColor = "rgb(27, 15, 4)"
-// topDisplay.innerText = questions[currentQuestion].question
-// gameLoop()
+//     let eventCode = {
+//       AltLeft: false,
+//       ShiftLeft: false,
+//       ArrowDown: false,
+//       MetaLeft: false,
+//       Space: false,
+//       KeyF: false,
+//       ArrowUp: false,
+//     }
+//   addEventListener("keydown", (event) => {
+//     if (guesses.length > 10) {
+//       guesses.push(event.code);
+//       console.log("toomuch");
+//       incorrectDisplay();
+//       gameOver = true;
+//     }
+//     if (event.code === "MetaLeft") {
+//       eventCode.MetaLeft = true;
+//       console.log("tr");
+//     }
+//     if (event.code === "ShiftLeft") {
+//       eventCode.ShiftLeft = true;
+//       console.log("tru");
+//     }
+//     if (event.code === "Space") {
+//       eventCode.Space = true;
+//       console.log("tru");
+//     }
+//     if (eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space) {
+//       console.log("success0");
+//       let cancelKeys1 = (event) => {
+//         console.log(event);
+//         if (event.code === "MetaLeft") {
+//           eventCode.MetaLeft = false;
+//         }
+//         if (event.code === "ShiftLeft") {
+//           eventCode.ShiftLeft = false;
+//         }
+//         if (event.code === "Space") {
+//           eventCode.Space = false;
+//         }
+//       };
+//       addEventListener("keyup", cancelKeys1);
+//       correctImg();
+//       correctDisplay();
+//       setTimeout(displayQ, 6000);
+//       usedQuestions(currentQuestion);
+//       console.log(choices);
+//       guesses = [];
+//       displayQ();
+//     }
+//   });
+// }
 
 //fack u i tried :(
 // document.addEventListener("keydown", function(event) {
