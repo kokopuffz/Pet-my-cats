@@ -33,6 +33,7 @@ button {
   font-size: 1.5em;
   padding: 5px 100px;
   border-radius: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 button {
   transition-duration: 1s;
@@ -40,16 +41,20 @@ button {
 
 button:hover {
   font-size: 1.5em;
-  background-color: pink;
+  background-color: rgb(205 194 254);
 }
 
-button:hover .meow {
-  display: none;
-}
 
-button:hover .meow:after {
+
+button::after {
+  content: "PLAY GAME";
+}
+button:hover:after {
   content: "meow";
 }
+/* button:hover .meow {
+  display: none;
+} */
 
 .front-screen {
   padding: 1px;
@@ -60,10 +65,17 @@ button:hover .meow:after {
 
 .top-starttext {
   color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
 }
 
 .mid-starttext {
   color: white;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  font-size: 4em;
+  text-shadow: 2px 5px 2px rgb(205 194 254);
 }
 
 .end-screen {
