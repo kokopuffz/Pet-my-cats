@@ -6,7 +6,7 @@ let topDisplay = document.getElementById("top-display");
 let topCenter = document.querySelector(".top-center");
 let cat = document.querySelector(".cat");
 let asked = [];
-let choices = [0, 1, 2, 3, 4];
+let choices = [0, 1, 2, 3, 4, 5, 6];
 let recordPress = [];
 // let gameOver = false;
 let guesses = [];
@@ -20,88 +20,88 @@ let eventCode = {
   KeyF: false,
   ArrowUp: false,
   Digit4: false,
-  KeyX: false
+  KeyX: false,
+  KeyY: false,
+  KeyA: false,
 };
-
 
 catPix = [
   {
-  cat: "dafat1",
-  img:"./cats/dafat.jpg",
-  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403303282516019/IMG_0247.JPG",
-  alt:"fluffy white cat in a circular bun"
+    cat: "dafat1",
+    img: "./cats/dafat.jpg",
+    img2: "https://cdn.discordapp.com/attachments/919468128432455700/940403303282516019/IMG_0247.JPG",
+    alt: "fluffy white cat in a circular bun",
   },
   {
-  cat: "dafat2",
-  img:"./cats/dafat2.jpg",
-  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403303806824448/IMG_0342.JPG",
-  alt:"fluffy white cat belly exposed relaxed"
+    cat: "dafat2",
+    img: "./cats/dafat2.jpg",
+    img2: "https://cdn.discordapp.com/attachments/919468128432455700/940403303806824448/IMG_0342.JPG",
+    alt: "fluffy white cat belly exposed relaxed",
   },
   {
-  cat: "dafat3",
-  img:"./cats/dafat3.jpeg",
-  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403486267432960/IMG_2241.JPEG",
-  alt:"fluffy white cat belly exposed couch"
+    cat: "dafat3",
+    img: "./cats/dafat3.jpeg",
+    img2: "https://cdn.discordapp.com/attachments/919468128432455700/940403486267432960/IMG_2241.JPEG",
+    alt: "fluffy white cat belly exposed couch",
   },
   {
-  cat: "dafat4",
-  img:"./cats/dafat4.jpg",
-  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403487781556254/IMG_2657.JPG",
-  alt:"fluffy white cat outside under tree looking at leaf"
+    cat: "dafat4",
+    img: "./cats/dafat4.jpg",
+    img2: "https://cdn.discordapp.com/attachments/919468128432455700/940403487781556254/IMG_2657.JPG",
+    alt: "fluffy white cat outside under tree looking at leaf",
   },
   {
-  cat: "dafat5",
-  img:"./cats/dafat5.jpg",
-  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403486988861440/IMG_2728.JPG",
-  alt:"fluffy white cat crossed arms staring at camera"
+    cat: "dafat5",
+    img: "./cats/dafat5.jpg",
+    img2: "https://cdn.discordapp.com/attachments/919468128432455700/940403486988861440/IMG_2728.JPG",
+    alt: "fluffy white cat crossed arms staring at camera",
   },
   {
-  cat: "dafat6",
-  img:"./cats/dafat6.jpg",
-  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403147661262868/IMG_5931.jpg",
-  alt:"angry fluffy white cat with princess leia buns"
+    cat: "dafat6",
+    img: "./cats/dafat6.jpg",
+    img2: "https://cdn.discordapp.com/attachments/919468128432455700/940403147661262868/IMG_5931.jpg",
+    alt: "angry fluffy white cat with princess leia buns",
   },
   {
-  cat: "Einstein",
-  img:"./cats/einstein.jpeg",
-  img2:"https://cdn.discordapp.com/attachments/919468128432455700/919717181858668544/IMG_0931.JPEG",
-  alt:"tuxedo cat and grey white cat"
+    cat: "Einstein",
+    img: "./cats/einstein.jpeg",
+    img2: "https://cdn.discordapp.com/attachments/919468128432455700/919717181858668544/IMG_0931.JPEG",
+    alt: "tuxedo cat and grey white cat",
   },
   {
-  cat: "Ham1",
-  img:  "./cats/ham.jpg",
-  img2: "https://cdn.discordapp.com/attachments/296063428043341834/919118232261107712/image0.jpg",
-  alt:"white-grey cat destroying a papertowel roll"
+    cat: "Ham1",
+    img: "./cats/ham.jpg",
+    img2: "https://cdn.discordapp.com/attachments/296063428043341834/919118232261107712/image0.jpg",
+    alt: "white-grey cat destroying a papertowel roll",
   },
   {
-  cat: "Ham2",
-  img:"./cats/hamm.jpg",
-  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940396207073820672/IMG_1954.jpg",
-  alt:"white-grey cat sleeping on table"
+    cat: "Ham2",
+    img: "./cats/hamm.jpg",
+    img2: "https://cdn.discordapp.com/attachments/919468128432455700/940396207073820672/IMG_1954.jpg",
+    alt: "white-grey cat sleeping on table",
   },
   {
-  cat: "Ham3",
-  img:"./cats/hammy1.JPEG",
-  img2:"https://cdn.discordapp.com/attachments/296063428043341834/885717522056364062/IMG_0826.JPEG",
-  alt:"grey-white cat in car"
+    cat: "Ham3",
+    img: "./cats/hammy1.JPEG",
+    img2: "https://cdn.discordapp.com/attachments/296063428043341834/885717522056364062/IMG_0826.JPEG",
+    alt: "grey-white cat in car",
   },
   {
-  cat: "Pudgie",
-  img: "./cats/pudgie.jpg",
-  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940396208155926548/IMG_1971.jpg",
-  alt:"stocky grey-white cat eyes big"
+    cat: "Pudgie",
+    img: "./cats/pudgie.jpg",
+    img2: "https://cdn.discordapp.com/attachments/919468128432455700/940396208155926548/IMG_1971.jpg",
+    alt: "stocky grey-white cat eyes big",
   },
-
 ];
 
 //changes cat pictures
 let changeCat = () => {
   console.log("meow");
   i = Math.floor(Math.random() * catPix.length);
-  let catImg = catPix[i].img2 ;
+  let catImg = catPix[i].img2;
   let newCat = document.getElementById("cat-pix");
   newCat.src = catImg;
-  newCat.alt = catPix[i].alt
+  newCat.alt = catPix[i].alt;
 };
 
 const questions = [
@@ -136,7 +136,7 @@ const questions = [
     //   Shift: false,
     //   f: false,
     // },
-    answertext: "alt-shift-f",
+    answertext: "option-shift-f",
   },
 
   {
@@ -146,7 +146,7 @@ const questions = [
     //   ArrowUp: false,
     // },
     answer: "eventCode.AltLeft && eventCode.ArrowUp",
-    answertext: "alt-up",
+    answertext: "option-up",
   },
   {
     question: "Mac-VSC: delete line",
@@ -156,6 +156,25 @@ const questions = [
     // },
     answer: "eventCode.MetaLeft && eventCode.KeyX",
     answertext: "command-x",
+  },
+  {
+    question: "Mac-Zoom: raise hand",
+    // answerOp: {
+    //   Alt: false,
+    //   ArrowUp: false,
+    // },
+    answer: "eventCode.AltLeft && eventCode.KeyY",
+    answertext: "option-y",
+  },
+  {
+    question: "Mac-Zoom: mute/unmute",
+    // answerOp: {
+    //   Meta: false,
+    //   Shift: false,
+    //   spaceBar: false,
+    // },
+    answer: "eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.KeyA",
+    answertext: "command-shift-a",
   },
 ];
 
@@ -173,27 +192,22 @@ let usedQuestions = (num) => {
 };
 //gj pet hand
 let correctImg = () => {
-
   const pet = document.createElement("img");
   pet.src = "/img/gianthand.png";
   const parent = document.querySelector(".gianthand");
   parent.appendChild(pet);
   setTimeout(() => parent.removeChild(pet), 3800);
-
 };
-
 
 let correctDisplay = () => {
   topDisplay.innerText = "correct! YAY PETS!! :3";
   topCenter.style.backgroundColor = "rgb(186 220 172)";
 };
 
-
 let incorrectDisplay = () => {
   topDisplay.innerText = "MY POOR CAT :(";
   topCenter.style.backgroundColor = "red";
 };
-
 
 //displays question
 const displayQ = () => {
@@ -221,8 +235,8 @@ let displayWin = () => {
 
 let displayLost = () => {
   let displayOver = document.getElementById("display-over");
-  displayOver.innerText = 'correct keys are:'      
-  displayOver.innerText += `\n${questions[currentQuestion].answertext}`    
+  displayOver.innerText = "correct keys are:";
+  displayOver.innerText += `\n${questions[currentQuestion].answertext}`;
 };
 
 //toggles end overlay
@@ -246,17 +260,20 @@ let start = () => {
   document.addEventListener("keyup", listenerUp);
 };
 
-
-
 //listens specific down keys
 function listenerDown(event) {
   //displays keys
   let p = document.getElementById("output");
   p.innerText = `${event.key}`;
-  p.style.color="white"
+  p.style.color = "white";
+
   if (event.key === " ") {
     p.textContent = "Spacebar";
   }
+  if (event.key === AltLeft) {
+    p.textContent = "Option";
+  }
+  
 
   if (event.code === "MetaLeft") {
     eventCode.MetaLeft = true;
@@ -285,6 +302,12 @@ function listenerDown(event) {
   if (event.code === "KeyX") {
     eventCode.KeyX = true;
   }
+  if (event.code === "KeyY") {
+    eventCode.KeyY = true;
+  }
+  if (event.code === "KeyA") {
+    eventCode.KeyA = true;
+  }
   if (
     currentQuestion === 0 &&
     (eventCode.MetaLeft &&
@@ -297,43 +320,57 @@ function listenerDown(event) {
   }
   if (
     currentQuestion === 1 &&
-    (eventCode.AltLeft &&
+    eventCode.AltLeft &&
     eventCode.ShiftLeft &&
-    eventCode.ArrowDown)
+    eventCode.ArrowDown
   ) {
-    p.textContent = "alt-shift-down";
+    p.textContent = "option-shift-down";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (
     currentQuestion === 2 &&
-    (eventCode.AltLeft &&
+    eventCode.AltLeft &&
     eventCode.ShiftLeft &&
-    eventCode.KeyF)
+    eventCode.KeyF
   ) {
-    p.textContent = "alt-shift-f";
+    p.textContent = "option-shift-f";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
-  if (currentQuestion === 3 && (eventCode.AltLeft && eventCode.ArrowUp)) {
-    p.textContent = "alt-up";
+  if (currentQuestion === 3 && eventCode.AltLeft && eventCode.ArrowUp) {
+    p.textContent = "option-up";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
-  if (currentQuestion === 4 &&
-    (eventCode.MetaLeft &&
-    eventCode.KeyX)) {
+  if (currentQuestion === 4 && eventCode.MetaLeft && eventCode.KeyX) {
     console.log("yay2");
     p.textContent = "command-x";
     p.style.color = "var(--light-green)";
     rightAnswer();
-  } else if (guesses.length > 9) {
+  }
+  if (currentQuestion === 5 && eventCode.AltLeft && eventCode.KeyY) {
+    p.textContent = "option-y";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+      if (
+        currentQuestion === 0 &&
+        eventCode.MetaLeft &&
+        eventCode.ShiftLeft &&
+        eventCode.KeyA
+      ) {
+        p.textContent = "command-shift-a";
+        p.style.color = "var(--light-green)";
+        rightAnswer();
+      }
+   else if (guesses.length > 9) {
     console.log("too many guesses/wrong answer");
     console.log(guesses.length);
     gameLoss();
   } else {
     guesses.push(event);
   }
+
 }
 
 function listenerUp(event) {
@@ -373,6 +410,15 @@ function listenerUp(event) {
     eventCode.KeyX = false;
     console.log("up");
   }
+  
+  if (event.code === "KeyY") {
+    eventCode.KeyY = false;
+    console.log("up");
+  }
+  if (event.code === "KeyA") {
+    eventCode.KeyA = false;
+    console.log("up");
+  }
 }
 
 console.log(currentQuestion);
@@ -395,7 +441,7 @@ const rightAnswer = () => {
 
 //resets questions to full
 const reset = () => {
-  choices = [0, 1, 2, 3,4];
+  choices = [0, 1, 2, 3, 4, 5, 6];
   guesses = [];
   eventCode = {
     AltLeft: false,
@@ -407,6 +453,8 @@ const reset = () => {
     ArrowUp: false,
     Digit4: false,
     KeyX: false,
+    KeyY: false,
+    KeyA: false
   };
 };
 
