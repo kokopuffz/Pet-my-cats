@@ -6,7 +6,7 @@ let topDisplay = document.getElementById("top-display");
 let topCenter = document.querySelector(".top-center");
 let cat = document.querySelector(".cat");
 let asked = [];
-let choices = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let choices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let recordPress = [];
 // let gameOver = false;
 let guesses = [];
@@ -196,15 +196,15 @@ const questions = [
     answer: "eventCode.AltLeft && eventCode.ArrowRight",
     answertext: "option-right",
   }
-  // {
-  //   question: "Mac-VSC: Redo",
-  //   // answerOp: {
-  //   //   Alt: false,
-  //   //   ArrowUp: false,
-  //   // },
-  //   answer: "eventCode.MetaLeft && eventCode.KeyY",
-  //   answertext: "command-y",
-  // },
+  {
+    question: "Mac|Zoom: Push to talk",
+    // answerOp: {
+    //   Alt: false,
+    //   ArrowUp: false,
+    // },
+    answer: "eventCode.Space",
+    answertext: "spacebar",
+  },
   // {
   //   question: "Mac-Zoom: mute/unmute",
   //   // answerOp: {
@@ -433,6 +433,16 @@ function listenerDown(event) {
     rightAnswer();
 
   } 
+  if (
+    currentQuestion === 9 &&
+    eventCode.Space
+  ) 
+  {
+    p.textContent = "option-arrowright";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+
+  } 
   else if (guesses.length > 9) {
     console.log("too many guesses/wrong answer");
     console.log(guesses.length);
@@ -522,7 +532,7 @@ const rightAnswer = () => {
 
 //resets questions to full
 const reset = () => {
-  choices = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  choices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   guesses = [];
   eventCode = {
     AltLeft: false,
