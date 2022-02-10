@@ -98,7 +98,7 @@ catPix = [
 let changeCat = () => {
   console.log("meow");
   i = Math.floor(Math.random() * catPix.length);
-  let catImg = catPix[i].img ;
+  let catImg = catPix[i].img2 ;
   let newCat = document.getElementById("cat-pix");
   newCat.src = catImg;
   newCat.alt = catPix[i].alt
@@ -106,7 +106,7 @@ let changeCat = () => {
 
 const questions = [
   {
-    question: "1Mac: emojis",
+    question: "Mac: emojis",
     // answerOp: {
     //   Meta: false,
     //   Shift: false,
@@ -117,7 +117,7 @@ const questions = [
   },
 
   {
-    question: "2Mac: copy current line",
+    question: "Mac: copy current line",
     // answerOp: {
     //   Alt: false,
     //   Shift: false,
@@ -128,7 +128,7 @@ const questions = [
   },
 
   {
-    question: "3Mac-VS: format page",
+    question: "Mac-VS: format page",
     answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF",
     // first conditionals to check if its pressed//actually chck
     // answerOp: {
