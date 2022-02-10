@@ -1,6 +1,15 @@
-/* main, img goes center bottom, top changes color depending on answer, hover screen start, result-end div */
 @import url("https://fonts.googleapis.com/css2?family=Pangolin&display=swap");
 
+/* rgb(118 185 240) blue  
+rgb(247 178 189) pink
+rgb(186 220 172) green
+*/
+:root {
+  --light-blue: rgb(118 185 240) ;
+  --light-pink: rgb(247 178 189);
+  --light-green:rgb(186 220 172) ;
+  --light-purp: rgb(205 194 254);
+}
 * {
   font-family: "Pangolin", cursive;
   letter-spacing: 0.3em;
@@ -19,7 +28,7 @@ img {
 body {
   /* padding-top: 1em; */
   text-align: center;
-  background-color: rgb(118 185 240);
+  background-color: var(--light-blue);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +37,7 @@ button {
   border: none;
   appearance: none;
   display: inline;
-  background-color: rgb(247 178 189);
+  background-color: var(--light-pink);
   color: white;
   font-size: 1.5em;
   padding: 5px 100px;
@@ -41,14 +50,13 @@ button {
 
 button:hover {
   font-size: 1.5em;
-  background-color: rgb(205 194 254);
+  background-color: var(--light-purp);
 }
-
-
 
 button::after {
   content: "PLAY GAME";
 }
+
 button:hover:after {
   content: "meow";
 }
@@ -87,31 +95,6 @@ button:hover:after {
 /* .end-screen button {
   
 } */
-.overlay {
-  position: fixed;
-  display: flex;
-  background: rgba(118, 185, 240, 0.892);
-  width: 40em;
-  height: 25em;
-  z-index: 4;
-  transform: translateX(-50%);
-  /* transform: translateY(50%) */
-}
-
-.overlay .close {
-  border: none;
-  appearance: none;
-  display: inline;
-  background-color: rgb(247 178 189);
-  color: white;
-  font-size: 1.5em;
-  padding: 5px 100px;
-  border-radius: 8px;
-  position: absolute;
-  overflow: hidden;
-  transform: translateX(-50%);
-  z-index: 5;
-}
 .results-endtext {
   color: white;
 }
@@ -127,7 +110,7 @@ button:hover:after {
   margin: 0 auto;
   padding: 0.5em;
   text-align: center;
-  background-color: rgb(205 194 254);
+  background-color: var(--light-purp);
   display: flex;
   position: relative;
   /* width: 832px;
@@ -140,6 +123,31 @@ button:hover:after {
   z-index: 1;
 }
 
+.overlay {
+  position: fixed;
+  display: flex;
+  background: rgba(118, 185, 240, 0.838);
+  width: 40em;
+  height: 25em;
+  z-index: 4;
+  transform: translateX(-50%);
+  /* transform: translateY(50%) */
+}
+
+.overlay .close {
+  border: none;
+  appearance: none;
+  display: inline;
+  background-color: var(--light-pink);
+  color: white;
+  font-size: 1.5em;
+  padding: 5px 100px;
+  border-radius: 8px;
+  position: absolute;
+  overflow: hidden;
+  transform: translateX(-50%);
+  z-index: 5;
+}
 .cat {
   /* position: absolute; */
   max-width: auto;
@@ -176,6 +184,7 @@ button:hover:after {
   /* padding-left: %; */
   top: auto;
   right: auto;
+  left: 0%;
   bottom: 0%;
   display: flex;
   max-width: 15em;
@@ -189,7 +198,8 @@ button:hover:after {
 
 .pressed-keys {
   padding-left: 10%;
-  font-size: 1em;
+  font-size: 1.5em;
+  color: var(--light-blue);
   /* display: inline-block; */
 }
 
@@ -197,9 +207,10 @@ button:hover:after {
 .keys-display {
   /* line-height: 14px; */
   /* font-size: 30px; */
-  font-size: 1.5em;
+  font-size: 1em;
   margin-top: 0%;
-  padding-top: 10%;
+  padding-top: 1%;
+  color: white;
   /* display: inline-block; */
 }
 
@@ -207,6 +218,7 @@ button:hover:after {
 
 #output {
   font-family: "Pangolin", cursive;
+  text-shadow: 0.1em 0.1em 0.2em black;
   /* border: 1px solid black; */
 }
 
@@ -253,6 +265,25 @@ button:hover:after {
  */
 
 .results-endtext {
+  margin: 3 10% 15% 10%;
+  line-height: 2em;
+  font-size: 2em;
+  color: white;
+}
+
+.again-button {
+  transition-duration: 1s;
+}
+
+.again-button:hover {
   font-size: 1.5em;
-  color: blue;
+  background-color: var(--light-purp);
+}
+
+.again-button::after {
+  content: "AGAIN!"
+}
+
+.again-button:hover:after {
+  content: "meow";
 }
