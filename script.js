@@ -101,7 +101,7 @@ catPix = [
 let changeCat = () => {
   console.log("meow");
   i = Math.floor(Math.random() * catPix.length);
-  let catImg = catPix[i].img2;
+  let catImg = catPix[i].img;
   let newCat = document.getElementById("cat-pix");
   newCat.src = catImg;
   newCat.alt = catPix[i].alt;
