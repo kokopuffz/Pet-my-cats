@@ -1,4 +1,4 @@
-console.log("im ded O_O");
+console.log("iam not a cat lady");
 let currentQuestion = null;
 let outPut = document.getElementById("output");
 // let fadeAway = document.querySelector(".fade-away")
@@ -22,6 +22,7 @@ let eventCode = {
   Digit4: false,
   KeyX: false
 };
+
 
 catPix = [
   {
@@ -172,18 +173,19 @@ let usedQuestions = (num) => {
 };
 //gj pet hand
 let correctImg = () => {
+
   const pet = document.createElement("img");
   pet.src = "/img/gianthand.png";
   const parent = document.querySelector(".gianthand");
   parent.appendChild(pet);
-
   setTimeout(() => parent.removeChild(pet), 3800);
+
 };
+
 
 let correctDisplay = () => {
   topDisplay.innerText = "correct! YAY PETS!! :3";
   topCenter.style.backgroundColor = "rgb(186 220 172)";
-  // topCenter.style.backgroundColor = "hotpink";
 };
 
 
@@ -212,7 +214,9 @@ let toggleGame = (id, toggle) => {
 //if no more questions
 let displayWin = () => {
   let displayOver = document.getElementById("display-over");
-  displayOver.innerText = "You got them all right!! And my cats are pleased. :3";
+  displayOver.innerText = "You got them all right!";
+  displayOver.innerText += "\nAnd my cats are pleased.";
+  displayOver.innerText += "\nowo";
 };
 
 let displayLost = () => {
@@ -283,19 +287,19 @@ function listenerDown(event) {
   }
   if (
     currentQuestion === 0 &&
-    eventCode.MetaLeft &&
+    (eventCode.MetaLeft &&
     eventCode.ShiftLeft &&
-    eventCode.Space
+    eventCode.Space)
   ) {
     p.textContent = "command-shift-space";
-    p.style.color = "green"
+    p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (
     currentQuestion === 1 &&
-    eventCode.AltLeft &&
+    (eventCode.AltLeft &&
     eventCode.ShiftLeft &&
-    eventCode.ArrowDown
+    eventCode.ArrowDown)
   ) {
     p.textContent = "alt-shift-down";
     p.style.color = "var(--light-green)";
@@ -303,22 +307,22 @@ function listenerDown(event) {
   }
   if (
     currentQuestion === 2 &&
-    eventCode.AltLeft &&
+    (eventCode.AltLeft &&
     eventCode.ShiftLeft &&
-    eventCode.KeyF
+    eventCode.KeyF)
   ) {
     p.textContent = "alt-shift-f";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
-  if (currentQuestion === 3 && eventCode.AltLeft && eventCode.ArrowUp) {
+  if (currentQuestion === 3 && (eventCode.AltLeft && eventCode.ArrowUp)) {
     p.textContent = "alt-up";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (currentQuestion === 4 &&
-    eventCode.MetaLeft &&
-    eventCode.KeyX) {
+    (eventCode.MetaLeft &&
+    eventCode.KeyX)) {
     console.log("yay2");
     p.textContent = "command-x";
     p.style.color = "var(--light-green)";
@@ -385,7 +389,7 @@ const rightAnswer = () => {
     console.log(guesses.length);
     guesses = [];
     console.log("guesses reset");
-    setTimeout(displayQ, 6000);
+    setTimeout(displayQ, 5000);
   }
 };
 
@@ -393,6 +397,17 @@ const rightAnswer = () => {
 const reset = () => {
   choices = [0, 1, 2, 3,4];
   guesses = [];
+  eventCode = {
+    AltLeft: false,
+    ShiftLeft: false,
+    ArrowDown: false,
+    MetaLeft: false,
+    Space: false,
+    KeyF: false,
+    ArrowUp: false,
+    Digit4: false,
+    KeyX: false,
+  };
 };
 
 //over because all questions correct
