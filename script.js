@@ -27,56 +27,67 @@ catPix = [
   {
   cat: "dafat1",
   img:"./cats/dafat.jpg",
+  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403303282516019/IMG_0247.JPG",
   alt:"fluffy white cat in a circular bun"
   },
   {
   cat: "dafat2",
   img:"./cats/dafat2.jpg",
+  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403303806824448/IMG_0342.JPG",
   alt:"fluffy white cat belly exposed relaxed"
   },
   {
   cat: "dafat3",
   img:"./cats/dafat3.jpeg",
+  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403486267432960/IMG_2241.JPEG",
   alt:"fluffy white cat belly exposed couch"
   },
   {
   cat: "dafat4",
   img:"./cats/dafat4.jpg",
+  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403487781556254/IMG_2657.JPG",
   alt:"fluffy white cat outside under tree looking at leaf"
   },
   {
   cat: "dafat5",
   img:"./cats/dafat5.jpg",
+  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403486988861440/IMG_2728.JPG",
   alt:"fluffy white cat crossed arms staring at camera"
   },
   {
   cat: "dafat6",
   img:"./cats/dafat6.jpg",
+  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940403147661262868/IMG_5931.jpg",
   alt:"angry fluffy white cat with princess leia buns"
   },
   {
   cat: "Einstein",
   img:"./cats/einstein.jpeg",
+  img2:"https://cdn.discordapp.com/attachments/919468128432455700/919717181858668544/IMG_0931.JPEG",
   alt:"tuxedo cat and grey white cat"
   },
   {
   cat: "Ham1",
   img:  "./cats/ham.jpg",
+  img2: "https://cdn.discordapp.com/attachments/296063428043341834/919118232261107712/image0.jpg",
   alt:"white-grey cat destroying a papertowel roll"
   },
   {
   cat: "Ham2",
   img:"./cats/hamm.jpg",
+  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940396207073820672/IMG_1954.jpg",
   alt:"white-grey cat sleeping on table"
   },
   {
   cat: "Ham3",
   img:"./cats/hammy1.JPEG",
+  img2:"https://cdn.discordapp.com/attachments/296063428043341834/885717522056364062/IMG_0826.JPEG",
   alt:"grey-white cat in car"
   },
   {
   cat: "Pudgie",
   img: "./cats/pudgie.jpg",
+  img2:"https://cdn.discordapp.com/attachments/919468128432455700/940396208155926548/IMG_1971.jpg",
   alt:"stocky grey-white cat eyes big"
   },
 
@@ -86,7 +97,7 @@ catPix = [
 let changeCat = () => {
   console.log("meow");
   i = Math.floor(Math.random() * catPix.length);
-  let catImg = catPix[i].img ;
+  let catImg = catPix[i].img2 ;
   let newCat = document.getElementById("cat-pix");
   newCat.src = catImg;
   newCat.alt = catPix[i].alt
@@ -201,7 +212,7 @@ let toggleGame = (id, toggle) => {
 //if no more questions
 let displayWin = () => {
   let displayOver = document.getElementById("display-over");
-  displayOver.innerText = "Shortcut Champ!";
+  displayOver.innerText = "You got them all right!! And my cats are pleased. :3";
 };
 
 let displayLost = () => {
