@@ -6,7 +6,7 @@ let topDisplay = document.getElementById("top-display");
 let topCenter = document.querySelector(".top-center");
 let cat = document.querySelector(".cat");
 let asked = [];
-let choices = [0, 1, 2, 3, 4, 5, 6];
+let choices = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 let recordPress = [];
 // let gameOver = false;
 let guesses = [];
@@ -23,6 +23,9 @@ let eventCode = {
   KeyX: false,
   KeyY: false,
   KeyA: false,
+  Home: false,
+  End: false,
+  ArrowRight: false
 };
 
 catPix = [
@@ -128,7 +131,7 @@ const questions = [
   },
 
   {
-    question: "Mac-VS: format page",
+    question: "Mac|VS: format page",
     answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF",
     // first conditionals to check if its pressed//actually chck
     // answerOp: {
@@ -140,7 +143,7 @@ const questions = [
   },
 
   {
-    question: "Mac-VSC: move current line up",
+    question: "Mac|VSC: move current line up",
     // answerOp: {
     //   Alt: false,
     //   ArrowUp: false,
@@ -149,7 +152,7 @@ const questions = [
     answertext: "option-up",
   },
   {
-    question: "Mac-VSC: delete line",
+    question: "Mac|VSC: delete line",
     // answerOp: {
     //   Alt: false,
     //   ArrowUp: false,
@@ -158,7 +161,7 @@ const questions = [
     answertext: "command-x",
   },
   {
-    question: "Mac-Zoom: raise hand",
+    question: "Mac|Zoom: raise hand",
     // answerOp: {
     //   Alt: false,
     //   ArrowUp: false,
@@ -167,15 +170,51 @@ const questions = [
     answertext: "option-y",
   },
   {
-    question: "Mac-Zoom: mute/unmute",
+    question: "Mac|VSC: Move to first character of line",
     // answerOp: {
-    //   Meta: false,
-    //   Shift: false,
-    //   spaceBar: false,
+    //   Alt: false,
+    //   ArrowUp: false,
     // },
-    answer: "eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.KeyA",
-    answertext: "command-shift-a",
+    answer: "eventCode.Home",
+    answertext: "home",
   },
+  {
+    question: "Mac|VSC: Move to last character of line",
+    // answerOp: {
+    //   Alt: false,
+    //   ArrowUp: false,
+    // },
+    answer: "eventCode.End",
+    answertext: "end",
+  },
+  {
+    question: "Mac|VSC: Move word by word--Right",
+    // answerOp: {
+    //   Alt: false,
+    //   ArrowUp: false,
+    // },
+    answer: "eventCode.AltLeft && eventCode.ArrowRight",
+    answertext: "option-right",
+  }
+  // {
+  //   question: "Mac-VSC: Redo",
+  //   // answerOp: {
+  //   //   Alt: false,
+  //   //   ArrowUp: false,
+  //   // },
+  //   answer: "eventCode.MetaLeft && eventCode.KeyY",
+  //   answertext: "command-y",
+  // },
+  // {
+  //   question: "Mac-Zoom: mute/unmute",
+  //   // answerOp: {
+  //   //   Meta: false,
+  //   //   Shift: false,
+  //   //   spaceBar: false,
+  //   // },
+  //   answer: "eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.KeyA",
+  //   answertext: "command-shift-a",
+  // },
 ];
 
 let randomQuestionIndex = () => {
@@ -260,6 +299,7 @@ let start = () => {
   document.addEventListener("keyup", listenerUp);
 };
 
+
 //listens specific down keys
 function listenerDown(event) {
   //displays keys
@@ -270,11 +310,13 @@ function listenerDown(event) {
   if (event.key === " ") {
     p.textContent = "Spacebar";
   }
-  if (event.key === AltLeft) {
+  if (event.key === "Alt") {
     p.textContent = "Option";
   }
+  if (event.key === "Meta") {
+    p.textContent = "Command";
+  }
   
-
   if (event.code === "MetaLeft") {
     eventCode.MetaLeft = true;
   }
@@ -308,11 +350,20 @@ function listenerDown(event) {
   if (event.code === "KeyA") {
     eventCode.KeyA = true;
   }
+  if (event.code === "Home") {
+    eventCode.Home = true;
+  }
+  if (event.code === "End") {
+    eventCode.End = true;
+  }
+  if (event.code === "ArrowRight") {
+    eventCode.ArrowRight = true;
+  }
   if (
     currentQuestion === 0 &&
-    (eventCode.MetaLeft &&
+    eventCode.MetaLeft &&
     eventCode.ShiftLeft &&
-    eventCode.Space)
+    eventCode.Space
   ) {
     p.textContent = "command-shift-space";
     p.style.color = "var(--light-green)";
@@ -353,24 +404,42 @@ function listenerDown(event) {
     p.textContent = "option-y";
     p.style.color = "var(--light-green)";
     rightAnswer();
-      if (
-        currentQuestion === 0 &&
-        eventCode.MetaLeft &&
-        eventCode.ShiftLeft &&
-        eventCode.KeyA
-      ) {
-        p.textContent = "command-shift-a";
-        p.style.color = "var(--light-green)";
-        rightAnswer();
-      }
-   else if (guesses.length > 9) {
+  }
+  if (
+    currentQuestion === 6 &&
+    eventCode.Home 
+  ) {
+    p.textContent = "home";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  }
+  if (
+    currentQuestion === 7 &&
+    eventCode.End 
+  ) 
+  {
+    p.textContent = "end";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+
+  } 
+  if (
+    currentQuestion === 8 &&
+    eventCode.AltLeft && eventCode.ArrowRight
+  ) 
+  {
+    p.textContent = "option-arrowright";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+
+  } 
+  else if (guesses.length > 9) {
     console.log("too many guesses/wrong answer");
     console.log(guesses.length);
     gameLoss();
   } else {
     guesses.push(event);
   }
-
 }
 
 function listenerUp(event) {
@@ -410,7 +479,7 @@ function listenerUp(event) {
     eventCode.KeyX = false;
     console.log("up");
   }
-  
+
   if (event.code === "KeyY") {
     eventCode.KeyY = false;
     console.log("up");
@@ -419,6 +488,18 @@ function listenerUp(event) {
     eventCode.KeyA = false;
     console.log("up");
   }
+  if (event.code === "Home") {
+    eventCode.Home = false;
+    console.log("up");
+  }
+  if (event.code === "End") {
+    eventCode.End = false;
+    console.log("up");
+  }
+    if (event.code === "ArrowRight") {
+      eventCode.ArrowRight = false;
+      console.log("up");
+    }
 }
 
 console.log(currentQuestion);
@@ -441,7 +522,7 @@ const rightAnswer = () => {
 
 //resets questions to full
 const reset = () => {
-  choices = [0, 1, 2, 3, 4, 5, 6];
+  choices = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   guesses = [];
   eventCode = {
     AltLeft: false,
@@ -454,7 +535,10 @@ const reset = () => {
     Digit4: false,
     KeyX: false,
     KeyY: false,
-    KeyA: false
+    KeyA: false,
+    Home: false,
+    End: false,
+    ArrowRight: false,
   };
 };
 
