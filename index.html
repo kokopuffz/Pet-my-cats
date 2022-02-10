@@ -13,19 +13,25 @@
         <div>
           <p class="top-starttext">Let's Play</p>
           <p class="mid-starttext">PET MY CATS</p>
+          <h1 class="heading">The fluffy typing game for novice coders who want to learn shortcuts like a pro. </h1>
         </div>
-        <button onClick='start()' class='meow pushable'></button>
+        <button onClick='start()' class='meow pushable' title="Start Game"></button>
+        <div class="directions">
+          <p>directions:</p>
+          <div class="directions-overlay">There will be a prompt on what the shortcut will do and if you push the right keys => You get to pet my cute cats. Lucky you! The game ends if all answers or correct or if there are too many failed attempts.</div>
+        </div>
+                    
       </div>
       <div class="end-screen overlay overlay-effect" id="end-screen" style="display:none">
         <div>
-          <p class="results-endtext" id="display-over">something something something</p>
+          <p class="results-endtext" id="display-over">win or loss message</p>
         </div>
         <button onClick='start()' class='meow close again-button '></button>
       </div>
       <div class="gianthand"></div>
       <div class="container" id="game-screen" style="display:none">
         <div class="top-center">
-          <h1 id="top-display">questions</h1>
+          <h1 id="top-display">questions prompt</h1>
         </div>
         <div class="cat">
           <img id="cat-pix"
