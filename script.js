@@ -232,7 +232,7 @@ let usedQuestions = (num) => {
 //gj pet hand
 let correctImg = () => {
   const pet = document.createElement("img");
-  pet.src = "/img/gianthand.png";
+  pet.src = "./img/gianthand.png";
   const parent = document.querySelector(".gianthand");
   parent.appendChild(pet);
   setTimeout(() => parent.removeChild(pet), 3800);
