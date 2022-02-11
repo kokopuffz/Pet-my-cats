@@ -447,6 +447,7 @@ function listenerUp(event) {
 console.log(currentQuestion);
 console.log(guesses);
 
+//if sound on play, if not dont
 let pudgie = () => {
   let soundOn = document.getElementById("sound-on");
   if (soundOn.checked) {
@@ -457,6 +458,7 @@ let pudgie = () => {
   }
 };
 
+// if right ... if there is no more choices, then gameover
 const rightAnswer = () => {
   pudgie();
   correctImg();
