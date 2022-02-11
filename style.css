@@ -248,9 +248,9 @@ button:hover:after {
 }
 
 .gianthand img {
-  max-width: 75%;
-  margin-left: -20% !important;
-  margin-top: -20% !important;
+  max-width: 100%;
+  margin-left: -50% !important;
+  margin-top: -30% !important;
   overflow: hidden;
   animation-name: shine;
   animation-duration: 4s;

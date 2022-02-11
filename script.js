@@ -30,6 +30,7 @@ let eventCode = {
 
 let pudgemeow = new Audio("pudgemeow.mp3");
 
+
 catPix = [
   {
     cat: "dafat1",
@@ -101,7 +102,7 @@ catPix = [
 
 //changes cat pictures
 let changeCat = () => {
-  console.log("meow");
+  console.log("new cat pic");
   i = Math.floor(Math.random() * catPix.length);
   let catImg = catPix[i].img;
   let newCat = document.getElementById("cat-pix");
@@ -112,22 +113,12 @@ let changeCat = () => {
 const questions = [
   {
     question: "Mac: emojis",
-    // answerOp: {
-    //   Meta: false,
-    //   Shift: false,
-    //   spaceBar: false,
-    // },
     answer: "eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space",
     answertext: "command-shift-space",
   },
 
   {
     question: "Mac: copy current line",
-    // answerOp: {
-    //   Alt: false,
-    //   Shift: false,
-    //   ArrowDown: false,
-    // },
     answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown",
     answertext: "option-shift-down",
   },
@@ -135,90 +126,47 @@ const questions = [
   {
     question: "Mac|VS: format page",
     answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF",
-    // first conditionals to check if its pressed//actually chck
-    // answerOp: {
-    //   Alt: false,
-    //   Shift: false,
-    //   f: false,
-    // },
     answertext: "option-shift-f",
   },
 
   {
     question: "Mac|VSC: move current line up",
-    // answerOp: {
-    //   Alt: false,
-    //   ArrowUp: false,
-    // },
     answer: "eventCode.AltLeft && eventCode.ArrowUp",
     answertext: "option-up",
   },
   {
     question: "Mac|VSC: delete line",
-    // answerOp: {
-    //   Alt: false,
-    //   ArrowUp: false,
-    // },
     answer: "eventCode.MetaLeft && eventCode.KeyX",
     answertext: "command-x",
   },
   {
     question: "Mac|Zoom: raise hand",
-    // answerOp: {
-    //   Alt: false,
-    //   ArrowUp: false,
-    // },
     answer: "eventCode.AltLeft && eventCode.KeyY",
     answertext: "option-y",
   },
   {
     question: "Mac|VSC: Move to first character of line",
-    // answerOp: {
-    //   Alt: false,
-    //   ArrowUp: false,
-    // },
     answer: "eventCode.Home",
     answertext: "home",
   },
   {
     question: "Mac|VSC: Move to last character of line",
-    // answerOp: {
-    //   Alt: false,
-    //   ArrowUp: false,
-    // },
     answer: "eventCode.End",
     answertext: "end",
   },
   {
     question: "Mac|VSC: Move word by word--Right",
-    // answerOp: {
-    //   Alt: false,
-    //   ArrowUp: false,
-    // },
     answer: "eventCode.AltLeft && eventCode.ArrowRight",
     answertext: "option-right",
   },
   {
     question: "Mac|Zoom: Push to talk",
-    // answerOp: {
-    //   Alt: false,
-    //   ArrowUp: false,
-    // },
     answer: "eventCode.Space",
     answertext: "spacebar",
-  },
-  // {
-  //   question: "Mac-Zoom: mute/unmute",
-  //   // answerOp: {
-  //   //   Meta: false,
-  //   //   Shift: false,
-  //   //   spaceBar: false,
-  //   // },
-  //   answer: "eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.KeyA",
-  //   answertext: "command-shift-a",
-  // },
+  }
 ];
 
+//random number from choices
 let randomQuestionIndex = () => {
   const index = Math.floor(Math.random() * choices.length);
   return choices[index];
@@ -231,6 +179,7 @@ let usedQuestions = (num) => {
     choices.splice(index, 1);
   }
 };
+
 //gj pet hand
 let correctImg = () => {
   const pet = document.createElement("img");
@@ -240,11 +189,13 @@ let correctImg = () => {
   setTimeout(() => parent.removeChild(pet), 3800);
 };
 
+//prompt turns green with correct msg
 let correctDisplay = () => {
-  topDisplay.innerText = "correct! YAY PETS!! :3";
+  topDisplay.innerText = "correct! YAY PETS!!";
   topCenter.style.backgroundColor = "rgb(186 220 172)";
 };
 
+//prompt turns red with incorrect msg
 let incorrectDisplay = () => {
   topDisplay.innerText = "MY POOR CAT :(";
   topCenter.style.backgroundColor = "red";
@@ -500,6 +451,7 @@ let pudgie = () => {
   let soundOn = document.getElementById("sound-on");
   if (soundOn.checked) {
     pudgemeow.play();
+    // document.getElementsByTagName('audio')
   } else {
     return;
   }

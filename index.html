@@ -8,60 +8,50 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-
-    <main class="main">
-        <label class="mutebox switch" id="mute-box">
+  <main class="main">
+    <label class="mutebox switch" id="mute-box">
           
-          <input type="checkbox" id="sound-on" checked>
-          <span class="slider"></span>
-          <label for="mute"></label>
-          <p>sound</p>
-        </label>
-      <div class="frontscreen" id="front-screen" style="display:block">
-        <div>
-          <p class="top-starttext">Let's Play</p>
-          <p class="mid-starttext">PET MY CATS</p>
-          <h1 class="heading">The fluffy typing game for novice coders who want to learn shortcuts like a pro. </h1>
-        </div>
-        <button onClick='start()' class='meow pushable' title="Play Game button"></button>
-        <div class="directions">
-          <p>directions:</p>
-          <div class="directions-overlay">
-            <ul id="dir">
-              <li>There will be a prompt on what the shortcut will do.</li>
-<li>If you push the right keys => You get to pet my cute cats. Lucky you!</li>
-<li>  
-The game ends when all answers are correct or if there are too many failed attempts.
-</li>
-        
-          </div>
-        </div>
-                    
+      <input type="checkbox" id="sound-on" checked>
+      <span class="slider"></span>
+      <label for="mute"></label>
+      <p>sound</p>
+    </label>
+    <div class="frontscreen" id="front-screen" style="display:block">
+      <div>
+        <p class="top-starttext">Let's Play</p>
+        <p class="mid-starttext">PET MY CATS</p>
+        <h1 class="heading">The fluffy typing game for novice coders who want to learn shortcuts like a pro. </h1>
       </div>
-      <div class="end-screen overlay overlay-effect" id="end-screen" style="display:none">
+    <button onClick='start()' class='meow pushable' title="Play Game button"></button>
+    <div class="directions">
+      <p>directions:</p>
+      <div class="directions-overlay">
+        <ul id="dir">
+          <li>There will be a prompt on what the shortcut will do.</li>
+          <li>If you push the right keys => You get to pet my cute cats. Lucky you!</li>
+          <li>The game ends when all answers are correct or if there are too many failed attempts.</li>
+      </div>
+    </div>
+    </div>
+    <div class="end-screen overlay overlay-effect" id="end-screen" style="display:none">
         <div>
           <p class="results-endtext" id="display-over">win or loss message</p>
         </div>
         <button onClick='start()' class='meow close again-button' title="try again button"></button>
-      </div>
+    </div>
       <div class="gianthand"></div>
       <div class="container" id="game-screen" style="display:none">
-        <div class="top-center">
+      <div class="top-center">
           <h2 id="top-display">questions prompt</h2>
+      </div>
+      <div class="cat">
+        <img id="cat-pix"
+            src="https://cdn.discordapp.com/attachments/919468128432455700/919807060550508544/57161500647__3E9B21AA-02EE-4629-B9D9-5438C14C835B.JPG" alt="fat white fluffy cat">
         </div>
-        <div class="cat">
-          <img id="cat-pix"
-            src="https://cdn.discordapp.com/attachments/919468128432455700/919807060550508544/57161500647__3E9B21AA-02EE-4629-B9D9-5438C14C835B.JPG" alt="fat white fluffy cat"
-           />
-        </div>
-        <div class="keys-wrapper">
+      <aside class="keys-wrapper">
             <h1 class="pressed-keys">pressed keys:</h1>
             <h4 class="keys-display fade-away" id="output">meow</h4>
-        </div>
-        <!-- <div class="try-again center hover"> 
-        <h2>Again!</h2>
-      </div> -->
-
+      </aside>
     </main>
     <link href="/favicon.ico" type="image/x-icon" rel="icon" />
     <script src="./script.js"></script>
