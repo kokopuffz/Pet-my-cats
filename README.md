@@ -142,4 +142,6 @@ noteable fixes:
 
 [Marty's Get that Cheese](https://mvanzo.github.io/Get_That_Cheese/)
 
+[Zach's Song Birds](https://zbrose.github.io/sei-projectone-song-birds/)
+
 will add rest later :3
