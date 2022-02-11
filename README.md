@@ -16,6 +16,8 @@ This a typing game. There will be a prompt on what the shortcut will do, and if 
 * HTML
 * CSS
 * JavaScript
+* Flexbox
+* Apple phone voice memo (to record my cat)
 
 ***
 
@@ -135,5 +137,9 @@ noteable fixes:
 [Triston's Whack-a-Mole](https://tristonpalacios.github.io/WaM/)
 
 [Evan's Bussin Bagels](https://evankski.github.io/bussin-bagels-pq/)
+
+[Andy's Newsies Rush Glows](https://snacksident.github.io/P1/)
+
+[Marty's Get that Cheese](https://mvanzo.github.io/Get_That_Cheese/)
 
 will add rest later :3
