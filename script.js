@@ -104,7 +104,7 @@ catPix = [
 let changeCat = () => {
   console.log("new cat pic");
   i = Math.floor(Math.random() * catPix.length);
-  let catImg = catPix[i].img;
+  let catImg = catPix[i].img2;
   let newCat = document.getElementById("cat-pix");
   newCat.src = catImg;
   newCat.alt = catPix[i].alt;
@@ -224,7 +224,7 @@ let displayWin = () => {
   displayOver.innerText += "\nAnd my cats are pleased.";
   displayOver.innerText += "\nowo";
 };
-
+//if you get question wrong
 let displayLost = () => {
   let displayOver = document.getElementById("display-over");
   displayOver.innerText = "correct keys are:";

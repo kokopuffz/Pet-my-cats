@@ -3,6 +3,9 @@ Was the first time you touched a MAC when you decided to pursue `coding`? Are yo
 This game is meant for MAC noobies like us who just wants to learn useful mac shortcuts for mac, vscode, zoom, and slack.
 
 
+[click me to play owo](https://kokopuffz.github.io/Pet-my-cats/)
+
+
 
 ## About the Game
 This a typing game. There will be a prompt on what the shortcut will do, and if you push the right keys => You get to pet my cute cats. Lucky you!  Currently, only for mac users. :( 
