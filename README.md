@@ -54,7 +54,7 @@ This a typing game. There will be a prompt on what the shortcut will do, and if 
 ***
 ## Stretch Goals
 
-* [ ] web accessability
+* [ ] web accessibility
   - [x] add alt for all images
   - [x] titles for empty buttons and switches
   - [x] add heading to start page with game description
@@ -116,32 +116,46 @@ noteable fixes:
 ***
 ### Check out the other fantastic games my cohort made! Yay SpringForward!
 
-[Tae's color pipe](https://taekim90.github.io/First-Project-Color-Pipes/)
+* [Tae's color pipe](https://taekim90.github.io/First-Project-Color-Pipes/)
 
-[Sol's Loona Memory Game](https://luflos.github.io/Loona-Memory-Game/)
+* [Sol's Loona Memory Game](https://luflos.github.io/Loona-Memory-Game/)
 
-[Norman's Hamster: The Candy Hunter ](https://foosasugaome.github.io/candy_hunt/)
+* [Norman's Hamster: The Candy Hunter ](https://foosasugaome.github.io/candy_hunt/)
 
-[Roman's Marvel Match Game](https://romanprotoliuk.github.io/marvel_match_game/#)
+* [Roman's Marvel Match Game](https://romanprotoliuk.github.io/marvel_match_game/#)
 
-[Bryan's Angus Adventure](https://github.com/brnguy/Angus-Adventure)
+* [Bryan's Angus Adventure](https://github.com/brnguy/Angus-Adventure)
 
-[Brian's Simon Meme Game](https://br1anlee.github.io/project-1/)
+* [Brian's Simon Meme Game](https://br1anlee.github.io/project-1/)
 
-[Phil's 2D Side Scrol](https://philjang.github.io/2D-SideScrol/)
+* [Phil's 2D Side Scrol](https://philjang.github.io/2D-SideScrol/)
 
-[James's Word Search](https://jamelscott.github.io/WordSearch-Countdown/)
+* [James's Word Search](https://jamelscott.github.io/WordSearch-Countdown/)
 
-[Daniel's Return to Oz](https://danieldenton.github.io/return-to-oz-p1/)
+* [Daniel's Return to Oz](https://danieldenton.github.io/return-to-oz-p1/)
 
-[Triston's Whack-a-Mole](https://tristonpalacios.github.io/WaM/)
+* [Triston's Whack-a-Mole](https://tristonpalacios.github.io/WaM/)
 
-[Evan's Bussin Bagels](https://evankski.github.io/bussin-bagels-pq/)
+* [Evan's Bussin Bagels](https://evankski.github.io/bussin-bagels-pq/)
 
-[Andy's Newsies Rush Glows](https://snacksident.github.io/P1/)
+* [Andy's Newsies Rush Glows](https://snacksident.github.io/P1/)
 
-[Marty's Get that Cheese](https://mvanzo.github.io/Get_That_Cheese/)
+* [Marty's Get that Cheese](https://mvanzo.github.io/Get_That_Cheese/)
 
-[Zach's Song Birds](https://zbrose.github.io/sei-projectone-song-birds/)
+* [Zach's Song Birds](https://zbrose.github.io/sei-projectone-song-birds/)
 
-will add rest later :3
+* [Nate's Beanie Bandits](https://nchez.github.io/Beanie-Bandit/)
+
+* [Justin's Speed Typer Glows](https://justin-aquino.github.io/speed-typer/ )
+
+* [John's Bomber](https://jondmc.github.io/Project1-bomber/)
+
+* [Irma's Memory Game](https://ikarabag1.github.io/Juggle-Your-Memory/)
+
+* [Gabe's Whack a Mole]()
+
+* [Clair's Trust Your Memory Do You](https://clairxc.github.io/Trust-Your-Memory-Do-You/)
+
+* [Aimee's Ceelo's](https://aimeemisaki.github.io/Project1_Ceelo/)
+
+* [Mark's Stick]()
