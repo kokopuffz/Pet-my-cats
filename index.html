@@ -8,7 +8,15 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+
     <main class="main">
+        <label class="mutebox switch" id="mute-box">
+          
+          <input type="checkbox" id="sound-on" checked>
+          <span class="slider"></span>
+          <label for="mute"></label>
+          <p>sound</p>
+        </label>
       <div class="frontscreen" id="front-screen" style="display:block">
         <div>
           <p class="top-starttext">Let's Play</p>
@@ -18,7 +26,15 @@
         <button onClick='start()' class='meow pushable' title="Play Game button"></button>
         <div class="directions">
           <p>directions:</p>
-          <div class="directions-overlay">There will be a prompt on what the shortcut will do and if you push the right keys => You get to pet my cute cats. Lucky you! The game ends if all answers or correct or if there are too many failed attempts.</div>
+          <div class="directions-overlay">
+            <ul id="dir">
+              <li>There will be a prompt on what the shortcut will do.</li>
+<li>If you push the right keys => You get to pet my cute cats. Lucky you!</li>
+<li>  
+The game ends when all answers are correct or if there are too many failed attempts.
+</li>
+        
+          </div>
         </div>
                     
       </div>
@@ -31,7 +47,7 @@
       <div class="gianthand"></div>
       <div class="container" id="game-screen" style="display:none">
         <div class="top-center">
-          <h1 id="top-display">questions prompt</h1>
+          <h2 id="top-display">questions prompt</h2>
         </div>
         <div class="cat">
           <img id="cat-pix"
@@ -45,8 +61,9 @@
         <!-- <div class="try-again center hover"> 
         <h2>Again!</h2>
       </div> -->
-      </div>
+
     </main>
+    <link href="/favicon.ico" type="image/x-icon" rel="icon" />
     <script src="./script.js"></script>
   </body>
 </html>

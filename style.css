@@ -5,9 +5,9 @@ rgb(247 178 189) pink
 rgb(186 220 172) green
 */
 :root {
-  --light-blue: rgb(118 185 240) ;
+  --light-blue: rgb(118 185 240);
   --light-pink: rgb(247 178 189);
-  --light-green:rgb(186 220 172) ;
+  --light-green: rgb(186 220 172);
   --light-purp: rgb(205 194 254);
 }
 * {
@@ -42,7 +42,8 @@ button {
   font-size: 1.5em;
   padding: 10px 100px;
   border-radius: 8px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 button {
   transition-duration: 1s;
@@ -212,7 +213,6 @@ button:hover:after {
   /* display: inline-block; */
 }
 
-
 .keys-display {
   /* line-height: 14px; */
   /* font-size: 30px; */
@@ -222,8 +222,6 @@ button:hover:after {
   color: white;
   /* display: inline-block; */
 }
-
-
 
 #output {
   font-family: "Pangolin", cursive;
@@ -290,7 +288,7 @@ button:hover:after {
 }
 
 .again-button::after {
-  content: "AGAIN!"
+  content: "AGAIN!";
 }
 
 .again-button:hover:after {
@@ -333,11 +331,82 @@ button:hover:after {
    */
   margin-right: 10%;
   margin-left: auto;
-  padding: 1%;
+  padding: 0.5% 0.5% 0.5% -5%;
   opacity: 0;
-  transition: .5s ease;
-  background-color: var(--light-purp)
+  transition: 0.5s ease;
+  background-color: var(--light-purp);
 }
 .directions:hover .directions-overlay {
-  opacity:1;
+  opacity: 1;
+}
+
+ul {
+  margin-right: 4%;
+}
+
+#dir li {
+  list-style-type: none;
+}
+
+/* .mutebox {
+  display: flex;
+  margin: 3%;
+  z-index: 10;
+} */
+
+input {
+  width: 1em;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  left: 46%;
+  margin: 2%;
+  width: 4em;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 2px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.6em;
+  width: 1.6em;
+  left: .48em;
+  bottom: .3em;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--light-purp);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--light-purp);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }

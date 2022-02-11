@@ -25,8 +25,10 @@ let eventCode = {
   KeyA: false,
   Home: false,
   End: false,
-  ArrowRight: false
+  ArrowRight: false,
 };
+
+let pudgemeow = new Audio("pudgemeow.mp3");
 
 catPix = [
   {
@@ -195,7 +197,7 @@ const questions = [
     // },
     answer: "eventCode.AltLeft && eventCode.ArrowRight",
     answertext: "option-right",
-  }
+  },
   {
     question: "Mac|Zoom: Push to talk",
     // answerOp: {
@@ -299,7 +301,6 @@ let start = () => {
   document.addEventListener("keyup", listenerUp);
 };
 
-
 //listens specific down keys
 function listenerDown(event) {
   //displays keys
@@ -316,7 +317,7 @@ function listenerDown(event) {
   if (event.key === "Meta") {
     p.textContent = "Command";
   }
-  
+
   if (event.code === "MetaLeft") {
     eventCode.MetaLeft = true;
   }
@@ -395,7 +396,6 @@ function listenerDown(event) {
     rightAnswer();
   }
   if (currentQuestion === 4 && eventCode.MetaLeft && eventCode.KeyX) {
-    console.log("yay2");
     p.textContent = "command-x";
     p.style.color = "var(--light-green)";
     rightAnswer();
@@ -405,45 +405,26 @@ function listenerDown(event) {
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
-  if (
-    currentQuestion === 6 &&
-    eventCode.Home 
-  ) {
+  if (currentQuestion === 6 && eventCode.Home) {
     p.textContent = "home";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
-  if (
-    currentQuestion === 7 &&
-    eventCode.End 
-  ) 
-  {
+  if (currentQuestion === 7 && eventCode.End) {
     p.textContent = "end";
     p.style.color = "var(--light-green)";
     rightAnswer();
-
-  } 
-  if (
-    currentQuestion === 8 &&
-    eventCode.AltLeft && eventCode.ArrowRight
-  ) 
-  {
+  }
+  if (currentQuestion === 8 && eventCode.AltLeft && eventCode.ArrowRight) {
     p.textContent = "option-arrowright";
     p.style.color = "var(--light-green)";
     rightAnswer();
-
-  } 
-  if (
-    currentQuestion === 9 &&
-    eventCode.Space
-  ) 
-  {
+  }
+  if (currentQuestion === 9 && eventCode.Space) {
     p.textContent = "option-arrowright";
     p.style.color = "var(--light-green)";
     rightAnswer();
-
-  } 
-  else if (guesses.length > 9) {
+  } else if (guesses.length > 9) {
     console.log("too many guesses/wrong answer");
     console.log(guesses.length);
     gameLoss();
@@ -455,67 +436,77 @@ function listenerDown(event) {
 function listenerUp(event) {
   if (event.code === "MetaLeft") {
     eventCode.MetaLeft = false;
-    console.log("up");
+    console.log("metaup");
   }
   if (event.code === "ShiftLeft") {
     eventCode.ShiftLeft = false;
-    console.log("up");
+    console.log("shiftup");
   }
   if (event.code === "Space") {
     eventCode.Space = false;
-    console.log("up");
+    console.log("spaceup");
   }
   if (event.code === "AltLeft") {
     eventCode.AltLeft = false;
-    console.log("up");
+    console.log("altup");
   }
   if (event.code === "ArrowDown") {
     eventCode.ArrowDown = false;
-    console.log("up");
+    console.log("arrowDup");
   }
   if (event.code === "KeyF") {
     eventCode.KeyF = false;
-    console.log("up");
+    console.log("fup");
   }
   if (event.code === "ArrowUp") {
     eventCode.ArrowUp = false;
-    console.log("up");
+    console.log("arrowUup");
   }
   if (event.code === "Digit4") {
     eventCode.Digit4 = false;
-    console.log("up");
+    console.log("4up");
   }
   if (event.code === "KeyX") {
     eventCode.KeyX = false;
-    console.log("up");
+    console.log("xup");
   }
 
   if (event.code === "KeyY") {
     eventCode.KeyY = false;
-    console.log("up");
+    console.log("yup");
   }
   if (event.code === "KeyA") {
     eventCode.KeyA = false;
-    console.log("up");
+    console.log("aup");
   }
   if (event.code === "Home") {
     eventCode.Home = false;
-    console.log("up");
+    console.log("homeup");
   }
   if (event.code === "End") {
     eventCode.End = false;
-    console.log("up");
+    console.log("endup");
   }
-    if (event.code === "ArrowRight") {
-      eventCode.ArrowRight = false;
-      console.log("up");
-    }
+  if (event.code === "ArrowRight") {
+    eventCode.ArrowRight = false;
+    console.log("arrowRup");
+  }
 }
 
 console.log(currentQuestion);
 console.log(guesses);
 
+let pudgie = () => {
+  let soundOn = document.getElementById("sound-on");
+  if (soundOn.checked) {
+    pudgemeow.play();
+  } else {
+    return;
+  }
+};
+
 const rightAnswer = () => {
+  pudgie();
   correctImg();
   correctDisplay();
   usedQuestions(currentQuestion);

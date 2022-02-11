@@ -18,10 +18,10 @@ This will be a typing game. There will be a prompt on what the shortcut will do,
 
 
 ## MVP 
-* Start screen with directions
-* Screen displaying what shortcut does
-* If correct, cat gets pet, goes to next prompt?
-* If wrong, game stops, correct shortcut displayed, no pets.
+- [x] Start screen with directions
+- [x] Screen displaying what shortcut does
+- [x] If correct, cat gets pet
+- [x] If wrong, game stops, correct shortcut displayed, no pets.
 
 ***
 
@@ -63,14 +63,14 @@ game over, click to try again
 ***
 ## Stretch Goals
 
-* Linux version
-* Show buttons are currently being pressed
+* ADA Compliant -titles for buttons headings page images with alts
+* Show buttons are currently being pressed -changed the color if correct
 * Extra points on certain cats
 * Timed version - How many can you get done in under a minute?
 * Sound when right or wrong
 
 ***
-## Potential  roadblocks
+## Ongoing bugs
 
 * domino effect of one breaking them all T.T
 
@@ -84,4 +84,22 @@ game over, click to try again
 7. Deploy your game online, where the rest of the world can access it**
 8. Use semantic markup for HTML and CSS (adhere to best practices) -->
 
+<!-- resources
+special thanks to paulina, weston, @yaakov, justin, jon
+keycode.info - page where i press any key to get the js event keycode
+https://getcssscan.com/css-box-shadow-examples - pretty boxshadows for my pressed keys
+https://www.allbloggertricks.com/2021/04/determine-if-multiple-keys-are-pressed.html - code for making sure all buttons are pressed 
+https://wave.webaim.org/ - ada compliant
+
+
+
+noteable fixes:
+-going from event.key to event.code because spacebar is an empty string
+-reset function had to include the eventCode object to be set to all false
+-coded the pressed keys to match the terms we normally know. meta left => command
+" " => spacebar
+-coded pressed keys to command-shift-a  instead of <!-- ˛ -->
+
+
+ -->
 
