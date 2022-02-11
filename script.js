@@ -30,7 +30,6 @@ let eventCode = {
 
 let pudgemeow = new Audio("pudgemeow.mp3");
 
-
 catPix = [
   {
     cat: "dafat1",
@@ -104,7 +103,7 @@ catPix = [
 let changeCat = () => {
   console.log("new cat pic");
   i = Math.floor(Math.random() * catPix.length);
-  let catImg = catPix[i].img2;
+  let catImg = catPix[i].img;
   let newCat = document.getElementById("cat-pix");
   newCat.src = catImg;
   newCat.alt = catPix[i].alt;
@@ -240,6 +239,7 @@ let endDisplayOff = () => {
   overlay = document.querySelector("div.overlay");
   overlay.style.display = "none";
 };
+
 //buttonstart
 let start = () => {
   console.log("lets go!");
@@ -383,7 +383,7 @@ function listenerDown(event) {
     guesses.push(event);
   }
 }
-
+//listens specific up keys
 function listenerUp(event) {
   if (event.code === "MetaLeft") {
     eventCode.MetaLeft = false;
