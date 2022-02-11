@@ -104,15 +104,36 @@ This a typing game. There will be a prompt on what the shortcut will do, and if 
 * [transform explanation](https://discord.com/channels/296063428043341834/829614700815319060/941599823746973726)
 * ws3 and mixtures of stackover flow answers
 
-
-
-
+<!-- 
 noteable fixes:
 -going from event.key to event.code because spacebar is an empty string
 -reset function had to include the eventCode object to be set to all false
 -coded the pressed keys to match the terms we normally know. meta left => command
-" " => spacebar
--coded pressed keys to command-shift-a  instead of <!-- ˛ -->
+" " => spacebar -->
+<!-- -coded pressed keys to command-shift-a  instead of ˛ -->
+***
+### Check out the other fantastic games my cohort made! Yay SpringForward!
 
+[Tae's color pipe](https://taekim90.github.io/First-Project-Color-Pipes/)
 
+[Sol's Loona Memory Game](https://luflos.github.io/Loona-Memory-Game/)
 
+[Norman's Hamster: The Candy Hunter ](https://foosasugaome.github.io/candy_hunt/)
+
+[Roman's Marvel Match Game](https://romanprotoliuk.github.io/marvel_match_game/#)
+
+[Bryan's Angus Adventure](https://github.com/brnguy/Angus-Adventure)
+
+[Brian's Simon Meme Game](https://br1anlee.github.io/project-1/)
+
+[Phil's 2D Side Scrol](https://philjang.github.io/2D-SideScrol/)
+
+[James's Word Search](https://jamelscott.github.io/WordSearch-Countdown/)
+
+[Daniel's Return to Oz](https://danieldenton.github.io/return-to-oz-p1/)
+
+[Triston's Whack-a-Mole](https://tristonpalacios.github.io/WaM/)
+
+[Evan's Bussin Bagels](https://evankski.github.io/bussin-bagels-pq/)
+
+will add rest later :3
