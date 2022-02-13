@@ -6,7 +6,8 @@ let topDisplay = document.getElementById("top-display");
 let topCenter = document.querySelector(".top-center");
 let cat = document.querySelector(".cat");
 let asked = [];
-let choices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let choices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let choicesPC = [1,2,3,4,5,6,7,8,9,10]
 let recordPress = [];
 // let gameOver = false;
 let guesses = [];
@@ -17,16 +18,26 @@ let eventCode = {
   ArrowDown: false,
   MetaLeft: false,
   Space: false,
-  KeyF: false,
   ArrowUp: false,
   Digit4: false,
+  KeyF: false,
   KeyX: false,
   KeyY: false,
   KeyA: false,
+  KeyK: false,
   Home: false,
   End: false,
   ArrowRight: false,
+  ControlLeft: false,
+  Backspace: false,
+  Delete: false
 };
+//switches for mac or pc or linux
+let mac = true
+let pc = false
+// linux another time
+// let linux = false
+
 
 let pudgemeow = new Audio("pudgemeow.mp3");
 
@@ -111,58 +122,99 @@ let changeCat = () => {
 
 const questions = [
   {
+    //q1
+    //not pc friendly
     question: "Mac: emojis",
     answer: "eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space",
     answertext: "command-shift-space",
   },
 
   {
+    //q2
     question: "Mac: copy current line",
+    questionPC: "PC: copy current line",
     answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown",
-    answertext: "option-shift-down",
+    answerPC:
+      " eventCode.ShiftLeft && eventCode.AltLeft && eventCode.ArrowDown",
+    // answerLinux:
+    // " eventCode.ControlLeft && eventCode.ShiftLeft && eventCode.AltLeft && eventCode.ArrowDown",
+    answertext: "option-shift-arrowdown",
+    answertextPC: "shift-alt-arrowdown",
+    // answertextLinux: "control-shift-alt-arrowdown",
   },
 
   {
-    question: "Mac|VS: format page",
+    //q3
+    question: "Mac|VSC: format page",
+    questionPC: "PC|VSC: format page",
     answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF",
     answertext: "option-shift-f",
+    answertextPC: "shift-alt-f",
+    // answertextLinux: "control-shift-i",
   },
 
   {
+    //q4
     question: "Mac|VSC: move current line up",
+    questionPC: "PC|VSC: move current line up",
     answer: "eventCode.AltLeft && eventCode.ArrowUp",
-    answertext: "option-up",
+    answertext: "option-arrowup",
+    answertextPC: "alt-arrowup",
+    // answertextLinux: "control-shift-alt-arrowdown",
   },
   {
+    //q5
     question: "Mac|VSC: delete line",
+    questionPC: "PC|VSC: delete line",
     answer: "eventCode.MetaLeft && eventCode.KeyX",
     answertext: "command-x",
+    answertextPC: "control-shift-k",
   },
   {
+    //q6
     question: "Mac|Zoom: raise hand",
+    questionPC: "PC|Zoom: raise hand",
     answer: "eventCode.AltLeft && eventCode.KeyY",
     answertext: "option-y",
+    answertextPC: "alt-y",
   },
   {
-    question: "Mac|VSC: Move to first character of line",
+    //q7
+    question: "Mac|VSC: Go to the beginning of line",
+    questionPC: "PC|VSC: Go to the beginning of line",
     answer: "eventCode.Home",
     answertext: "home",
   },
   {
+    //q8
     question: "Mac|VSC: Move to last character of line",
+    questionPC: "PC|VSC: Move to last character of line",
     answer: "eventCode.End",
     answertext: "end",
   },
   {
-    question: "Mac|VSC: Move word by word--Right",
+    //q9
+    question: "Mac|VSC: Go to the next word",
+    questionPC: "PC|VSC: Go to the next word",
     answer: "eventCode.AltLeft && eventCode.ArrowRight",
     answertext: "option-right",
+    answertextPC: "control-right",
   },
   {
+    //q10
     question: "Mac|Zoom: Push to talk",
+    questionPC: "PC|Zoom: Push to talk",
     answer: "eventCode.Space",
     answertext: "spacebar",
-  }
+  },
+  {
+    //q11
+    question: "Mac|VSC: Delete previous word",
+    questionPC: "PC|VSC: Delete previous word",
+    answer: "eventCode.Space",
+    answertext: "control-delete",
+    answertextPC: "control-backspace",
+  },
 ];
 
 //random number from choices
@@ -302,14 +354,26 @@ function listenerDown(event) {
   if (event.code === "KeyA") {
     eventCode.KeyA = true;
   }
+  if (event.code === "KeyK") {
+    eventCode.KeyK = true;
+  }
   if (event.code === "Home") {
     eventCode.Home = true;
   }
   if (event.code === "End") {
     eventCode.End = true;
   }
+  if (event.code === "Delete") {
+    eventCode.Delete = true;
+  }
   if (event.code === "ArrowRight") {
     eventCode.ArrowRight = true;
+  }
+  if (event.code === "ControlLeft") {
+    eventCode.ControlLeft = true;
+  }
+  if (event.code === "Backspace") {
+    eventCode.ControlLeft = true;
   }
   if (
     currentQuestion === 0 &&
@@ -421,6 +485,10 @@ function listenerUp(event) {
     eventCode.KeyX = false;
     console.log("xup");
   }
+  if (event.code === "KeyK") {
+    eventCode.KeyK = false;
+    console.log("kup");
+  }
 
   if (event.code === "KeyY") {
     eventCode.KeyY = false;
@@ -441,6 +509,18 @@ function listenerUp(event) {
   if (event.code === "ArrowRight") {
     eventCode.ArrowRight = false;
     console.log("arrowRup");
+  }
+  if (event.code === "Delete") {
+    eventCode.Delete = false;
+    console.log("dup");
+  }
+  if (event.code === "ControlLeft") {
+    eventCode.ControlLeft = false;
+    console.log("ctrlup");
+  }
+  if (event.code === "Backspace") {
+    eventCode.Backspace = false;
+    console.log("bkup");
   }
 }
 
@@ -477,7 +557,8 @@ const rightAnswer = () => {
 
 //resets variables to starting variables
 const reset = () => {
-  choices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  choices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  choicesPC = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   guesses = [];
   eventCode = {
     AltLeft: false,
@@ -486,6 +567,7 @@ const reset = () => {
     MetaLeft: false,
     Space: false,
     KeyF: false,
+    KeyK: false,
     ArrowUp: false,
     Digit4: false,
     KeyX: false,
@@ -494,6 +576,9 @@ const reset = () => {
     Home: false,
     End: false,
     ArrowRight: false,
+    ControlLeft: false,
+    Delete: false,
+    Backspace: false
   };
 };
 
