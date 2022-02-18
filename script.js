@@ -212,18 +212,19 @@ const questions = [
     question: "Mac|VSC: Delete previous word",
     questionPC: "PC|VSC: Delete previous word",
     answer: "eventCode.Space",
-    answertext: "control-delete",
+    answertext: "command-delete",
     answertextPC: "control-backspace",
   },
 ];
-
 //random number from choices
+//!conditional for pc choices
 let randomQuestionIndex = () => {
   const index = Math.floor(Math.random() * choices.length);
   return choices[index];
 };
 
 //take out question that was just used
+//!conditional for pc choices
 let usedQuestions = (num) => {
   const index = choices.indexOf(num);
   if (index > -1) {
@@ -253,6 +254,7 @@ let incorrectDisplay = () => {
 };
 
 //displays question
+//!conditional for pc
 const displayQ = () => {
   currentQuestion = randomQuestionIndex();
   //display questions
@@ -276,6 +278,7 @@ let displayWin = () => {
   displayOver.innerText += "\nowo";
 };
 //if you get question wrong
+//!conditional for pc
 let displayLost = () => {
   let displayOver = document.getElementById("display-over");
   displayOver.innerText = "correct keys are:";
@@ -293,6 +296,7 @@ let endDisplayOff = () => {
 };
 
 //buttonstart
+//!conditional for pc
 let start = () => {
   console.log("lets go!");
   toggleGame("front-screen", false);
@@ -305,6 +309,7 @@ let start = () => {
 };
 
 //listens specific down keys
+//!might just make separate listener for pc
 function listenerDown(event) {
   //displays keys
   let p = document.getElementById("output");
@@ -373,7 +378,7 @@ function listenerDown(event) {
     eventCode.ControlLeft = true;
   }
   if (event.code === "Backspace") {
-    eventCode.ControlLeft = true;
+    eventCode.Backspace = true;
   }
   if (
     currentQuestion === 0 &&
@@ -439,6 +444,12 @@ function listenerDown(event) {
     p.textContent = "option-arrowright";
     p.style.color = "var(--light-green)";
     rightAnswer();
+  }
+  if (currentQuestion === 10 && eventCode.MetaLeft && eventCode.Backspace) {
+    p.textContent = "command-delete";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+
   } else if (guesses.length > 9) {
     console.log("too many guesses/wrong answer");
     console.log(guesses.length);
@@ -448,6 +459,7 @@ function listenerDown(event) {
   }
 }
 //listens specific up keys
+//!might just make separate listener for pc
 function listenerUp(event) {
   if (event.code === "MetaLeft") {
     eventCode.MetaLeft = false;
@@ -539,6 +551,7 @@ let pudgie = () => {
 };
 
 // if right ... if there is no more choices, then gameover
+//!might have to make separate right answer for pc
 const rightAnswer = () => {
   pudgie();
   correctImg();
@@ -556,6 +569,7 @@ const rightAnswer = () => {
 };
 
 //resets variables to starting variables
+//! conditional for pc
 const reset = () => {
   choices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   choicesPC = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -591,6 +605,7 @@ const gameOver = () => {
   reset();
 };
 
+//!listenerupdown for pc
 //over because wrong keys pressed
 const gameLoss = () => {
   document.removeEventListener("keyup", listenerUp);
