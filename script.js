@@ -148,6 +148,7 @@ const questions = [
     question: "Mac|VSC: format page",
     questionPC: "PC|VSC: format page",
     answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF",
+    answerPC: "eventCode.ShiftLeft && eventCode.AltLeft && eventCode.KeyF",
     answertext: "option-shift-f",
     answertextPC: "shift-alt-f",
     // answertextLinux: "control-shift-i",
@@ -158,6 +159,7 @@ const questions = [
     question: "Mac|VSC: move current line up",
     questionPC: "PC|VSC: move current line up",
     answer: "eventCode.AltLeft && eventCode.ArrowUp",
+    answerPC: "eventCode.AltLeft && eventCode.ArrowUp",
     answertext: "option-arrowup",
     answertextPC: "alt-arrowup",
     // answertextLinux: "control-shift-alt-arrowdown",
@@ -167,6 +169,7 @@ const questions = [
     question: "Mac|VSC: delete line",
     questionPC: "PC|VSC: delete line",
     answer: "eventCode.MetaLeft && eventCode.KeyX",
+    answerPC: "eventCode.MetaLeft && event.Code.ShiftLeft && eventCode.KeyK",
     answertext: "command-x",
     answertextPC: "control-shift-k",
   },
@@ -175,6 +178,7 @@ const questions = [
     question: "Mac|Zoom: raise hand",
     questionPC: "PC|Zoom: raise hand",
     answer: "eventCode.AltLeft && eventCode.KeyY",
+    answerPC: "eventCode.AltLeft && eventCode.KeyY",
     answertext: "option-y",
     answertextPC: "alt-y",
   },
@@ -183,20 +187,25 @@ const questions = [
     question: "Mac|VSC: Go to the beginning of line",
     questionPC: "PC|VSC: Go to the beginning of line",
     answer: "eventCode.Home",
+    answerPC: "eventCode.Home",
     answertext: "home",
+    answertextPC: "home",
   },
   {
     //q8
     question: "Mac|VSC: Move to last character of line",
     questionPC: "PC|VSC: Move to last character of line",
     answer: "eventCode.End",
+    answerPC: "eventCode.End",
     answertext: "end",
+    answertextPC: "end",
   },
   {
     //q9
     question: "Mac|VSC: Go to the next word",
     questionPC: "PC|VSC: Go to the next word",
     answer: "eventCode.AltLeft && eventCode.ArrowRight",
+    answerPC: "eventCode.AltLeft && eventCode.ArrowRight",
     answertext: "option-right",
     answertextPC: "control-right",
   },
@@ -205,13 +214,16 @@ const questions = [
     question: "Mac|Zoom: Push to talk",
     questionPC: "PC|Zoom: Push to talk",
     answer: "eventCode.Space",
+    answerPC: "eventCode.Space",
     answertext: "spacebar",
+    answertextPC: "spacebar",
   },
   {
     //q11
     question: "Mac|VSC: Delete previous word",
     questionPC: "PC|VSC: Delete previous word",
-    answer: "eventCode.Space",
+    answer: "eventCode.Meta && eventCode.Delete",
+    answerPC: "eventCode.AltLeft && eventCode.Backspace",
     answertext: "command-delete",
     answertextPC: "control-backspace",
   },
@@ -445,7 +457,7 @@ function listenerDown(event) {
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
-  if (currentQuestion === 10 && eventCode.MetaLeft && eventCode.Backspace) {
+  if (currentQuestion === 10 && eventCode.MetaLeft && eventCode.Delete) {
     p.textContent = "command-delete";
     p.style.color = "var(--light-green)";
     rightAnswer();
