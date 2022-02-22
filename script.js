@@ -304,6 +304,7 @@ const displayQ = () => {
   console.log(mac)
   currentQuestion = randomQuestionIndex();
   console.log(currentQuestion)
+  topCenter.style.backgroundColor = "rgb(27, 15, 4)";
   //display questions
   if (!mac) {
     topDisplay.innerText = questions[currentQuestion].questionPC;
@@ -312,7 +313,6 @@ const displayQ = () => {
   }
   changeCat();
 };
-topCenter.style.backgroundColor = "rgb(27, 15, 4)";
 
 //toggle beginning screen
 let toggleGame = (id, toggle) => {
@@ -333,7 +333,12 @@ let displayWin = () => {
 let displayLost = () => {
   let displayOver = document.getElementById("display-over");
   displayOver.innerText = "correct keys are:";
-  displayOver.innerText += `\n${questions[currentQuestion].answertext}`;
+  if (!mac) {
+displayOver.innerText += `\n${questions[currentQuestion].answertextPC}`;
+}else{
+    displayOver.innerText += `\n${questions[currentQuestion].answertext}`;
+  }
+  
 };
 
 //toggles end overlay
@@ -353,6 +358,7 @@ let start = () => {
   console.log("lets go!");
   toggleGame("front-screen", false);
   toggleGame("game-screen", true);
+  document.getElementById("mac-pc").style.display = "none";
   endDisplayOff();
   reset();
   macOrNot()
@@ -608,7 +614,7 @@ console.log('PC listenerdowns')
   ) {
     p.textContent = "shift-alt-down";
     p.style.color = "var(--light-green)";
-    rightAnswer();
+    rightAnswerPC();
   }
   if (
     currentQuestion === 2 &&
@@ -618,12 +624,12 @@ console.log('PC listenerdowns')
   ) {
     p.textContent = "shift-alt-f";
     p.style.color = "var(--light-green)";
-    rightAnswer();
+    rightAnswerPC();
   }
   if (currentQuestion === 3 && eventCode.AltLeft && eventCode.ArrowUp) {
     p.textContent = "alt-up";
     p.style.color = "var(--light-green)";
-    rightAnswer();
+    rightAnswerPC();
   }
   if (
     currentQuestion === 4 &&
@@ -633,37 +639,37 @@ console.log('PC listenerdowns')
   ) {
     p.textContent = "control-shift-k";
     p.style.color = "var(--light-green)";
-    rightAnswer();
+    rightAnswerPC();
   }
   if (currentQuestion === 5 && eventCode.AltLeft && eventCode.KeyY) {
     p.textContent = "alt-y";
     p.style.color = "var(--light-green)";
-    rightAnswer();
+    rightAnswerPC();
   }
   if (currentQuestion === 6 && eventCode.Home) {
     p.textContent = "home";
     p.style.color = "var(--light-green)";
-    rightAnswer();
+    rightAnswerPC();
   }
   if (currentQuestion === 7 && eventCode.End) {
     p.textContent = "end";
     p.style.color = "var(--light-green)";
-    rightAnswer();
+    rightAnswerPC();
   }
   if (currentQuestion === 8 && eventCode.AltLeft && eventCode.ArrowRight) {
     p.textContent = "alt-arrowright";
     p.style.color = "var(--light-green)";
-    rightAnswer();
+    rightAnswerPC();
   }
   if (currentQuestion === 9 && eventCode.Space) {
-    p.textContent = "option-arrowright";
+    p.textContent = "space";
     p.style.color = "var(--light-green)";
-    rightAnswer();
+    rightAnswerPC();
   }
   if (currentQuestion === 10 && eventCode.AltLeft && eventCode.Backspace) {
     p.textContent = "alt-backspace";
     p.style.color = "var(--light-green)";
-    rightAnswer();
+    rightAnswerPC();
 
   } else if (guesses.length > 9) {
     console.log("too many guesses/wrong answer");
@@ -671,6 +677,7 @@ console.log('PC listenerdowns')
     gameLoss();
   } else {
     guesses.push(event);
+    console.log(guesses)
   }
 }
 
@@ -786,7 +793,7 @@ const rightAnswerPC = () => {
   pudgie();
   correctImg();
   correctDisplay();
-  usedQuestions(currentQuestion);
+  usedQuestionsPC(currentQuestion);
   if (choicesPC.length === 0) {
     gameOver();
   } else {
@@ -835,6 +842,7 @@ const gameOver = () => {
   endDisplayOn();
   displayWin();
   reset();
+  document.getElementById("mac-pc").style.display="block"
 };
 
 //!listenerupdown for pc
@@ -847,4 +855,5 @@ const gameLoss = () => {
   endDisplayOn();
   displayLost();
   reset();
+  document.getElementById("mac-pc").style.display = "block"
 };

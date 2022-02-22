@@ -9,6 +9,14 @@
   </head>
   <body>
   <main class="main">
+    <div id="mac-pc" class="radio-bar">
+      <label id="mac-picked">
+        <input type="radio" name="pc-or-mac" id="mac-radio" checked> MAC
+      </label> 
+      <label id="pc-picked">
+        <input type="radio" name="pc-or-mac" id="pc-radio" value="pc"> PC
+      </label>
+    </div> 
     <label class="mutebox switch" id="mute-box">
           
       <input type="checkbox" id="sound-on" checked>
@@ -21,19 +29,12 @@
       <p class="mid-starttext">PET MY CATS</p>
       <h1 class="heading">The fluffy typing game for novice coders who want to learn shortcuts like a pro. </h1>
     </label>
-    <div id="mac-pc">
-    <label id="mac-picked">
-      <input type="radio" name="pc-or-mac" id="mac-radio" checked> MAC
-    </label> 
-    <label id="pc-picked">
-      <input type="radio" name="pc-or-mac" id="pc-radio" value="pc"> PC
-    </label>
-    </div> 
     <button onClick='start()' class='meow pushable' title="Play Game button"></button>
     <div class="directions">
       <p>directions:</p>
       <div class="directions-overlay">
         <ul id="dir">
+          <li>Choose if you want to play this in PC or MAC on the top of the page</li>
           <li>There will be a prompt on what the shortcut will do.</li>
           <li>If you push the right keys => You get to pet my cute cats. Lucky you!</li>
           <li>The game ends when all answers are correct or if there are too many failed attempts.</li>
