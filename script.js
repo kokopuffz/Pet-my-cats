@@ -38,6 +38,16 @@ let pc = false
 // linux another time
 // let linux = false
 
+//!status check to switch if max is true pc is false
+let checkStatus = () =>{
+  if (mac) {
+    pc = false;
+  } else {
+    pc = true;
+  }
+}
+
+
 
 let pudgemeow = new Audio("pudgemeow.mp3");
 
@@ -125,7 +135,7 @@ const questions = [
     //q1
     //not pc friendly
     question: "Mac: emojis",
-    answer: "eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space",
+    answer: ("eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space"),
     answertext: "command-shift-space",
   },
 
@@ -133,7 +143,7 @@ const questions = [
     //q2
     question: "Mac: copy current line",
     questionPC: "PC: copy current line",
-    answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown",
+    answer: "(eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown)",
     answerPC:
       " eventCode.ShiftLeft && eventCode.AltLeft && eventCode.ArrowDown",
     // answerLinux:
@@ -147,7 +157,7 @@ const questions = [
     //q3
     question: "Mac|VSC: format page",
     questionPC: "PC|VSC: format page",
-    answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF",
+    answer: ("eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF"),
     answerPC: "eventCode.ShiftLeft && eventCode.AltLeft && eventCode.KeyF",
     answertext: "option-shift-f",
     answertextPC: "shift-alt-f",
@@ -158,7 +168,7 @@ const questions = [
     //q4
     question: "Mac|VSC: move current line up",
     questionPC: "PC|VSC: move current line up",
-    answer: "eventCode.AltLeft && eventCode.ArrowUp",
+    answer: ("eventCode.AltLeft && eventCode.ArrowUp"),
     answerPC: "eventCode.AltLeft && eventCode.ArrowUp",
     answertext: "option-arrowup",
     answertextPC: "alt-arrowup",
@@ -169,7 +179,7 @@ const questions = [
     question: "Mac|VSC: delete line",
     questionPC: "PC|VSC: delete line",
     answer: "eventCode.MetaLeft && eventCode.KeyX",
-    answerPC: "eventCode.MetaLeft && event.Code.ShiftLeft && eventCode.KeyK",
+    answerPC: "eventCode.AltLeft && event.Code.ShiftLeft && eventCode.KeyK",
     answertext: "command-x",
     answertextPC: "control-shift-k",
   },
@@ -232,7 +242,14 @@ const questions = [
 //!conditional for pc choices
 let randomQuestionIndex = () => {
   const index = Math.floor(Math.random() * choices.length);
-  return choices[index];
+  if (mac) {
+    choices[index];
+    
+  } else {
+    choicesPC[index]
+  }
+  console.log(`rdq index ${index}`)
+  
 };
 
 //take out question that was just used
@@ -316,13 +333,19 @@ let start = () => {
   endDisplayOff();
   reset();
   displayQ();
-  document.addEventListener("keydown", listenerDown);
-  document.addEventListener("keyup", listenerUp);
+  if (mac){
+    document.addEventListener("keydown", listenerDown);
+    document.addEventListener("keyup", listenerUp);
+  }else{
+    document.addEventListener("keydown", listenerDownPC);
+    document.addEventListener("keyup", listenerUp);   
+  }
+
 };
 
 //listens specific down keys
 //!might just make separate listener for pc
-function listenerDown(event) {
+let listenerDown = (event) => {
   //displays keys
   let p = document.getElementById("output");
   p.innerText = `${event.key}`;
@@ -393,7 +416,7 @@ function listenerDown(event) {
     eventCode.Backspace = true;
   }
   if (
-    currentQuestion === 0 &&
+    currentQuestion === 0 && 
     eventCode.MetaLeft &&
     eventCode.ShiftLeft &&
     eventCode.Space
@@ -407,6 +430,7 @@ function listenerDown(event) {
     eventCode.AltLeft &&
     eventCode.ShiftLeft &&
     eventCode.ArrowDown
+    // (questions[1].answer)
   ) {
     p.textContent = "option-shift-down";
     p.style.color = "var(--light-green)";
@@ -417,23 +441,185 @@ function listenerDown(event) {
     eventCode.AltLeft &&
     eventCode.ShiftLeft &&
     eventCode.KeyF
+    // (questions[2].answer)
   ) {
     p.textContent = "option-shift-f";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (currentQuestion === 3 && eventCode.AltLeft && eventCode.ArrowUp) {
+  // if (currentQuestion === 3 && questions[3].answer) {
     p.textContent = "option-up";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (currentQuestion === 4 && eventCode.MetaLeft && eventCode.KeyX) {
+  // if (currentQuestion === 4 && questions[4].answer) {
     p.textContent = "command-x";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (currentQuestion === 5 && eventCode.AltLeft && eventCode.KeyY) {
+  // if (currentQuestion === 5 && questions[5].answer) {
     p.textContent = "option-y";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  }
+  if (currentQuestion === 6 && eventCode.Home) {
+  // if (currentQuestion === 6 && questions[6].answer) {
+    p.textContent = "home";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  }
+  if (currentQuestion === 7 && eventCode.End) {
+  // if (currentQuestion === 7 && questions[7].answer) {
+    p.textContent = "end";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  }
+  if (currentQuestion === 8 && eventCode.AltLeft && eventCode.ArrowRight) {
+  // if (currentQuestion === 8 && questions[8].answer) {
+    p.textContent = "option-arrowright";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  }
+  if (currentQuestion === 9 && eventCode.Space) {
+  // if (currentQuestion === 9 && questions[9].answer) {
+    p.textContent = "space";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  }
+  if (currentQuestion === 10 && eventCode.MetaLeft && eventCode.Delete) {
+  // if (currentQuestion === 10 && questions[10].answer) {
+    p.textContent = "command-delete";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  } else if (guesses.length > 9) {
+    console.log("too many guesses/wrong answer");
+    console.log(guesses.length);
+    gameLoss();
+  } else {
+    guesses.push(event);
+  }
+}
+let listenerDownPC = (event) => {
+//   //displays keys
+console.log('PC listenerdowns')
+  let p = document.getElementById("output");
+  p.innerText = `${event.key}`;
+  p.style.color = "white";
+
+  if (event.key === " ") {
+    p.textContent = "Spacebar";
+  }
+  if (event.key === "Alt") {
+    p.textContent = "Alt";
+  }
+  if (event.key === "Meta") {
+    p.textContent = "Windows Key";
+  }
+
+  if (event.code === "MetaLeft") {
+    eventCode.MetaLeft = true;
+  }
+  if (event.code === "ShiftLeft") {
+    eventCode.ShiftLeft = true;
+  }
+  if (event.code === "Space") {
+    eventCode.Space = true;
+  }
+  if (event.code === "AltLeft") {
+    eventCode.AltLeft = true;
+  }
+  if (event.code === "ArrowDown") {
+    eventCode.ArrowDown = true;
+  }
+  if (event.code === "KeyF") {
+    eventCode.KeyF = true;
+  }
+  if (event.code === "ArrowUp") {
+    eventCode.ArrowUp = true;
+  }
+  if (event.code === "Digit4") {
+    eventCode.Digit4 = true;
+  }
+  if (event.code === "KeyX") {
+    eventCode.KeyX = true;
+  }
+  if (event.code === "KeyY") {
+    eventCode.KeyY = true;
+  }
+  if (event.code === "KeyA") {
+    eventCode.KeyA = true;
+  }
+  if (event.code === "KeyK") {
+    eventCode.KeyK = true;
+  }
+  if (event.code === "Home") {
+    eventCode.Home = true;
+  }
+  if (event.code === "End") {
+    eventCode.End = true;
+  }
+  if (event.code === "Delete") {
+    eventCode.Delete = true;
+  }
+  if (event.code === "ArrowRight") {
+    eventCode.ArrowRight = true;
+  }
+  if (event.code === "ControlLeft") {
+    eventCode.ControlLeft = true;
+  }
+  if (event.code === "Backspace") {
+    eventCode.Backspace = true;
+  }
+  // if (
+  //   currentQuestion === 0 &&
+  //   eventCode.MetaLeft &&
+  //   eventCode.ShiftLeft &&
+  //   eventCode.Space
+  // ) {
+  //   p.textContent = "command-shift-space";
+  //   p.style.color = "var(--light-green)";
+  //   rightAnswer();
+  // }
+  if (
+    currentQuestion === 1 &&
+    eventCode.AltLeft &&
+    eventCode.ShiftLeft &&
+    eventCode.ArrowDown
+  ) {
+    p.textContent = "shift-alt-down";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  }
+  if (
+    currentQuestion === 2 &&
+    eventCode.AltLeft &&
+    eventCode.ShiftLeft &&
+    eventCode.KeyF
+  ) {
+    p.textContent = "shift-alt-f";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  }
+  if (currentQuestion === 3 && eventCode.AltLeft && eventCode.ArrowUp) {
+    p.textContent = "alt-up";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  }
+  if (
+    currentQuestion === 4 &&
+    eventCode.AltLeft &&
+    eventCode.ShiftLeft &&
+    eventCode.KeyK
+  ) {
+    p.textContent = "control-shift-k";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  }
+  if (currentQuestion === 5 && eventCode.AltLeft && eventCode.KeyY) {
+    p.textContent = "alt-y";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
@@ -448,7 +634,7 @@ function listenerDown(event) {
     rightAnswer();
   }
   if (currentQuestion === 8 && eventCode.AltLeft && eventCode.ArrowRight) {
-    p.textContent = "option-arrowright";
+    p.textContent = "alt-arrowright";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
@@ -457,8 +643,8 @@ function listenerDown(event) {
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
-  if (currentQuestion === 10 && eventCode.MetaLeft && eventCode.Delete) {
-    p.textContent = "command-delete";
+  if (currentQuestion === 10 && eventCode.AltLeft && eventCode.Backspace) {
+    p.textContent = "alt-backspace";
     p.style.color = "var(--light-green)";
     rightAnswer();
 
@@ -470,8 +656,7 @@ function listenerDown(event) {
     guesses.push(event);
   }
 }
-//listens specific up keys
-//!might just make separate listener for pc
+
 function listenerUp(event) {
   if (event.code === "MetaLeft") {
     eventCode.MetaLeft = false;
