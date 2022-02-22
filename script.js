@@ -34,20 +34,26 @@ let eventCode = {
 };
 //switches for mac or pc or linux
 let mac = true
-let pc = false
 // linux another time
 // let linux = false
 
 //!status check to switch if max is true pc is false
-let checkStatus = () =>{
-  if (mac) {
-    pc = false;
+
+let macOrNot = () => {
+  let macRadio = document.getElementById("mac-radio");
+  if (macRadio.checked == true) {
+    console.log("mac-radio is true");
+    mac = true;
+    document.addEventListener("keydown", listenerDown);
+    document.addEventListener("keyup", listenerUp);
   } else {
-    pc = true;
+    console.log("pc-radio is true");
+    mac = false;
+    document.addEventListener("keydown", listenerDownPC);
+    document.addEventListener("keyup", listenerUp);
   }
+  console.log(mac)
 }
-
-
 
 let pudgemeow = new Audio("pudgemeow.mp3");
 
@@ -134,14 +140,14 @@ const questions = [
   {
     //q1
     //not pc friendly
-    question: "Mac: emojis",
-    answer: ("eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space"),
+    question: "🍎 Mac: emojis",
+    answer: "eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space",
     answertext: "command-shift-space",
   },
 
   {
     //q2
-    question: "Mac: copy current line",
+    question: "🍎 Mac: copy current line",
     questionPC: "PC: copy current line",
     answer: "(eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown)",
     answerPC:
@@ -155,9 +161,9 @@ const questions = [
 
   {
     //q3
-    question: "Mac|VSC: format page",
+    question: "🍎 Mac|VSC: format page",
     questionPC: "PC|VSC: format page",
-    answer: ("eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF"),
+    answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF",
     answerPC: "eventCode.ShiftLeft && eventCode.AltLeft && eventCode.KeyF",
     answertext: "option-shift-f",
     answertextPC: "shift-alt-f",
@@ -166,9 +172,9 @@ const questions = [
 
   {
     //q4
-    question: "Mac|VSC: move current line up",
+    question: "🍎 Mac|VSC: move current line up",
     questionPC: "PC|VSC: move current line up",
-    answer: ("eventCode.AltLeft && eventCode.ArrowUp"),
+    answer: "eventCode.AltLeft && eventCode.ArrowUp",
     answerPC: "eventCode.AltLeft && eventCode.ArrowUp",
     answertext: "option-arrowup",
     answertextPC: "alt-arrowup",
@@ -176,7 +182,7 @@ const questions = [
   },
   {
     //q5
-    question: "Mac|VSC: delete line",
+    question: "🍎 Mac|VSC: delete line",
     questionPC: "PC|VSC: delete line",
     answer: "eventCode.MetaLeft && eventCode.KeyX",
     answerPC: "eventCode.AltLeft && event.Code.ShiftLeft && eventCode.KeyK",
@@ -185,7 +191,7 @@ const questions = [
   },
   {
     //q6
-    question: "Mac|Zoom: raise hand",
+    question: "🍎 Mac|Zoom: raise hand",
     questionPC: "PC|Zoom: raise hand",
     answer: "eventCode.AltLeft && eventCode.KeyY",
     answerPC: "eventCode.AltLeft && eventCode.KeyY",
@@ -194,7 +200,7 @@ const questions = [
   },
   {
     //q7
-    question: "Mac|VSC: Go to the beginning of line",
+    question: "🍎 Mac|VSC: Go to the beginning of line",
     questionPC: "PC|VSC: Go to the beginning of line",
     answer: "eventCode.Home",
     answerPC: "eventCode.Home",
@@ -203,7 +209,7 @@ const questions = [
   },
   {
     //q8
-    question: "Mac|VSC: Move to last character of line",
+    question: "🍎 Mac|VSC: Move to last character of line",
     questionPC: "PC|VSC: Move to last character of line",
     answer: "eventCode.End",
     answerPC: "eventCode.End",
@@ -212,7 +218,7 @@ const questions = [
   },
   {
     //q9
-    question: "Mac|VSC: Go to the next word",
+    question: "🍎 Mac|VSC: Go to the next word",
     questionPC: "PC|VSC: Go to the next word",
     answer: "eventCode.AltLeft && eventCode.ArrowRight",
     answerPC: "eventCode.AltLeft && eventCode.ArrowRight",
@@ -221,7 +227,7 @@ const questions = [
   },
   {
     //q10
-    question: "Mac|Zoom: Push to talk",
+    question: "🍎 Mac|Zoom: Push to talk",
     questionPC: "PC|Zoom: Push to talk",
     answer: "eventCode.Space",
     answerPC: "eventCode.Space",
@@ -230,7 +236,7 @@ const questions = [
   },
   {
     //q11
-    question: "Mac|VSC: Delete previous word",
+    question: "🍎 Mac|VSC: Delete previous word",
     questionPC: "PC|VSC: Delete previous word",
     answer: "eventCode.Meta && eventCode.Delete",
     answerPC: "eventCode.AltLeft && eventCode.Backspace",
@@ -242,13 +248,16 @@ const questions = [
 //!conditional for pc choices
 let randomQuestionIndex = () => {
   const index = Math.floor(Math.random() * choices.length);
-  if (mac) {
-    choices[index];
+  const indexPC = Math.floor(Math.random() * choicesPC.length);
+  if (!mac) {
+    console.log('choicespcindex working')
+    console.log(indexPC)
+    return choicesPC[indexPC]
     
   } else {
-    choicesPC[index]
+    console.log(index)
+    return choices[index];
   }
-  console.log(`rdq index ${index}`)
   
 };
 
@@ -258,6 +267,13 @@ let usedQuestions = (num) => {
   const index = choices.indexOf(num);
   if (index > -1) {
     choices.splice(index, 1);
+  }
+};
+
+let usedQuestionsPC = (num) => {
+  const index = choicesPC.indexOf(num);
+  if (index > -1) {
+    choicesPC.splice(index, 1);
   }
 };
 
@@ -285,12 +301,18 @@ let incorrectDisplay = () => {
 //displays question
 //!conditional for pc
 const displayQ = () => {
+  console.log(mac)
   currentQuestion = randomQuestionIndex();
+  console.log(currentQuestion)
   //display questions
-  topCenter.style.backgroundColor = "rgb(27, 15, 4)";
-  topDisplay.innerText = questions[currentQuestion].question;
+  if (!mac) {
+    topDisplay.innerText = questions[currentQuestion].questionPC;
+  } else {
+    topDisplay.innerText = questions[currentQuestion].question;
+  }
   changeCat();
 };
+topCenter.style.backgroundColor = "rgb(27, 15, 4)";
 
 //toggle beginning screen
 let toggleGame = (id, toggle) => {
@@ -327,26 +349,21 @@ let endDisplayOff = () => {
 //buttonstart
 //!conditional for pc
 let start = () => {
+  // let pcRadio = document.getElementById('pc-radio')
   console.log("lets go!");
   toggleGame("front-screen", false);
   toggleGame("game-screen", true);
   endDisplayOff();
   reset();
+  macOrNot()
   displayQ();
-  if (mac){
-    document.addEventListener("keydown", listenerDown);
-    document.addEventListener("keyup", listenerUp);
-  }else{
-    document.addEventListener("keydown", listenerDownPC);
-    document.addEventListener("keyup", listenerUp);   
-  }
-
 };
 
 //listens specific down keys
 //!might just make separate listener for pc
 let listenerDown = (event) => {
   //displays keys
+  console.log("mac listenerdowns");
   let p = document.getElementById("output");
   p.innerText = `${event.key}`;
   p.style.color = "white";
@@ -733,7 +750,7 @@ function listenerUp(event) {
   }
 }
 
-console.log(currentQuestion);
+console.log(`current question is: ${currentQuestion}`);
 console.log(guesses);
 
 //if sound on play, if not dont
@@ -754,10 +771,26 @@ const rightAnswer = () => {
   correctImg();
   correctDisplay();
   usedQuestions(currentQuestion);
-  if (choices.length === 0) {
+  if ((choices.length === 0) || (choicesPC.length === 0)) {
     gameOver();
   } else {
     console.log(choices);
+    console.log(choicesPC);
+    console.log(guesses.length);
+    guesses = [];
+    console.log("guesses reset");
+    setTimeout(displayQ, 5000);
+  }
+};
+const rightAnswerPC = () => {
+  pudgie();
+  correctImg();
+  correctDisplay();
+  usedQuestions(currentQuestion);
+  if (choicesPC.length === 0) {
+    gameOver();
+  } else {
+    console.log(choicesPC);
     console.log(guesses.length);
     guesses = [];
     console.log("guesses reset");
@@ -791,12 +824,14 @@ const reset = () => {
     Delete: false,
     Backspace: false
   };
+  mac = true
 };
 
 //over because all questions correct
 const gameOver = () => {
   document.removeEventListener("keyup", listenerUp);
   document.removeEventListener("keydown", listenerDown);
+  document.removeEventListener("keydown", listenerDownPC);
   endDisplayOn();
   displayWin();
   reset();
@@ -807,6 +842,7 @@ const gameOver = () => {
 const gameLoss = () => {
   document.removeEventListener("keyup", listenerUp);
   document.removeEventListener("keydown", listenerDown);
+  document.removeEventListener("keydown", listenerDownPC);
   incorrectDisplay();
   endDisplayOn();
   displayLost();
