@@ -53,7 +53,8 @@ This a typing game. There will be a prompt on what the shortcut will do, and if 
 <img src="https://cdn.discordapp.com/attachments/829614700815319060/941551718720733244/Screen_Shot_2022-02-10_at_10.30.18_PM.png" width="65%"></img> 
 ***
 ## Stretch Goals
-
+* [x] pc version
+* [ ] linux version
 * [ ] web accessibility
   - [x] add alt for all images
   - [x] titles for empty buttons and switches

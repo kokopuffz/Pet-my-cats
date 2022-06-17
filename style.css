@@ -410,3 +410,38 @@ input:checked + .slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
+
+.radio-bar >input [type='radio'] {
+  -webkit-appearance: none;
+-moz-appearance: none;
+-appearance: none;
+}
+
+.radio-bar > input[type='radio'] {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  padding: 3px;
+  background-clip: content-box;
+  border: 2px solid #060c3b;
+  border-radius: 50%;
+  margin-right: 0;
+}
+
+.radio-bar > input[type='radio']:checked {
+  background-color: var(--light-green);
+}
+
+.radio-bar > input[type='radio']:hover {
+  box-shadow: 0 0 5px 0px var(--light-pink) inset;
+}
+
+.radio-bar > input[type='radio']:focus {
+  outline: 1px var(--light-purp)
+}
+#mac-pc {
+  padding-top: 2em;
+  /* background-color: var(--light-purp); */
+  color: white;
+  font-size: 1,3;
+}

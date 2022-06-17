@@ -6,7 +6,8 @@ let topDisplay = document.getElementById("top-display");
 let topCenter = document.querySelector(".top-center");
 let cat = document.querySelector(".cat");
 let asked = [];
-let choices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let choices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let choicesPC = [1,2,3,4,5,6,7,8,9,10]
 let recordPress = [];
 // let gameOver = false;
 let guesses = [];
@@ -17,16 +18,42 @@ let eventCode = {
   ArrowDown: false,
   MetaLeft: false,
   Space: false,
-  KeyF: false,
   ArrowUp: false,
   Digit4: false,
+  KeyF: false,
   KeyX: false,
   KeyY: false,
   KeyA: false,
+  KeyK: false,
   Home: false,
   End: false,
   ArrowRight: false,
+  ControlLeft: false,
+  Backspace: false,
+  Delete: false
 };
+//switches for mac or pc or linux
+let mac = true
+// linux another time
+// let linux = false
+
+//!status check to switch if max is true pc is false
+
+let macOrNot = () => {
+  let macRadio = document.getElementById("mac-radio");
+  if (macRadio.checked == true) {
+    console.log("mac-radio is true");
+    mac = true;
+    document.addEventListener("keydown", listenerDown);
+    document.addEventListener("keyup", listenerUp);
+  } else {
+    console.log("pc-radio is true");
+    mac = false;
+    document.addEventListener("keydown", listenerDownPC);
+    document.addEventListener("keyup", listenerUp);
+  }
+  console.log(mac)
+}
 
 let pudgemeow = new Audio("pudgemeow.mp3");
 
@@ -111,71 +138,142 @@ let changeCat = () => {
 
 const questions = [
   {
-    question: "Mac: emojis",
+    //q1
+    //not pc friendly
+    question: "🍎 Mac: emojis",
     answer: "eventCode.MetaLeft && eventCode.ShiftLeft && eventCode.Space",
     answertext: "command-shift-space",
   },
 
   {
-    question: "Mac: copy current line",
-    answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown",
-    answertext: "option-shift-down",
+    //q2
+    question: "🍎 Mac: copy current line",
+    questionPC: "PC: copy current line",
+    answer: "(eventCode.AltLeft && eventCode.ShiftLeft && eventCode.ArrowDown)",
+    answerPC:
+      " eventCode.ShiftLeft && eventCode.AltLeft && eventCode.ArrowDown",
+    // answerLinux:
+    // " eventCode.ControlLeft && eventCode.ShiftLeft && eventCode.AltLeft && eventCode.ArrowDown",
+    answertext: "option-shift-arrowdown",
+    answertextPC: "shift-alt-arrowdown",
+    // answertextLinux: "control-shift-alt-arrowdown",
   },
 
   {
-    question: "Mac|VS: format page",
+    //q3
+    question: "🍎 Mac|VSC: format page",
+    questionPC: "PC|VSC: format page",
     answer: "eventCode.AltLeft && eventCode.ShiftLeft && eventCode.KeyF",
+    answerPC: "eventCode.ShiftLeft && eventCode.AltLeft && eventCode.KeyF",
     answertext: "option-shift-f",
+    answertextPC: "shift-alt-f",
+    // answertextLinux: "control-shift-i",
   },
 
   {
-    question: "Mac|VSC: move current line up",
+    //q4
+    question: "🍎 Mac|VSC: move current line up",
+    questionPC: "PC|VSC: move current line up",
     answer: "eventCode.AltLeft && eventCode.ArrowUp",
-    answertext: "option-up",
+    answerPC: "eventCode.AltLeft && eventCode.ArrowUp",
+    answertext: "option-arrowup",
+    answertextPC: "alt-arrowup",
+    // answertextLinux: "control-shift-alt-arrowdown",
   },
   {
-    question: "Mac|VSC: delete line",
+    //q5
+    question: "🍎 Mac|VSC: delete line",
+    questionPC: "PC|VSC: delete line",
     answer: "eventCode.MetaLeft && eventCode.KeyX",
+    answerPC: "eventCode.AltLeft && event.Code.ShiftLeft && eventCode.KeyK",
     answertext: "command-x",
+    answertextPC: "control-shift-k",
   },
   {
-    question: "Mac|Zoom: raise hand",
+    //q6
+    question: "🍎 Mac|Zoom: raise hand",
+    questionPC: "PC|Zoom: raise hand",
     answer: "eventCode.AltLeft && eventCode.KeyY",
+    answerPC: "eventCode.AltLeft && eventCode.KeyY",
     answertext: "option-y",
+    answertextPC: "alt-y",
   },
   {
-    question: "Mac|VSC: Move to first character of line",
+    //q7
+    question: "🍎 Mac|VSC: Go to the beginning of line",
+    questionPC: "PC|VSC: Go to the beginning of line",
     answer: "eventCode.Home",
+    answerPC: "eventCode.Home",
     answertext: "home",
+    answertextPC: "home",
   },
   {
-    question: "Mac|VSC: Move to last character of line",
+    //q8
+    question: "🍎 Mac|VSC: Move to last character of line",
+    questionPC: "PC|VSC: Move to last character of line",
     answer: "eventCode.End",
+    answerPC: "eventCode.End",
     answertext: "end",
+    answertextPC: "end",
   },
   {
-    question: "Mac|VSC: Move word by word--Right",
+    //q9
+    question: "🍎 Mac|VSC: Go to the next word",
+    questionPC: "PC|VSC: Go to the next word",
     answer: "eventCode.AltLeft && eventCode.ArrowRight",
+    answerPC: "eventCode.AltLeft && eventCode.ArrowRight",
     answertext: "option-right",
+    answertextPC: "control-right",
   },
   {
-    question: "Mac|Zoom: Push to talk",
+    //q10
+    question: "🍎 Mac|Zoom: Push to talk",
+    questionPC: "PC|Zoom: Push to talk",
     answer: "eventCode.Space",
+    answerPC: "eventCode.Space",
     answertext: "spacebar",
-  }
+    answertextPC: "spacebar",
+  },
+  {
+    //q11
+    question: "🍎 Mac|VSC: Delete previous word",
+    questionPC: "PC|VSC: Delete previous word",
+    answer: "eventCode.Meta && eventCode.Delete",
+    answerPC: "eventCode.AltLeft && eventCode.Backspace",
+    answertext: "command-delete",
+    answertextPC: "control-backspace",
+  },
 ];
-
 //random number from choices
+//!conditional for pc choices
 let randomQuestionIndex = () => {
   const index = Math.floor(Math.random() * choices.length);
-  return choices[index];
+  const indexPC = Math.floor(Math.random() * choicesPC.length);
+  if (!mac) {
+    console.log('choicespcindex working')
+    console.log(indexPC)
+    return choicesPC[indexPC]
+    
+  } else {
+    console.log(index)
+    return choices[index];
+  }
+  
 };
 
 //take out question that was just used
+//!conditional for pc choices
 let usedQuestions = (num) => {
   const index = choices.indexOf(num);
   if (index > -1) {
     choices.splice(index, 1);
+  }
+};
+
+let usedQuestionsPC = (num) => {
+  const index = choicesPC.indexOf(num);
+  if (index > -1) {
+    choicesPC.splice(index, 1);
   }
 };
 
@@ -201,11 +299,18 @@ let incorrectDisplay = () => {
 };
 
 //displays question
+//!conditional for pc
 const displayQ = () => {
+  console.log(mac)
   currentQuestion = randomQuestionIndex();
-  //display questions
+  console.log(currentQuestion)
   topCenter.style.backgroundColor = "rgb(27, 15, 4)";
-  topDisplay.innerText = questions[currentQuestion].question;
+  //display questions
+  if (!mac) {
+    topDisplay.innerText = questions[currentQuestion].questionPC;
+  } else {
+    topDisplay.innerText = questions[currentQuestion].question;
+  }
   changeCat();
 };
 
@@ -224,10 +329,16 @@ let displayWin = () => {
   displayOver.innerText += "\nowo";
 };
 //if you get question wrong
+//!conditional for pc
 let displayLost = () => {
   let displayOver = document.getElementById("display-over");
   displayOver.innerText = "correct keys are:";
-  displayOver.innerText += `\n${questions[currentQuestion].answertext}`;
+  if (!mac) {
+displayOver.innerText += `\n${questions[currentQuestion].answertextPC}`;
+}else{
+    displayOver.innerText += `\n${questions[currentQuestion].answertext}`;
+  }
+  
 };
 
 //toggles end overlay
@@ -241,20 +352,24 @@ let endDisplayOff = () => {
 };
 
 //buttonstart
+//!conditional for pc
 let start = () => {
+  // let pcRadio = document.getElementById('pc-radio')
   console.log("lets go!");
   toggleGame("front-screen", false);
   toggleGame("game-screen", true);
+  document.getElementById("mac-pc").style.display = "none";
   endDisplayOff();
   reset();
+  macOrNot()
   displayQ();
-  document.addEventListener("keydown", listenerDown);
-  document.addEventListener("keyup", listenerUp);
 };
 
 //listens specific down keys
-function listenerDown(event) {
+//!might just make separate listener for pc
+let listenerDown = (event) => {
   //displays keys
+  console.log("mac listenerdowns");
   let p = document.getElementById("output");
   p.innerText = `${event.key}`;
   p.style.color = "white";
@@ -302,17 +417,29 @@ function listenerDown(event) {
   if (event.code === "KeyA") {
     eventCode.KeyA = true;
   }
+  if (event.code === "KeyK") {
+    eventCode.KeyK = true;
+  }
   if (event.code === "Home") {
     eventCode.Home = true;
   }
   if (event.code === "End") {
     eventCode.End = true;
   }
+  if (event.code === "Delete") {
+    eventCode.Delete = true;
+  }
   if (event.code === "ArrowRight") {
     eventCode.ArrowRight = true;
   }
+  if (event.code === "ControlLeft") {
+    eventCode.ControlLeft = true;
+  }
+  if (event.code === "Backspace") {
+    eventCode.Backspace = true;
+  }
   if (
-    currentQuestion === 0 &&
+    currentQuestion === 0 && 
     eventCode.MetaLeft &&
     eventCode.ShiftLeft &&
     eventCode.Space
@@ -326,6 +453,7 @@ function listenerDown(event) {
     eventCode.AltLeft &&
     eventCode.ShiftLeft &&
     eventCode.ArrowDown
+    // (questions[1].answer)
   ) {
     p.textContent = "option-shift-down";
     p.style.color = "var(--light-green)";
@@ -336,43 +464,57 @@ function listenerDown(event) {
     eventCode.AltLeft &&
     eventCode.ShiftLeft &&
     eventCode.KeyF
+    // (questions[2].answer)
   ) {
     p.textContent = "option-shift-f";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (currentQuestion === 3 && eventCode.AltLeft && eventCode.ArrowUp) {
+  // if (currentQuestion === 3 && questions[3].answer) {
     p.textContent = "option-up";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (currentQuestion === 4 && eventCode.MetaLeft && eventCode.KeyX) {
+  // if (currentQuestion === 4 && questions[4].answer) {
     p.textContent = "command-x";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (currentQuestion === 5 && eventCode.AltLeft && eventCode.KeyY) {
+  // if (currentQuestion === 5 && questions[5].answer) {
     p.textContent = "option-y";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (currentQuestion === 6 && eventCode.Home) {
+  // if (currentQuestion === 6 && questions[6].answer) {
     p.textContent = "home";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (currentQuestion === 7 && eventCode.End) {
+  // if (currentQuestion === 7 && questions[7].answer) {
     p.textContent = "end";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (currentQuestion === 8 && eventCode.AltLeft && eventCode.ArrowRight) {
+  // if (currentQuestion === 8 && questions[8].answer) {
     p.textContent = "option-arrowright";
     p.style.color = "var(--light-green)";
     rightAnswer();
   }
   if (currentQuestion === 9 && eventCode.Space) {
-    p.textContent = "option-arrowright";
+  // if (currentQuestion === 9 && questions[9].answer) {
+    p.textContent = "space";
+    p.style.color = "var(--light-green)";
+    rightAnswer();
+  }
+  if (currentQuestion === 10 && eventCode.MetaLeft && eventCode.Delete) {
+  // if (currentQuestion === 10 && questions[10].answer) {
+    p.textContent = "command-delete";
     p.style.color = "var(--light-green)";
     rightAnswer();
   } else if (guesses.length > 9) {
@@ -383,7 +525,162 @@ function listenerDown(event) {
     guesses.push(event);
   }
 }
-//listens specific up keys
+let listenerDownPC = (event) => {
+//   //displays keys
+console.log('PC listenerdowns')
+  let p = document.getElementById("output");
+  p.innerText = `${event.key}`;
+  p.style.color = "white";
+
+  if (event.key === " ") {
+    p.textContent = "Spacebar";
+  }
+  if (event.key === "Alt") {
+    p.textContent = "Alt";
+  }
+  if (event.key === "Meta") {
+    p.textContent = "Windows Key";
+  }
+
+  if (event.code === "MetaLeft") {
+    eventCode.MetaLeft = true;
+  }
+  if (event.code === "ShiftLeft") {
+    eventCode.ShiftLeft = true;
+  }
+  if (event.code === "Space") {
+    eventCode.Space = true;
+  }
+  if (event.code === "AltLeft") {
+    eventCode.AltLeft = true;
+  }
+  if (event.code === "ArrowDown") {
+    eventCode.ArrowDown = true;
+  }
+  if (event.code === "KeyF") {
+    eventCode.KeyF = true;
+  }
+  if (event.code === "ArrowUp") {
+    eventCode.ArrowUp = true;
+  }
+  if (event.code === "Digit4") {
+    eventCode.Digit4 = true;
+  }
+  if (event.code === "KeyX") {
+    eventCode.KeyX = true;
+  }
+  if (event.code === "KeyY") {
+    eventCode.KeyY = true;
+  }
+  if (event.code === "KeyA") {
+    eventCode.KeyA = true;
+  }
+  if (event.code === "KeyK") {
+    eventCode.KeyK = true;
+  }
+  if (event.code === "Home") {
+    eventCode.Home = true;
+  }
+  if (event.code === "End") {
+    eventCode.End = true;
+  }
+  if (event.code === "Delete") {
+    eventCode.Delete = true;
+  }
+  if (event.code === "ArrowRight") {
+    eventCode.ArrowRight = true;
+  }
+  if (event.code === "ControlLeft") {
+    eventCode.ControlLeft = true;
+  }
+  if (event.code === "Backspace") {
+    eventCode.Backspace = true;
+  }
+  // if (
+  //   currentQuestion === 0 &&
+  //   eventCode.MetaLeft &&
+  //   eventCode.ShiftLeft &&
+  //   eventCode.Space
+  // ) {
+  //   p.textContent = "command-shift-space";
+  //   p.style.color = "var(--light-green)";
+  //   rightAnswer();
+  // }
+  if (
+    currentQuestion === 1 &&
+    eventCode.AltLeft &&
+    eventCode.ShiftLeft &&
+    eventCode.ArrowDown
+  ) {
+    p.textContent = "shift-alt-down";
+    p.style.color = "var(--light-green)";
+    rightAnswerPC();
+  }
+  if (
+    currentQuestion === 2 &&
+    eventCode.AltLeft &&
+    eventCode.ShiftLeft &&
+    eventCode.KeyF
+  ) {
+    p.textContent = "shift-alt-f";
+    p.style.color = "var(--light-green)";
+    rightAnswerPC();
+  }
+  if (currentQuestion === 3 && eventCode.AltLeft && eventCode.ArrowUp) {
+    p.textContent = "alt-up";
+    p.style.color = "var(--light-green)";
+    rightAnswerPC();
+  }
+  if (
+    currentQuestion === 4 &&
+    eventCode.AltLeft &&
+    eventCode.ShiftLeft &&
+    eventCode.KeyK
+  ) {
+    p.textContent = "control-shift-k";
+    p.style.color = "var(--light-green)";
+    rightAnswerPC();
+  }
+  if (currentQuestion === 5 && eventCode.AltLeft && eventCode.KeyY) {
+    p.textContent = "alt-y";
+    p.style.color = "var(--light-green)";
+    rightAnswerPC();
+  }
+  if (currentQuestion === 6 && eventCode.Home) {
+    p.textContent = "home";
+    p.style.color = "var(--light-green)";
+    rightAnswerPC();
+  }
+  if (currentQuestion === 7 && eventCode.End) {
+    p.textContent = "end";
+    p.style.color = "var(--light-green)";
+    rightAnswerPC();
+  }
+  if (currentQuestion === 8 && eventCode.AltLeft && eventCode.ArrowRight) {
+    p.textContent = "alt-arrowright";
+    p.style.color = "var(--light-green)";
+    rightAnswerPC();
+  }
+  if (currentQuestion === 9 && eventCode.Space) {
+    p.textContent = "space";
+    p.style.color = "var(--light-green)";
+    rightAnswerPC();
+  }
+  if (currentQuestion === 10 && eventCode.AltLeft && eventCode.Backspace) {
+    p.textContent = "alt-backspace";
+    p.style.color = "var(--light-green)";
+    rightAnswerPC();
+
+  } else if (guesses.length > 9) {
+    console.log("too many guesses/wrong answer");
+    console.log(guesses.length);
+    gameLoss();
+  } else {
+    guesses.push(event);
+    console.log(guesses)
+  }
+}
+
 function listenerUp(event) {
   if (event.code === "MetaLeft") {
     eventCode.MetaLeft = false;
@@ -421,6 +718,10 @@ function listenerUp(event) {
     eventCode.KeyX = false;
     console.log("xup");
   }
+  if (event.code === "KeyK") {
+    eventCode.KeyK = false;
+    console.log("kup");
+  }
 
   if (event.code === "KeyY") {
     eventCode.KeyY = false;
@@ -442,9 +743,21 @@ function listenerUp(event) {
     eventCode.ArrowRight = false;
     console.log("arrowRup");
   }
+  if (event.code === "Delete") {
+    eventCode.Delete = false;
+    console.log("dup");
+  }
+  if (event.code === "ControlLeft") {
+    eventCode.ControlLeft = false;
+    console.log("ctrlup");
+  }
+  if (event.code === "Backspace") {
+    eventCode.Backspace = false;
+    console.log("bkup");
+  }
 }
 
-console.log(currentQuestion);
+console.log(`current question is: ${currentQuestion}`);
 console.log(guesses);
 
 //if sound on play, if not dont
@@ -459,15 +772,32 @@ let pudgie = () => {
 };
 
 // if right ... if there is no more choices, then gameover
+//!might have to make separate right answer for pc
 const rightAnswer = () => {
   pudgie();
   correctImg();
   correctDisplay();
   usedQuestions(currentQuestion);
-  if (choices.length === 0) {
+  if ((choices.length === 0) || (choicesPC.length === 0)) {
     gameOver();
   } else {
     console.log(choices);
+    console.log(choicesPC);
+    console.log(guesses.length);
+    guesses = [];
+    console.log("guesses reset");
+    setTimeout(displayQ, 5000);
+  }
+};
+const rightAnswerPC = () => {
+  pudgie();
+  correctImg();
+  correctDisplay();
+  usedQuestionsPC(currentQuestion);
+  if (choicesPC.length === 0) {
+    gameOver();
+  } else {
+    console.log(choicesPC);
     console.log(guesses.length);
     guesses = [];
     console.log("guesses reset");
@@ -476,8 +806,10 @@ const rightAnswer = () => {
 };
 
 //resets variables to starting variables
+//! conditional for pc
 const reset = () => {
-  choices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  choices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  choicesPC = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   guesses = [];
   eventCode = {
     AltLeft: false,
@@ -486,6 +818,7 @@ const reset = () => {
     MetaLeft: false,
     Space: false,
     KeyF: false,
+    KeyK: false,
     ArrowUp: false,
     Digit4: false,
     KeyX: false,
@@ -494,24 +827,33 @@ const reset = () => {
     Home: false,
     End: false,
     ArrowRight: false,
+    ControlLeft: false,
+    Delete: false,
+    Backspace: false
   };
+  mac = true
 };
 
 //over because all questions correct
 const gameOver = () => {
   document.removeEventListener("keyup", listenerUp);
   document.removeEventListener("keydown", listenerDown);
+  document.removeEventListener("keydown", listenerDownPC);
   endDisplayOn();
   displayWin();
   reset();
+  document.getElementById("mac-pc").style.display="block"
 };
 
+//!listenerupdown for pc
 //over because wrong keys pressed
 const gameLoss = () => {
   document.removeEventListener("keyup", listenerUp);
   document.removeEventListener("keydown", listenerDown);
+  document.removeEventListener("keydown", listenerDownPC);
   incorrectDisplay();
   endDisplayOn();
   displayLost();
   reset();
+  document.getElementById("mac-pc").style.display = "block"
 };
