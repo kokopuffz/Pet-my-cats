@@ -8,7 +8,11 @@ This game is meant for MAC noobies like us who just wants to learn useful mac sh
 
 
 ## About the Game
-This a typing game. There will be a prompt on what the shortcut will do, and if you push the right keys => You get to pet my cute cats. Lucky you!  Currently, only for mac users. :( 
+This a typing game. There will be a prompt on what the shortcut will do, and if you push the right keys => You get to pet my cute cats. Lucky you!  Currently, ~~only for mac users. 
+:(~~ available for mac and pc! Select at top on start of game. Hit refresh to change setting.
+
+
+<img src="https://cdn.discordapp.com/attachments/829614700815319060/987475991448395816/sdasds.PNG" width="50%">
 
 ***
 
@@ -53,8 +57,7 @@ This a typing game. There will be a prompt on what the shortcut will do, and if 
 <img src="https://cdn.discordapp.com/attachments/829614700815319060/941551718720733244/Screen_Shot_2022-02-10_at_10.30.18_PM.png" width="65%"></img> 
 ***
 ## Stretch Goals
-* [x] pc version
-* [ ] linux version
+
 * [ ] web accessibility
   - [x] add alt for all images
   - [x] titles for empty buttons and switches
